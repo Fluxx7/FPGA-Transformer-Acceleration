@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="960" viewBox="0 0 900 960">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#444"/>
+    </marker>
+    <marker id="aho" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#D35400"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="960" fill="white"/>
+  <rect x="5" y="5" width="890" height="950" fill="none" stroke="#DDD" stroke-width="1" rx="3"/>
+
+  <!-- TITLE -->
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#17202A">GenCore Transformer Decoder Architecture</text>
+
+  <!-- PARAMS BAR -->
+  <rect x="80" y="38" width="740" height="24" fill="#EBF5FB" rx="4" stroke="#AED6F1" stroke-width="1"/>
+  <text x="450" y="54" text-anchor="middle" font-family="Arial,sans-serif" font-size="10.5" fill="#2C3E50">VOCAB_SIZE=25  ·  EMBED_DIM=64  ·  SEQ_LEN=8  ·  NUM_HEADS=8  ·  HEAD_DIM=8  ·  FFN_DIM=256  ·  Fixed-point INT16/INT32</text>
+
+  <text x="800" y="73" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#888" font-style="italic">Shape</text>
+
+  <!-- ── INPUT ── y=75..107 -->
+  <rect x="230" y="75" width="440" height="32" fill="#1E8449" rx="5"/>
+  <text x="450" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="12.5" fill="white" font-weight="bold">input_sequence</text>
+  <text x="800" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 5-bit</text>
+
+  <line x1="450" y1="107" x2="450" y2="121" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── TOKEN EMBEDDING ── y=125..190 -->
+  <rect x="170" y="125" width="520" height="65" fill="#2471A3" rx="6"/>
+  <text x="450" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Token Embedding</text>
+  <text x="450" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#AED6F1">embedding.mem  ·  25 × 64 = 1600 entries</text>
+  <text x="800" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 64</text>
+
+  <line x1="450" y1="190" x2="450" y2="204" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── POSITIONAL ENCODING ── y=208..273 -->
+  <rect x="170" y="208" width="520" height="65" fill="#2471A3" rx="6"/>
+  <text x="450" y="233" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Positional Encoding</text>
+  <text x="450" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#AED6F1">positional_encoding.mem  ·  8 × 64 = 512 entries</text>
+  <text x="800" y="246" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 64</text>
+
+  <!-- RESIDUAL 1: PE right-edge tap → bypass MHA → Add&Norm1 right side -->
+  <circle cx="690" cy="248" r="4" fill="#D35400" stroke="white" stroke-width="1"/>
+  <polyline points="690,248 730,248 730,421 690,421"
+    fill="none" stroke="#D35400" stroke-width="1.8" stroke-dasharray="7,4"
+    marker-end="url(#aho)"/>
+  <text x="736" y="338" font-family="Arial,sans-serif" font-size="8.5" fill="#D35400" font-style="italic">residual&#x2081;</text>
+
+  <line x1="450" y1="273" x2="450" y2="284" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── MULTI-HEAD ATTENTION ── y=288..373 -->
+  <rect x="170" y="288" width="520" height="85" fill="#1A5276" rx="6"/>
+  <text x="450" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Multi-Head Attention</text>
+  <rect x="183" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="211" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H0</text>
+  <rect x="244" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="272" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H1</text>
+  <rect x="305" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="333" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H2</text>
+  <rect x="366" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="394" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H3</text>
+  <rect x="427" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="455" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H4</text>
+  <rect x="488" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="516" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H5</text>
+  <rect x="549" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="577" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H6</text>
+  <rect x="610" y="322" width="57" height="22" fill="#21618C" rx="3"/>
+  <text x="638" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white">H7</text>
+  <text x="450" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#AED6F1">HEAD_DIM=8 per head  ·  Causal masking</text>
+  <text x="450" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#85C1E9">Concat + W&#x2092; projection  ·  wq/wk/wv_head{0-7}.mem  ·  attention_wo.mem</text>
+  <text x="800" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 64</text>
+
+  <line x1="450" y1="373" x2="450" y2="384" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── ADD &amp; LAYER NORM 1 ── y=388..453  mid=420 -->
+  <rect x="170" y="388" width="520" height="65" fill="#6C3483" rx="6"/>
+  <circle cx="201" cy="421" r="13" fill="white" stroke="#6C3483" stroke-width="2"/>
+  <text x="201" y="426" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#6C3483" font-weight="bold">+</text>
+  <text x="456" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Add &amp; Layer Norm 1</text>
+  <text x="456" y="432" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#D7BDE2">layernorm1_gamma.mem  ·  layernorm1_beta.mem  (64 entries each)</text>
+  <text x="456" y="447" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#C39BD3">residual = position_encoded</text>
+  <text x="800" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 64</text>
+
+  <!-- RESIDUAL 2: Add&Norm1 right-edge tap → bypass FFN → Add&Norm2 right side -->
+  <circle cx="690" cy="437" r="4" fill="#D35400" stroke="white" stroke-width="1"/>
+  <polyline points="690,437 750,437 750,601 690,601"
+    fill="none" stroke="#D35400" stroke-width="1.8" stroke-dasharray="7,4"
+    marker-end="url(#aho)"/>
+  <text x="756" y="522" font-family="Arial,sans-serif" font-size="8.5" fill="#D35400" font-style="italic">residual&#x2082;</text>
+
+  <line x1="450" y1="453" x2="450" y2="464" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── FEED FORWARD NETWORK ── y=468..553 -->
+  <rect x="170" y="468" width="520" height="85" fill="#922B21" rx="6"/>
+  <text x="450" y="493" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Feed Forward Network</text>
+  <text x="450" y="514" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#FADBD8">64  →  256  [ReLU]  →  64</text>
+  <text x="450" y="534" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#F5B7B1">ffn_w1.mem  ·  ffn_b1.mem  ·  ffn_w2.mem  ·  ffn_b2.mem</text>
+  <text x="800" y="511" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 64</text>
+
+  <line x1="450" y1="553" x2="450" y2="564" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── ADD &amp; LAYER NORM 2 ── y=568..633  mid=600 -->
+  <rect x="170" y="568" width="520" height="65" fill="#6C3483" rx="6"/>
+  <circle cx="201" cy="601" r="13" fill="white" stroke="#6C3483" stroke-width="2"/>
+  <text x="201" y="606" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#6C3483" font-weight="bold">+</text>
+  <text x="456" y="593" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Add &amp; Layer Norm 2</text>
+  <text x="456" y="612" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#D7BDE2">layernorm2_gamma.mem  ·  layernorm2_beta.mem  (64 entries each)</text>
+  <text x="456" y="627" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#C39BD3">residual = norm1_out</text>
+  <text x="800" y="601" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">8 × 64</text>
+
+  <!-- Arrow with last_pos annotation -->
+  <line x1="450" y1="633" x2="450" y2="669" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="318" y="638" width="264" height="18" fill="#FEFEFE" rx="3" stroke="#95A5A6" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="450" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#555">select norm2_out[last_pos]  →  1 × 16</text>
+
+  <!-- ── OUTPUT PROJECTION ── y=673..738 -->
+  <rect x="170" y="673" width="520" height="65" fill="#0E6655" rx="6"/>
+  <text x="450" y="698" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Output Projection</text>
+  <text x="450" y="717" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#A9DFBF">output_proj.mem  ·  64 × 25 = 1600 weights (INT16)</text>
+  <text x="800" y="711" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">25 logits</text>
+
+  <line x1="450" y1="738" x2="450" y2="749" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── ARGMAX ── y=753..803 -->
+  <rect x="275" y="753" width="350" height="50" fill="#4A4A4A" rx="6"/>
+  <text x="450" y="783" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="white" font-weight="bold">Argmax</text>
+  <text x="800" y="783" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">5-bit index</text>
+
+  <line x1="450" y1="803" x2="450" y2="816" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ── OUTPUT ── y=820..852 -->
+  <rect x="230" y="820" width="440" height="32" fill="#1E8449" rx="5"/>
+  <text x="450" y="841" text-anchor="middle" font-family="Arial,sans-serif" font-size="12.5" fill="white" font-weight="bold">predicted_token  [5-bit, 0–24]</text>
+  <text x="800" y="841" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">5-bit</text>
+
+  <!-- ── LEGEND ── y=866..946 -->
+  <rect x="75" y="866" width="750" height="80" fill="#F8F9FA" rx="5" stroke="#DEE2E6" stroke-width="1"/>
+  <text x="450" y="882" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#444">Legend</text>
+
+  <rect x="95"  y="888" width="12" height="12" fill="#2471A3" rx="2"/>
+  <text x="111" y="899" font-family="Arial,sans-serif" font-size="9" fill="#333">Embed / Lookup</text>
+  <rect x="210" y="888" width="12" height="12" fill="#1A5276" rx="2"/>
+  <text x="226" y="899" font-family="Arial,sans-serif" font-size="9" fill="#333">Attention</text>
+  <rect x="295" y="888" width="12" height="12" fill="#6C3483" rx="2"/>
+  <text x="311" y="899" font-family="Arial,sans-serif" font-size="9" fill="#333">Add &amp; Norm</text>
+  <rect x="400" y="888" width="12" height="12" fill="#922B21" rx="2"/>
+  <text x="416" y="899" font-family="Arial,sans-serif" font-size="9" fill="#333">Feed Forward</text>
+  <rect x="505" y="888" width="12" height="12" fill="#0E6655" rx="2"/>
+  <text x="521" y="899" font-family="Arial,sans-serif" font-size="9" fill="#333">Output Projection</text>
+  <rect x="630" y="888" width="12" height="12" fill="#1E8449" rx="2"/>
+  <text x="646" y="899" font-family="Arial,sans-serif" font-size="9" fill="#333">I / O</text>
+
+  <line x1="95"  y1="922" x2="128" y2="922" stroke="#D35400" stroke-width="1.8" stroke-dasharray="6,3"/>
+  <circle cx="112" cy="922" r="3.5" fill="#D35400"/>
+  <text x="133" y="926" font-family="Arial,sans-serif" font-size="9" fill="#333">Residual (skip) connection</text>
+  <line x1="310" y1="922" x2="343" y2="922" stroke="#444" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="348" y="926" font-family="Arial,sans-serif" font-size="9" fill="#333">Main data flow</text>
+
+  <text x="450" y="940" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#888">All weights stored as INT16 fixed-point  ·  Accumulators INT32  ·  Results right-shifted by 8 bits (÷256)</text>
+</svg>

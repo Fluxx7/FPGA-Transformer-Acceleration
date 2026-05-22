@@ -21,10 +21,11 @@ module layer_normalization #(
 
     localparam IDLE = 0, ADD_RESIDUAL = 1, COMPUTE_MEAN = 2,
                COMPUTE_VAR = 3, NORMALIZE = 4, COMPLETE = 5;
+    localparam DIM_BITS = $clog2(EMBED_DIM);
     reg [2:0] state;
 
     reg [2:0] seq_idx;
-    reg [5:0] dim_idx;
+    reg [DIM_BITS-1:0] dim_idx;
     reg signed [15:0] sum_data [0:SEQ_LEN-1][0:EMBED_DIM-1];
     reg signed [31:0] mean_acc, var_acc;
     reg signed [15:0] mean_val [0:SEQ_LEN-1];
@@ -55,7 +56,7 @@ module layer_normalization #(
     reg signed [31:0] diff, diff_sq, normalized, with_gamma, final_result;
     reg [31:0] variance;
 
-    wire [5:0] param_addr;
+    wire [DIM_BITS-1:0] param_addr;
     wire [15:0] gamma_data, beta_data;
     wire mem_enable;
 
@@ -63,13 +64,13 @@ module layer_normalization #(
     assign mem_enable = (state == NORMALIZE);
 
     memory_module #(
-        .ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE(GAMMA_FILE)
+        .ADDR_WIDTH(DIM_BITS), .DATA_WIDTH(16), .DEPTH(EMBED_DIM), .MEM_FILE(GAMMA_FILE)
     ) gamma_memory (
         .clk(clk), .addr(param_addr), .data_out(gamma_data), .enable(mem_enable)
     );
 
     memory_module #(
-        .ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE(BETA_FILE)
+        .ADDR_WIDTH(DIM_BITS), .DATA_WIDTH(16), .DEPTH(EMBED_DIM), .MEM_FILE(BETA_FILE)
     ) beta_memory (
         .clk(clk), .addr(param_addr), .data_out(beta_data), .enable(mem_enable)
     );
@@ -127,7 +128,7 @@ module layer_normalization #(
                     else
                         sum_data[seq_idx][dim_idx] <= temp_sum[15:0];
 
-                    if (dim_idx == 6'(EMBED_DIM - 1)) begin
+                    if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                         dim_idx <= 0;
                         if (seq_idx == 3'(SEQ_LEN - 1)) begin
                             state <= COMPUTE_MEAN;
@@ -144,8 +145,8 @@ module layer_normalization #(
                 COMPUTE_MEAN: begin
                     mean_acc <= mean_acc + 32'(sum_data[seq_idx][dim_idx]);
 
-                    if (dim_idx == 6'(EMBED_DIM - 1)) begin
-                        mean_val[seq_idx] <= 16'(mean_acc >>> 6);
+                    if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
+                        mean_val[seq_idx] <= 16'(mean_acc >>> DIM_BITS);
                         dim_idx <= 0;
                         var_acc <= 0;
                         state <= COMPUTE_VAR;
@@ -159,8 +160,8 @@ module layer_normalization #(
                     diff_sq <= (diff * diff) >>> 8;
                     var_acc <= var_acc + diff_sq;
 
-                    if (dim_idx == 6'(EMBED_DIM - 1)) begin
-                        variance <= var_acc >>> 6;
+                    if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
+                        variance <= var_acc >>> DIM_BITS;
                         std_val[seq_idx] <= improved_sqrt(variance + 32'd256);
                         dim_idx <= 0;
                         pipe_stage <= 0;
@@ -187,7 +188,7 @@ module layer_normalization #(
 
                         pipe_stage <= 0;
 
-                        if (dim_idx == 6'(EMBED_DIM - 1)) begin
+                        if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                             dim_idx <= 0;
                             if (seq_idx == 3'(SEQ_LEN - 1)) begin
                                 state <= COMPLETE;

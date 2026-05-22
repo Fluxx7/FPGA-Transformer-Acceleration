@@ -19,6 +19,11 @@ module multi_head_attention #(
 );
 
     localparam IDLE = 0, PROCESS_HEADS = 1, CONCAT_OUTPUT = 2, OUTPUT_PROJ = 3, COMPLETE = 4;
+    localparam DIM_BITS      = $clog2(EMBED_DIM);
+    localparam HEAD_BITS     = $clog2(HEAD_DIM);
+    localparam SEQ_BITS      = $clog2(SEQ_LEN);        // [Claude]
+    localparam HEAD_NUM_BITS = $clog2(NUM_HEADS);       // [Claude]
+    localparam WO_ADDR_BITS  = 2 * DIM_BITS;           // [Claude] avoids computed-param casts in assign
     reg [2:0] state;
 
     reg [NUM_HEADS-1:0] head_start_signals;
@@ -28,22 +33,22 @@ module multi_head_attention #(
 
     reg signed [15:0] concatenated [0:SEQ_LEN-1][0:EMBED_DIM-1];
 
-    reg [2:0] seq_idx;
-    reg [5:0] dim_idx, in_dim, out_dim;
+    reg [SEQ_BITS-1:0] seq_idx;     // [Claude] was [2:0], hardcoded for SEQ_LEN=8
+    reg [DIM_BITS-1:0] dim_idx, in_dim, out_dim;
     reg [2:0] pipe_stage;
     reg signed [31:0] proj_accumulator;
 
-    wire [11:0] wo_addr;
+    wire [2*DIM_BITS-1:0] wo_addr;
     wire [15:0] wo_data;
     wire mem_enable_wo;
 
-    assign wo_addr = in_dim * EMBED_DIM + 12'(out_dim);
+    assign wo_addr = WO_ADDR_BITS'(in_dim) * WO_ADDR_BITS'(EMBED_DIM) + WO_ADDR_BITS'(out_dim); // [Claude]
     assign mem_enable_wo = (state == OUTPUT_PROJ);
 
     memory_module #(
-        .ADDR_WIDTH(12),
+        .ADDR_WIDTH(2*DIM_BITS),
         .DATA_WIDTH(16),
-        .DEPTH(4096),
+        .DEPTH(EMBED_DIM*EMBED_DIM),
         .MEM_FILE("memory/attention_wo.mem")
     ) wo_memory (
         .clk(clk),
@@ -52,54 +57,16 @@ module multi_head_attention #(
         .enable(mem_enable_wo)
     );
 
-    // All 8 attention heads with correct memory files
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head0.mem"), .WK_FILE("memory/attention_wk_head0.mem"), .WV_FILE("memory/attention_wv_head0.mem")
-    ) head0 (.clk(clk), .rst(rst), .start(head_start_signals[0]), .input_data(input_data),
-            .output_data(head_outputs[0]), .done(head_done_signals[0]), .valid(head_valid_signals[0]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head1.mem"), .WK_FILE("memory/attention_wk_head1.mem"), .WV_FILE("memory/attention_wv_head1.mem")
-    ) head1 (.clk(clk), .rst(rst), .start(head_start_signals[1]), .input_data(input_data),
-            .output_data(head_outputs[1]), .done(head_done_signals[1]), .valid(head_valid_signals[1]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head2.mem"), .WK_FILE("memory/attention_wk_head2.mem"), .WV_FILE("memory/attention_wv_head2.mem")
-    ) head2 (.clk(clk), .rst(rst), .start(head_start_signals[2]), .input_data(input_data),
-            .output_data(head_outputs[2]), .done(head_done_signals[2]), .valid(head_valid_signals[2]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head3.mem"), .WK_FILE("memory/attention_wk_head3.mem"), .WV_FILE("memory/attention_wv_head3.mem")
-    ) head3 (.clk(clk), .rst(rst), .start(head_start_signals[3]), .input_data(input_data),
-            .output_data(head_outputs[3]), .done(head_done_signals[3]), .valid(head_valid_signals[3]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head4.mem"), .WK_FILE("memory/attention_wk_head4.mem"), .WV_FILE("memory/attention_wv_head4.mem")
-    ) head4 (.clk(clk), .rst(rst), .start(head_start_signals[4]), .input_data(input_data),
-            .output_data(head_outputs[4]), .done(head_done_signals[4]), .valid(head_valid_signals[4]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head5.mem"), .WK_FILE("memory/attention_wk_head5.mem"), .WV_FILE("memory/attention_wv_head5.mem")
-    ) head5 (.clk(clk), .rst(rst), .start(head_start_signals[5]), .input_data(input_data),
-            .output_data(head_outputs[5]), .done(head_done_signals[5]), .valid(head_valid_signals[5]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head6.mem"), .WK_FILE("memory/attention_wk_head6.mem"), .WV_FILE("memory/attention_wv_head6.mem")
-    ) head6 (.clk(clk), .rst(rst), .start(head_start_signals[6]), .input_data(input_data),
-            .output_data(head_outputs[6]), .done(head_done_signals[6]), .valid(head_valid_signals[6]));
-
-    attention_head #(
-        .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
-        .WQ_FILE("memory/attention_wq_head7.mem"), .WK_FILE("memory/attention_wk_head7.mem"), .WV_FILE("memory/attention_wv_head7.mem")
-    ) head7 (.clk(clk), .rst(rst), .start(head_start_signals[7]), .input_data(input_data),
-            .output_data(head_outputs[7]), .done(head_done_signals[7]), .valid(head_valid_signals[7]));
+    genvar head_num;
+    generate 
+        for (head_num = 0; head_num < NUM_HEADS; head_num++) begin
+            attention_head #(
+                    .SEQ_LEN(SEQ_LEN), .EMBED_DIM(EMBED_DIM), .HEAD_DIM(HEAD_DIM),
+                    .WQ_FILE($sformatf("memory/attention_wq_head%0d.mem", head_num)), .WK_FILE($sformatf("memory/attention_wk_head%0d.mem", head_num)), .WV_FILE($sformatf("memory/attention_wv_head%0d.mem", head_num))
+                ) head (.clk(clk), .rst(rst), .start(head_start_signals[head_num]), .input_data(input_data),
+            .output_data(head_outputs[head_num]), .done(head_done_signals[head_num]), .valid(head_valid_signals[head_num]));
+        end
+    endgenerate
 
     // Fixed: Initialize arrays in initial block
     initial begin
@@ -132,7 +99,7 @@ module multi_head_attention #(
                     head_start_signals <= 0;
                     if (start) begin
                         state <= PROCESS_HEADS;
-                        head_start_signals <= {NUM_HEADS{1'b1}};
+                        head_start_signals <= {NUM_HEADS{1'b1}}; // [Claude] was 255, hardcoded for 8 heads
                     end
                 end
 
@@ -146,19 +113,17 @@ module multi_head_attention #(
                 end
 
                 CONCAT_OUTPUT: begin
-                    if (dim_idx < HEAD_DIM * NUM_HEADS) begin
-                        reg [2:0] head_id;
-                        reg [2:0] local_dim;
-                        head_id = 3'(dim_idx / HEAD_DIM);
-                        local_dim = 3'(dim_idx % HEAD_DIM);
+                    begin // [Claude] bit-selects replace div/mod; avoids width warnings and is synthesis-friendly
+                        reg [HEAD_NUM_BITS-1:0] head_id;
+                        reg [HEAD_BITS-1:0] local_dim;
+                        head_id  = dim_idx[DIM_BITS-1:HEAD_BITS];   // upper bits = which head
+                        local_dim = dim_idx[HEAD_BITS-1:0];          // lower bits = offset within head
                         concatenated[seq_idx][dim_idx] <= head_outputs[head_id][seq_idx][local_dim];
-                    end else begin
-                        concatenated[seq_idx][dim_idx] <= 16'h0;
                     end
 
-                    if (dim_idx == 6'(EMBED_DIM - 1)) begin
+                    if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                         dim_idx <= 0;
-                        if (seq_idx == 3'(SEQ_LEN - 1)) begin
+                        if (seq_idx == SEQ_BITS'(SEQ_LEN - 1)) begin
                             state <= OUTPUT_PROJ;
                             seq_idx <= 0;
                             in_dim <= 0;
@@ -181,14 +146,14 @@ module multi_head_attention #(
                             (concatenated[seq_idx][in_dim] * $signed(wo_data));
                         pipe_stage <= 0;
 
-                        if (in_dim == 6'(EMBED_DIM - 1)) begin
+                        if (in_dim == DIM_BITS'(EMBED_DIM - 1)) begin
                             output_data[seq_idx][out_dim] <= 16'(proj_accumulator >>> 8);
                             proj_accumulator <= 0;
                             in_dim <= 0;
 
-                            if (out_dim == 6'(EMBED_DIM - 1)) begin
+                            if (out_dim == DIM_BITS'(EMBED_DIM - 1)) begin
                                 out_dim <= 0;
-                                if (seq_idx == 3'(SEQ_LEN - 1)) begin
+                                if (seq_idx == SEQ_BITS'(SEQ_LEN - 1)) begin
                                     state <= COMPLETE;
                                 end else begin
                                     seq_idx <= seq_idx + 1;

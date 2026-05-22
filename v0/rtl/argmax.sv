@@ -4,13 +4,13 @@
 // ARGMAX MODULE - SYNTHESIS READY
 // ============================================================================
 module argmax #(
-    parameter VOCAB_SIZE = 25
+    parameter VOCAB_SIZE = 40
 )(
     input wire clk,
     input wire rst,
     input wire start,
     input wire signed [15:0] input_logits [0:VOCAB_SIZE-1],
-    output reg [4:0] selected_token,
+    output reg [5:0] selected_token,
     output reg done,
     output reg valid
 );
@@ -18,9 +18,9 @@ module argmax #(
     localparam IDLE = 0, COMPARE = 1, COMPLETE = 2;
     reg [1:0] state;
     
-    reg [4:0] current_idx;
+    reg [5:0] current_idx;
     reg signed [15:0] max_value;
-    reg [4:0] max_index;
+    reg [5:0] max_index;
     
     always @(posedge clk) begin
         if (rst) begin
@@ -50,7 +50,7 @@ module argmax #(
                         max_index <= current_idx;
                     end
                     
-                    if (current_idx == VOCAB_SIZE - 1) begin
+                    if (current_idx == 6'(VOCAB_SIZE - 1)) begin
                         selected_token <= max_index;
                         state <= COMPLETE;
                     end else begin

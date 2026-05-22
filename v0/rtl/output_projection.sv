@@ -4,7 +4,7 @@
 // OUTPUT PROJECTION MODULE - SYNTHESIS OPTIMIZED
 // ============================================================================
 module output_projection #(
-    parameter VOCAB_SIZE = 25,
+    parameter VOCAB_SIZE = 40,
     parameter EMBED_DIM = 64
 )(
     input wire clk,
@@ -17,24 +17,25 @@ module output_projection #(
 );
 
     localparam IDLE = 0, COMPUTE = 1, COMPLETE = 2;
+    localparam DIM_BITS = $clog2(EMBED_DIM);
     reg [1:0] state;
-    
-    reg [4:0] vocab_idx;
-    reg [5:0] dim_idx;
+
+    reg [5:0] vocab_idx;
+    reg [DIM_BITS-1:0] dim_idx;
     reg signed [31:0] logit_accumulator;
     reg [2:0] pipe_stage;
     
-    wire [10:0] proj_addr;
+    wire [11:0] proj_addr;
     wire [15:0] proj_data;
     wire mem_enable;
     
-    assign proj_addr = dim_idx * VOCAB_SIZE + 11'(vocab_idx);
+    assign proj_addr = dim_idx * VOCAB_SIZE + 12'(vocab_idx);
     assign mem_enable = (state == COMPUTE);
     
     memory_module #(
-        .ADDR_WIDTH(11), 
-        .DATA_WIDTH(16), 
-        .DEPTH(1600), 
+        .ADDR_WIDTH(12),
+        .DATA_WIDTH(16),
+        .DEPTH(2560),
         .MEM_FILE("memory/output_proj.mem")
     ) proj_memory (
         .clk(clk), 
@@ -82,12 +83,12 @@ module output_projection #(
                             (final_hidden_state[dim_idx] * $signed(proj_data));
                         pipe_stage <= 0;
                         
-                        if (dim_idx == 6'(EMBED_DIM - 1)) begin
+                        if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                             vocabulary_logits[vocab_idx] <= 16'(logit_accumulator >>> 8);
                             logit_accumulator <= 0;
                             dim_idx <= 0;
                             
-                            if (vocab_idx == VOCAB_SIZE - 1) begin
+                            if (vocab_idx == 6'(VOCAB_SIZE - 1)) begin
                                 state <= COMPLETE;
                             end else begin
                                 vocab_idx <= vocab_idx + 1;

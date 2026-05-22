@@ -18,38 +18,40 @@ module feed_forward_network #(
 );
 
     localparam IDLE = 0, LINEAR1 = 1, LINEAR2 = 2, COMPLETE = 3;
+    localparam DIM_BITS = $clog2(EMBED_DIM);
+    localparam FFN_BITS = $clog2(FFN_DIM);
     reg [2:0] state;
 
     reg [2:0] seq_idx;
-    reg [5:0] in_dim, out_dim;
-    reg [7:0] hidden_dim;
+    reg [DIM_BITS-1:0] in_dim, out_dim;
+    reg [FFN_BITS-1:0] hidden_dim;
     reg signed [31:0] accumulator;
     reg signed [15:0] hidden_data [0:SEQ_LEN-1][0:FFN_DIM-1];
     reg [2:0] pipe_stage;
 
-    wire [13:0] w1_addr, w2_addr;
-    wire [7:0] b1_addr;
-    wire [5:0] b2_addr;
+    wire [DIM_BITS+FFN_BITS-1:0] w1_addr, w2_addr;
+    wire [FFN_BITS-1:0] b1_addr;
+    wire [DIM_BITS-1:0] b2_addr;
     wire [15:0] w1_data, w2_data, b1_data, b2_data;
     wire mem_enable_w1, mem_enable_w2, mem_enable_b1, mem_enable_b2;
 
-    assign w1_addr = in_dim * FFN_DIM + 14'(hidden_dim);
-    assign w2_addr = hidden_dim * EMBED_DIM + 14'(out_dim);
+    assign w1_addr = in_dim * FFN_DIM + (DIM_BITS+FFN_BITS)'(hidden_dim);
+    assign w2_addr = hidden_dim * EMBED_DIM + (DIM_BITS+FFN_BITS)'(out_dim);
     assign b1_addr = hidden_dim;
     assign b2_addr = out_dim;
 
     assign mem_enable_w1 = (state == LINEAR1);
     assign mem_enable_w2 = (state == LINEAR2);
-    assign mem_enable_b1 = (state == LINEAR1 && in_dim == 6'(EMBED_DIM - 1));
-    assign mem_enable_b2 = (state == LINEAR2 && hidden_dim == 8'(FFN_DIM - 1));
+    assign mem_enable_b1 = (state == LINEAR1 && in_dim == DIM_BITS'(EMBED_DIM - 1));
+    assign mem_enable_b2 = (state == LINEAR2 && hidden_dim == FFN_BITS'(FFN_DIM - 1));
 
-    memory_module #(.ADDR_WIDTH(14), .DATA_WIDTH(16), .DEPTH(16384), .MEM_FILE("memory/ffn_w1.mem"))
+    memory_module #(.ADDR_WIDTH(DIM_BITS+FFN_BITS), .DATA_WIDTH(16), .DEPTH(EMBED_DIM*FFN_DIM), .MEM_FILE("memory/ffn_w1.mem"))
         w1_memory (.clk(clk), .addr(w1_addr), .data_out(w1_data), .enable(mem_enable_w1));
-    memory_module #(.ADDR_WIDTH(8), .DATA_WIDTH(16), .DEPTH(256), .MEM_FILE("memory/ffn_b1.mem"))
+    memory_module #(.ADDR_WIDTH(FFN_BITS), .DATA_WIDTH(16), .DEPTH(FFN_DIM), .MEM_FILE("memory/ffn_b1.mem"))
         b1_memory (.clk(clk), .addr(b1_addr), .data_out(b1_data), .enable(mem_enable_b1));
-    memory_module #(.ADDR_WIDTH(14), .DATA_WIDTH(16), .DEPTH(16384), .MEM_FILE("memory/ffn_w2.mem"))
+    memory_module #(.ADDR_WIDTH(DIM_BITS+FFN_BITS), .DATA_WIDTH(16), .DEPTH(FFN_DIM*EMBED_DIM), .MEM_FILE("memory/ffn_w2.mem"))
         w2_memory (.clk(clk), .addr(w2_addr), .data_out(w2_data), .enable(mem_enable_w2));
-    memory_module #(.ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE("memory/ffn_b2.mem"))
+    memory_module #(.ADDR_WIDTH(DIM_BITS), .DATA_WIDTH(16), .DEPTH(EMBED_DIM), .MEM_FILE("memory/ffn_b2.mem"))
         b2_memory (.clk(clk), .addr(b2_addr), .data_out(b2_data), .enable(mem_enable_b2));
 
     reg signed [31:0] with_bias;
@@ -101,7 +103,7 @@ module feed_forward_network #(
                         accumulator <= accumulator + (input_data[seq_idx][in_dim] * $signed(w1_data));
                         pipe_stage <= 0;
 
-                        if (in_dim == 6'(EMBED_DIM - 1)) begin
+                        if (in_dim == DIM_BITS'(EMBED_DIM - 1)) begin
                             with_bias <= (accumulator >>> 8) + 32'($signed(b1_data));
 
                             if (with_bias > 32767) begin
@@ -115,7 +117,7 @@ module feed_forward_network #(
                             in_dim <= 0;
                             accumulator <= 0;
 
-                            if (hidden_dim == 8'(FFN_DIM - 1)) begin
+                            if (hidden_dim == FFN_BITS'(FFN_DIM - 1)) begin
                                 hidden_dim <= 0;
                                 if (seq_idx == 3'(SEQ_LEN - 1)) begin
                                     state <= LINEAR2;
@@ -141,7 +143,7 @@ module feed_forward_network #(
                         accumulator <= accumulator + (hidden_data[seq_idx][hidden_dim] * $signed(w2_data));
                         pipe_stage <= 0;
 
-                        if (hidden_dim == 8'(FFN_DIM - 1)) begin
+                        if (hidden_dim == FFN_BITS'(FFN_DIM - 1)) begin
                             with_bias <= (accumulator >>> 8) + 32'($signed(b2_data));
 
                             if (with_bias > 32767)
@@ -154,7 +156,7 @@ module feed_forward_network #(
                             hidden_dim <= 0;
                             accumulator <= 0;
 
-                            if (out_dim == 6'(EMBED_DIM - 1)) begin
+                            if (out_dim == DIM_BITS'(EMBED_DIM - 1)) begin
                                 out_dim <= 0;
                                 if (seq_idx == 3'(SEQ_LEN - 1)) begin
                                     state <= COMPLETE;

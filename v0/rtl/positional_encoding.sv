@@ -17,23 +17,25 @@ module positional_encoding #(
 );
 
     localparam IDLE = 0, PROCESSING = 1, COMPLETE = 2;
+    localparam DIM_BITS = $clog2(EMBED_DIM);
+    localparam POS_BITS = $clog2(SEQ_LEN * EMBED_DIM);
     reg [1:0] state;
     reg [2:0] seq_idx;
-    reg [5:0] dim_idx;
+    reg [DIM_BITS-1:0] dim_idx;
     reg [1:0] pipe_stage;
-    
-    wire [8:0] pos_addr;
+
+    wire [POS_BITS-1:0] pos_addr;
     wire [15:0] pos_data;
     wire mem_enable;
     reg signed [16:0] temp_sum;
     
-    assign pos_addr = seq_idx * EMBED_DIM + 9'(dim_idx);
+    assign pos_addr = seq_idx * EMBED_DIM + POS_BITS'(dim_idx);
     assign mem_enable = (state == PROCESSING);
-    
+
     memory_module #(
-        .ADDR_WIDTH(9), 
-        .DATA_WIDTH(16), 
-        .DEPTH(512), 
+        .ADDR_WIDTH(POS_BITS),
+        .DATA_WIDTH(16),
+        .DEPTH(SEQ_LEN * EMBED_DIM),
         .MEM_FILE("memory/positional_encoding.mem")
     ) pos_memory (
         .clk(clk), 
@@ -89,7 +91,7 @@ module positional_encoding #(
                         
                         pipe_stage <= 0;
                         
-                        if (dim_idx == 6'(EMBED_DIM - 1)) begin
+                        if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                             dim_idx <= 0;
                             if (seq_idx == 3'(SEQ_LEN - 1)) begin
                                 state <= COMPLETE;

@@ -11,7 +11,7 @@ Vcomplete_transformer_decoder__Syms::Vcomplete_transformer_decoder__Syms(Verilat
     , TOP{this, namep}
 {
     // Check resources
-    Verilated::stackCheck(1784);
+    Verilated::stackCheck(1244);
     // Setup sub module instances
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-9);

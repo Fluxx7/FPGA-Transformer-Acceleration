@@ -4,6 +4,121 @@
 
 #include "Vcomplete_transformer_decoder__pch.h"
 
+VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___eval_initial__TOP__3(Vcomplete_transformer_decoder___024root* vlSelf) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcomplete_transformer_decoder___024root___eval_initial__TOP__3\n"); );
+    Vcomplete_transformer_decoder__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Body
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[4U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[4U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[4U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[4U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[4U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[4U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__mean_val[5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__std_val[5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][0U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][0U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][1U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][1U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][2U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][2U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][3U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][3U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][4U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][4U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][8U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][8U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][9U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][9U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][10U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][10U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][11U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][11U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][12U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][12U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[5U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[5U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__mean_val[6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__std_val[6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][0U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][0U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][1U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][1U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][2U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][2U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][3U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][3U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][4U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][4U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][8U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][8U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][9U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][9U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][10U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][10U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][11U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][11U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][12U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][12U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[6U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[6U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__mean_val[7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__std_val[7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][0U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][0U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][1U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][1U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][2U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][2U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][3U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][3U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][4U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][4U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][5U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][6U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][7U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][8U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][8U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][9U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][9U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][10U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][10U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][11U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][11U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][12U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][12U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][13U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][14U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[7U][15U] = 0U;
+    vlSelfRef.complete_transformer_decoder__DOT__norm2_out[7U][15U] = 0U;
+}
+
 VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___eval_final(Vcomplete_transformer_decoder___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcomplete_transformer_decoder___024root___eval_final\n"); );
     Vcomplete_transformer_decoder__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -83,35 +198,44 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
     vlSelfRef.current_state_debug = vlSelfRef.complete_transformer_decoder__DOT__current_state;
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wq_addr 
-        = (0x000001ffU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__embed_idx) 
-                           << 3U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__head_idx)));
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__head_idx)));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wq_addr 
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__head_idx)));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wq_addr 
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__head_idx)));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wq_addr 
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__head_idx)));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wq_addr 
+        = (0x0000003fU & (((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__embed_idx) 
+                           << 2U) + (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__head_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__projection_inst__DOT__proj_addr 
-        = (0x000007ffU & (((IData)(0x00000019U) * (IData)(vlSelfRef.complete_transformer_decoder__DOT__projection_inst__DOT__dim_idx)) 
+        = (0x00000fffU & (((IData)(0x00000028U) * (IData)(vlSelfRef.complete_transformer_decoder__DOT__projection_inst__DOT__dim_idx)) 
                           + (IData)(vlSelfRef.complete_transformer_decoder__DOT__projection_inst__DOT__vocab_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__embedding_inst__DOT__embed_addr 
-        = (0x000007ffU & (VL_SHIFTL_III(11,11,32, vlSelfRef.input_sequence
+        = (0x00000fffU & (VL_SHIFTL_III(12,12,32, vlSelfRef.input_sequence
                                         [vlSelfRef.complete_transformer_decoder__DOT__embedding_inst__DOT__seq_idx], 4U) 
                           + (IData)(vlSelfRef.complete_transformer_decoder__DOT__embedding_inst__DOT__dim_idx)));
     vlSelfRef.complete_transformer_decoder__DOT__last_pos = 0U;
@@ -140,140 +264,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         vlSelfRef.complete_transformer_decoder__DOT__last_pos = 7U;
     }
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
-        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
-           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__valid));
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals 
-        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals)) 
-           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__done));
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[0U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[1U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[2U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[3U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[4U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[5U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[6U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][0U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][0U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][1U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][1U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][2U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][2U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][3U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[7U][7U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((0x0dU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | ((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__valid) 
               << 1U));
@@ -289,14 +279,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][1U] 
@@ -305,14 +287,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][1U] 
@@ -321,14 +295,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][1U] 
@@ -337,14 +303,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][1U] 
@@ -353,14 +311,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][1U] 
@@ -369,14 +319,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][1U] 
@@ -385,14 +327,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][1U] 
@@ -401,14 +335,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[7U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((0x0bU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | ((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__valid) 
@@ -425,14 +351,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][1U] 
@@ -441,14 +359,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][1U] 
@@ -457,14 +367,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][1U] 
@@ -473,14 +375,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][1U] 
@@ -489,14 +383,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][1U] 
@@ -505,14 +391,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][1U] 
@@ -521,14 +399,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][1U] 
@@ -537,14 +407,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[7U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((7U & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | ((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__valid) 
@@ -561,14 +423,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][1U] 
@@ -577,14 +431,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][1U] 
@@ -593,14 +439,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][1U] 
@@ -609,14 +447,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][1U] 
@@ -625,14 +455,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][1U] 
@@ -641,14 +463,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][1U] 
@@ -657,14 +471,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][1U] 
@@ -673,14 +479,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[7U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__valid));
@@ -695,14 +493,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][1U] 
@@ -711,14 +501,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][1U] 
@@ -727,14 +509,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][1U] 
@@ -743,14 +517,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][1U] 
@@ -759,14 +525,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][1U] 
@@ -775,14 +533,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][1U] 
@@ -791,14 +541,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][1U] 
@@ -807,14 +549,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[7U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((0x0dU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | ((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__valid) 
@@ -831,14 +565,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][1U] 
@@ -847,14 +573,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][1U] 
@@ -863,14 +581,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][1U] 
@@ -879,14 +589,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][1U] 
@@ -895,14 +597,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][1U] 
@@ -911,14 +605,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][1U] 
@@ -927,14 +613,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][1U] 
@@ -943,14 +621,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[1U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[7U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((0x0bU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | ((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__valid) 
@@ -967,14 +637,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][1U] 
@@ -983,14 +645,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][1U] 
@@ -999,14 +653,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][1U] 
@@ -1015,14 +661,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][1U] 
@@ -1031,14 +669,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][1U] 
@@ -1047,14 +677,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][1U] 
@@ -1063,14 +685,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][1U] 
@@ -1079,14 +693,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[2U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[7U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
         = ((7U & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
            | ((IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__valid) 
@@ -1103,14 +709,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[0U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[0U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[0U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[0U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[0U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][0U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[0U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][1U] 
@@ -1119,14 +717,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][1U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[1U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][1U] 
@@ -1135,14 +725,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][2U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[2U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][1U] 
@@ -1151,14 +733,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][3U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[3U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][1U] 
@@ -1167,14 +741,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][4U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[4U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][1U] 
@@ -1183,14 +749,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][5U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[5U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][1U] 
@@ -1199,14 +757,6 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][6U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[6U][7U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][0U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][1U] 
@@ -1215,14 +765,286 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___stl_sequent__TOP__0(
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][2U];
     vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][3U] 
         = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][3U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][4U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][4U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][5U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][5U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][6U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][6U];
-    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[3U][7U][7U] 
-        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[7U][7U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__valid));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__done));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[0U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[0U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[0U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[0U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[1U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[1U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[1U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[1U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[2U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[2U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[2U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[2U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[3U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[3U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[3U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[3U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[4U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[4U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[4U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[4U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[5U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[5U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[5U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[5U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[6U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[6U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[6U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[6U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[7U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[7U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[7U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[7U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__valid));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__done));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[0U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[0U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[0U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[0U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[1U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[1U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[1U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[1U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[2U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[2U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[2U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[2U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[3U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[3U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[3U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[3U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[4U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[4U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[4U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[4U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[5U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[5U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[5U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[5U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[6U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[6U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[6U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[6U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[7U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[7U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[7U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[7U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__valid));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__done));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[0U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[0U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[0U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[0U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[1U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[1U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[1U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[1U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[2U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[2U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[2U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[2U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[3U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[3U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[3U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[3U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[4U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[4U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[4U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[4U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[5U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[5U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[5U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[5U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[6U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[6U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[6U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[6U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[7U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[7U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[7U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[7U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__valid));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals 
+        = ((0x0eU & (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_done_signals)) 
+           | (IData)(vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__done));
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[0U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[0U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[0U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][0U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[0U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[1U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[1U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[1U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][1U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[1U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[2U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[2U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[2U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][2U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[2U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[3U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[3U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[3U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][3U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[3U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[4U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[4U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[4U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][4U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[4U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[5U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[5U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[5U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][5U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[5U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[6U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[6U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[6U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][6U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[6U][3U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][0U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[7U][0U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][1U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[7U][1U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][2U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[7U][2U];
+    vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[0U][7U][3U] 
+        = vlSelfRef.complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[7U][3U];
     vlSelfRef.complete_transformer_decoder__DOT____Vcellinp__projection_inst__final_hidden_state[0U] 
         = vlSelfRef.complete_transformer_decoder__DOT__norm2_out
         [vlSelfRef.complete_transformer_decoder__DOT__last_pos][0U];
@@ -1343,9 +1165,9 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->rst = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 18209466448985614591ull);
     vlSelf->start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9867861323841650631ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        vlSelf->input_sequence[__Vi0] = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 2557709653514853004ull);
+        vlSelf->input_sequence[__Vi0] = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 2557709653514853004ull);
     }
-    vlSelf->predicted_token = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 8575329963259011807ull);
+    vlSelf->predicted_token = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 8575329963259011807ull);
     vlSelf->done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10296494685231209730ull);
     vlSelf->valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4944192500720994163ull);
     vlSelf->cycle_count = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 812857792956672393ull);
@@ -1381,7 +1203,7 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
             vlSelf->complete_transformer_decoder__DOT__norm2_out[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15192216579104394946ull);
         }
     }
-    for (int __Vi0 = 0; __Vi0 < 25; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 40; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__final_logits[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1188891881299990043ull);
     }
     vlSelf->complete_transformer_decoder__DOT__embed_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 701581964485029417ull);
@@ -1414,20 +1236,20 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     }
     vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 13622021808358492334ull);
     vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9941837458514407431ull);
-    vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 16500873399998844852ull);
+    vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 16500873399998844852ull);
     vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 2594685416138061009ull);
-    vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__embed_addr = VL_SCOPED_RAND_RESET_I(11, __VscopeHash, 13166641265086625480ull);
+    vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__embed_addr = VL_SCOPED_RAND_RESET_I(12, __VscopeHash, 13166641265086625480ull);
     vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__embed_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14188099233532191385ull);
-    for (int __Vi0 = 0; __Vi0 < 1600; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 2560; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__embedding_inst__DOT__embedding_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13087173306483106230ull);
     }
     vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 15114811848629550213ull);
     vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11089365746220749406ull);
-    vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 2280740888114501483ull);
+    vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 2280740888114501483ull);
     vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 12555118773785758355ull);
     vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__pos_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1874185365863751319ull);
     vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__temp_sum = VL_SCOPED_RAND_RESET_I(17, __VscopeHash, 4572295869209705987ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 128; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__positional_inst__DOT__pos_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 10230696646505727734ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 2340597522516771173ull);
@@ -1436,7 +1258,7 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head_valid_signals = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 2862735327121327564ull);
     for (int __Vi0 = 0; __Vi0 < 4; ++__Vi0) {
         for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            for (int __Vi2 = 0; __Vi2 < 8; ++__Vi2) {
+            for (int __Vi2 = 0; __Vi2 < 4; ++__Vi2) {
                 vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head_outputs[__Vi0][__Vi1][__Vi2] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 688763301702021557ull);
             }
         }
@@ -1447,144 +1269,110 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 2277157942122490785ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 1664618490988333815ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__in_dim = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 15016614366961216798ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__out_dim = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 10500617828755859813ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 1664618490988333815ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__in_dim = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 15016614366961216798ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__out_dim = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 10500617828755859813ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 14132405102037123648ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__proj_accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 18358965285570054896ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__wo_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11417876001829632908ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__valid = 0;
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__done = 0;
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head0__output_data[__Vi0][__Vi1] = 0;
-        }
-    }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head1__output_data[__Vi0][__Vi1] = 0;
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head2__output_data[__Vi0][__Vi1] = 0;
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head3__output_data[__Vi0][__Vi1] = 0;
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head4__output_data[__Vi0][__Vi1] = 0;
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head5__output_data[__Vi0][__Vi1] = 0;
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head6__output_data[__Vi0][__Vi1] = 0;
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__valid = 0;
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__done = 0;
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__head7__output_data[__Vi0][__Vi1] = 0;
         }
     }
-    for (int __Vi0 = 0; __Vi0 < 4096; ++__Vi0) {
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__valid = 0;
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__done = 0;
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__0__KET____DOT__head0__output_data[__Vi0][__Vi1] = 0;
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__valid = 0;
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__done = 0;
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__1__KET____DOT__head0__output_data[__Vi0][__Vi1] = 0;
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__valid = 0;
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__done = 0;
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__2__KET____DOT__head0__output_data[__Vi0][__Vi1] = 0;
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__valid = 0;
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__done = 0;
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT____Vcellout__genblk1__BRA__3__KET____DOT__head0__output_data[__Vi0][__Vi1] = 0;
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__wo_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11405151438638065636ull);
-    }
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 5049535453767261644ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11683640176762760431ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 5783124668939135899ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 6771980990101083518ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 17398139772784824604ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 12221555429878384275ull);
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4530883379001424073ull);
-        }
-    }
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 18085478390406893277ull);
-        }
-    }
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13371386525294928738ull);
-        }
-    }
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__attention_scores[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5943070805585041348ull);
-        }
-    }
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
-            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__attention_weights[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3520691217026775103ull);
-        }
-    }
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 12773668816201368925ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 16977667219294285162ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4524539096864606612ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9563385569854411609ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15724102131461851558ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17047510972604821943ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10403954465725493341ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
-        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 16006707177408795835ull);
-    }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
-        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1052781629702173514ull);
-    }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
-        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12336746405071983326ull);
-    }
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11478683352933067551ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_inst__DOT__row_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9527313314798041223ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_inst__DOT__col_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 8984256907565613035ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_inst__DOT__max_val = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 17688106182113283531ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_inst__DOT__exp_sum = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 7925224685639230754ull);
-    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head0__DOT__softmax_inst__DOT__temp_exp[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6649002038332561853ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 4257397343114230503ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 1195645379078729563ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15858679993772744544ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 9035781902218040187ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 9035781902218040187ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 8383544489387368671ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13689167643377462993ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9836017205112266101ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 17045680882366808308ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15463767732876913276ull);
         }
     }
@@ -1599,19 +1387,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11555525656672431532ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 11684254780891201364ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 11684254780891201364ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9200479534717273623ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7953653208607641277ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7159314843939377511ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8181870943774209524ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6041329378875899856ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6666446884472147583ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3384334392727667229ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13701890842256848760ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head1__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 4221443235298678167ull);
@@ -1625,21 +1413,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 14284291249953634997ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11943576874367859953ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 18211522428312718590ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 2751318488246275162ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 2751318488246275162ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 9338453570613321013ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 6420101847905830682ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14337291560027590091ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15350026000094833531ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1464157876978797812ull);
         }
     }
@@ -1654,19 +1442,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 14923766190381338288ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 6309943224169176381ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 6309943224169176381ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9327323376317718178ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4528988991924247903ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13749876976353599148ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15612753102358735248ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14194544753483266ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 10059277893752830522ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9810197121285356906ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 16687205582666784948ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head2__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13761891246997228469ull);
@@ -1680,21 +1468,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 3089889625135563380ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 411770310472355257ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9775177846997406721ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 8628135713613160345ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 8628135713613160345ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 9519980452201609817ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13634090742663600822ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 788640669372320434ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2890362801753417625ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2993332733243449537ull);
         }
     }
@@ -1709,19 +1497,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 13130771217863124308ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 8569715946858288844ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 8569715946858288844ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8172385358082216157ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2208422668000163226ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1284339584722937171ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11783494554470931912ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 820899568804414400ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3660238856361916911ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2943759531830391565ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13091788370144058310ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head3__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 10521094381914430563ull);
@@ -1735,21 +1523,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 1018681421461555064ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9643556214507157286ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9469920621990446324ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 7213703792681478212ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 7213703792681478212ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 11836061975003715160ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 17027748142814427015ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 16355801830047947835ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7983415001104598884ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 29853760940656773ull);
         }
     }
@@ -1764,19 +1552,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 2557489834616054265ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 12784286187575352970ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 12784286187575352970ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8379464539724707677ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 17277406469710941456ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15617484723221104167ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11244344156176344216ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12309449976415511562ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1761943075354119052ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 179474580255837891ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1002006052865502930ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head4__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 16341222310388431273ull);
@@ -1790,21 +1578,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 7415241531928677746ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15987438433229432530ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 6994532147622140665ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 12757865772438473902ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 12757865772438473902ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 9806793411094238610ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15455497780154169452ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 18140128231593351250ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12753720310602254567ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2106296787106159821ull);
         }
     }
@@ -1819,19 +1607,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 315905396023675728ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 3639489047053350666ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 3639489047053350666ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5288520358354367140ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 206013655037875371ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13893867509402144744ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6139459009599166509ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15561902463555192873ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5232321220840719136ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11641033557277736191ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14609566190927849202ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head5__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15302136115217816766ull);
@@ -1845,21 +1633,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11036773535313395465ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 8889071450562966501ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 14080916746724305499ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 15755769494815855314ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 15755769494815855314ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 1945451954266401058ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 8449278475780485035ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9369002907802321306ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7885423105240017033ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5749739252732861282ull);
         }
     }
@@ -1874,19 +1662,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 13340264484518238987ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 5885834195349094943ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 5885834195349094943ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12440068639808546892ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14773993724861294020ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 18062308183054724799ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4554095107598261443ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1760160947960700451ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 10817528045963405020ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4317025483173326114ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 493296345965380243ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head6__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 1289856124014252514ull);
@@ -1900,21 +1688,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 427523884709158334ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11280347921609080823ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 7080016558651328385ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 641252709152230326ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 641252709152230326ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 17297961889194425062ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 2494085370784298500ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 18358319023913308056ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7428621970091664896ull);
         }
     }
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
-        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14892817645716850059ull);
         }
     }
@@ -1929,19 +1717,19 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
         }
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 5289021507124535192ull);
-    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(9, __VscopeHash, 12507870204281829378ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 12507870204281829378ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12169793625059148439ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15660022355578076540ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11488994797145244762ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12180598817875981030ull);
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12668018983343133966ull);
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14188172195895774385ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4807864864209809366ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 350632002398246333ull);
     }
     vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 2701176392782467644ull);
@@ -1952,9 +1740,229 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__head7__DOT__softmax_inst__DOT__temp_exp[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12412470486204776804ull);
     }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 809504530521534734ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 16834376238688860627ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 4560701064880544958ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 11042617289489922570ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 3521993979003482054ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 5531925646493212806ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 75218297853442062ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14993141997420936700ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11557826683533173624ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__attention_scores[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5703402322551717774ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__attention_weights[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15484348535272907628ull);
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 16490511289897094585ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 12114457344391926568ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9129319277309611572ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 16895273789575778232ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6248032416053628358ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11027478391771535356ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4029120177828980191ull);
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 113721549523664903ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 555279707128450072ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9603225691235477002ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 17282691205505403490ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_inst__DOT__row_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15185942934318496693ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_inst__DOT__col_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13201975530497162428ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_inst__DOT__max_val = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11155234420904051655ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_inst__DOT__exp_sum = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 16643667607599423510ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__0__KET____DOT__head0__DOT__softmax_inst__DOT__temp_exp[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 837179182679673246ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 2222375337297550794ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 3565317354336850861ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 10282789877771133114ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 1098151845386708894ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 10627071482323722095ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 4105395945899351588ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2753414704065510130ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5081430578952335921ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6462881408590537115ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__attention_scores[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6548100339590361108ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__attention_weights[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14762480845107286600ull);
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 2280893904381513137ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 1406632651713205603ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 18237631238643501891ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4612874692090974359ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 632048232326148119ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1347607541532448174ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14269425209171113404ull);
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14727136038734169627ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 5222154539591834696ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 17104509540559620524ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 18182529572904085458ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_inst__DOT__row_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 5896717826622238372ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_inst__DOT__col_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 8053655201193983075ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_inst__DOT__max_val = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1152879342304933949ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_inst__DOT__exp_sum = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 10204304551449577566ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__1__KET____DOT__head0__DOT__softmax_inst__DOT__temp_exp[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13430789500894850173ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13757219857674723490ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13458523093809989907ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 467288264892439487ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 15698320642849663621ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 5222162793728124314ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15739281719721067790ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4541941312732508683ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 16036434903656466242ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6199801019211453796ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__attention_scores[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 286287964741554406ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__attention_weights[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11487692355056606914ull);
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 8716170311545464151ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 12367811312982227427ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11133748280655623249ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13060032999972221956ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8316746345243656416ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14575075859973361609ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3838044213811606809ull);
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8984831207838766383ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8143206985162901124ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12507910354731647291ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 16227624939649429322ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_inst__DOT__row_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 5064561779134914076ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_inst__DOT__col_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 12719122054773758402ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_inst__DOT__max_val = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9929555215750497276ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_inst__DOT__exp_sum = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 13121698600430786368ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__2__KET____DOT__head0__DOT__softmax_inst__DOT__temp_exp[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6924980226468089771ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 7153273404433248176ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15287935336647434501ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__seq_idx2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 2626241856617309506ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__embed_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 14348253426999524604ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__head_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 11767013145166688922ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 14820771891695918490ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__Q[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2079406676422328754ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__K[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14003612058573035677ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__V[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 832013929698356615ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__attention_scores[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7025162179667948103ull);
+        }
+    }
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        for (int __Vi1 = 0; __Vi1 < 8; ++__Vi1) {
+            vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__attention_weights[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 10912351324840999708ull);
+        }
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 437851027524264861ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wq_addr = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 7847248313808452533ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wq_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14953790326866371131ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wk_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 4554955609215451650ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wv_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 15768240430830956956ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_start = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13451032231462696507ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15282224772200044882ull);
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wq_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12719573813723308602ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wk_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8940238766965799752ull);
+    }
+    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__wv_mem__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11776730750219769945ull);
+    }
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 17055169091696957127ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_inst__DOT__row_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 10647351229109543911ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_inst__DOT__col_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 14087307995641314754ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_inst__DOT__max_val = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 17997944273278128854ull);
+    vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_inst__DOT__exp_sum = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 584927437936170946ull);
+    for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
+        vlSelf->complete_transformer_decoder__DOT__attention_inst__DOT__genblk1__BRA__3__KET____DOT__head0__DOT__softmax_inst__DOT__temp_exp[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 16742670660962361832ull);
+    }
     vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 12329422834520350793ull);
     vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 10066934590738459802ull);
-    vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 14548416854866645651ull);
+    vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 14548416854866645651ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
         for (int __Vi1 = 0; __Vi1 < 16; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__sum_data[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2365826212495495552ull);
@@ -1978,17 +1986,17 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__variance = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 7149744528863894552ull);
     vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__gamma_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3154248134791779020ull);
     vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__beta_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6479978315991358893ull);
-    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__gamma_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 12545838840141943973ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__layer_norm1_inst__DOT__beta_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13300290926594472041ull);
     }
     vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9042728069195796526ull);
     vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9812303032590194999ull);
-    vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__in_dim = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 5099013045647074887ull);
-    vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__out_dim = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 475216982621214569ull);
-    vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__hidden_dim = VL_SCOPED_RAND_RESET_I(8, __VscopeHash, 10478185909973250737ull);
+    vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__in_dim = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 5099013045647074887ull);
+    vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__out_dim = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 475216982621214569ull);
+    vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__hidden_dim = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 10478185909973250737ull);
     vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 15267047661065579492ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
         for (int __Vi1 = 0; __Vi1 < 32; ++__Vi1) {
@@ -2001,21 +2009,21 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__b1_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 13978001219086497667ull);
     vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__b2_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 9250303140691208733ull);
     vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__with_bias = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 14121894936887017316ull);
-    for (int __Vi0 = 0; __Vi0 < 16384; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__w1_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11091864711506753968ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__b1_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7142941714927575646ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 16384; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__w2_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3644003186553033734ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__ffn_inst__DOT__b2_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1411530892362172063ull);
     }
     vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 18049247565568356536ull);
     vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__seq_idx = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15499221956066439598ull);
-    vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 4036643573239093179ull);
+    vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 4036643573239093179ull);
     for (int __Vi0 = 0; __Vi0 < 8; ++__Vi0) {
         for (int __Vi1 = 0; __Vi1 < 16; ++__Vi1) {
             vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__sum_data[__Vi0][__Vi1] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 829360335978631192ull);
@@ -2039,27 +2047,43 @@ VL_ATTR_COLD void Vcomplete_transformer_decoder___024root___ctor_var_reset(Vcomp
     vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__variance = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 218076469295419078ull);
     vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__gamma_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 2594559916725607853ull);
     vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__beta_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3995601647310777465ull);
-    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__gamma_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 7011374155671026641ull);
     }
-    for (int __Vi0 = 0; __Vi0 < 64; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__layer_norm2_inst__DOT__beta_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 14037969849293741663ull);
     }
-    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT____Vlvbound_h188df00a__0 = 0;
+    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT____Vlvbound_ha826efa1__0 = 0;
     vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 17814250794509323605ull);
-    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__vocab_idx = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 16357333361685827599ull);
-    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 15630977751391636543ull);
+    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__vocab_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 16357333361685827599ull);
+    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__dim_idx = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 15630977751391636543ull);
     vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__logit_accumulator = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 8578483770200121993ull);
     vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__pipe_stage = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 10575446631327221810ull);
-    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__proj_addr = VL_SCOPED_RAND_RESET_I(11, __VscopeHash, 5240825145917978967ull);
+    vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__proj_addr = VL_SCOPED_RAND_RESET_I(12, __VscopeHash, 5240825145917978967ull);
     vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__proj_data = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1103941302865051885ull);
-    for (int __Vi0 = 0; __Vi0 < 1600; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 2560; ++__Vi0) {
         vlSelf->complete_transformer_decoder__DOT__projection_inst__DOT__proj_memory__DOT__memory[__Vi0] = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 8742614440247312857ull);
     }
     vlSelf->complete_transformer_decoder__DOT__argmax_inst__DOT__state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 4145940606324569983ull);
-    vlSelf->complete_transformer_decoder__DOT__argmax_inst__DOT__current_idx = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 6909826310706429847ull);
+    vlSelf->complete_transformer_decoder__DOT__argmax_inst__DOT__current_idx = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 6909826310706429847ull);
     vlSelf->complete_transformer_decoder__DOT__argmax_inst__DOT__max_value = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 6857451670204564309ull);
-    vlSelf->complete_transformer_decoder__DOT__argmax_inst__DOT__max_index = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 8188264415641414885ull);
+    vlSelf->complete_transformer_decoder__DOT__argmax_inst__DOT__max_index = VL_SCOPED_RAND_RESET_I(6, __VscopeHash, 8188264415641414885ull);
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__embedding_inst__DOT__state = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__positional_inst__DOT__state = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__positional_inst__DOT__seq_idx = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__positional_inst__DOT__dim_idx = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__attention_inst__DOT__state = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__attention_inst__DOT__in_dim = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__attention_inst__DOT__out_dim = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__layer_norm1_inst__DOT__state = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__layer_norm1_inst__DOT__dim_idx = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__ffn_inst__DOT__state = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__ffn_inst__DOT__in_dim = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__ffn_inst__DOT__out_dim = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__ffn_inst__DOT__hidden_dim = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__layer_norm2_inst__DOT__state = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__layer_norm2_inst__DOT__dim_idx = 0;
+    vlSelf->__Vdly__complete_transformer_decoder__DOT__projection_inst__DOT__state = 0;
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         vlSelf->__VstlTriggered[__Vi0] = 0;
     }

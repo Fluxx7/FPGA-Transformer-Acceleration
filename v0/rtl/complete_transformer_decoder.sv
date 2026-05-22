@@ -4,7 +4,7 @@
 // COMPLETE TRANSFORMER DECODER - SYNTHESIS READY
 // ============================================================================
 module complete_transformer_decoder #(
-    parameter VOCAB_SIZE = 25,
+    parameter VOCAB_SIZE = 40,
     parameter EMBED_DIM = 16,
     parameter SEQ_LEN = 8,
     parameter NUM_HEADS = 4,
@@ -13,8 +13,8 @@ module complete_transformer_decoder #(
     input wire clk,
     input wire rst,
     input wire start,
-    input wire [4:0] input_sequence [0:SEQ_LEN-1],
-    output reg [4:0] predicted_token,
+    input wire [5:0] input_sequence [0:SEQ_LEN-1],
+    output reg [5:0] predicted_token,
     output reg done,
     output reg valid,
     output reg [31:0] cycle_count,
@@ -74,9 +74,10 @@ module complete_transformer_decoder #(
     );
 
     multi_head_attention #(
-        .NUM_HEADS(NUM_HEADS), 
-        .EMBED_DIM(EMBED_DIM), 
-        .SEQ_LEN(SEQ_LEN)
+        .NUM_HEADS(NUM_HEADS),
+        .EMBED_DIM(EMBED_DIM),
+        .SEQ_LEN(SEQ_LEN),
+        .HEAD_DIM(EMBED_DIM / NUM_HEADS)
     ) attention_inst (
         .clk(clk), .rst(rst), .start(attn_start),
         .input_data(position_encoded), 

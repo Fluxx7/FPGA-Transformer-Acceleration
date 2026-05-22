@@ -74,18 +74,18 @@ int main(int argc, char** argv) {
     printf("Done after %d cycles\n", cycles);
     printf("Predicted token: %d\n", (int)dut->predicted_token);
 
-    // Dump logits for comparison with golden_logits.txt
+    // Dump logits for comparison with data/golden_logits.txt
     // Requires --public-flat-rw so Verilator exposes internal signals
-    FILE* f = fopen("hardware_logits.txt", "w");
+    FILE* f = fopen("data/hardware_logits.txt", "w");
     if (f) {
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 40; i++) {
             int16_t logit = (int16_t)dut->rootp->complete_transformer_decoder__DOT__final_logits[i];
             fprintf(f, "%d\n", (int)logit);
         }
         fclose(f);
-        printf("Wrote hardware_logits.txt\n");
+        printf("Wrote data/hardware_logits.txt\n");
     } else {
-        printf("Warning: could not write hardware_logits.txt\n");
+        printf("Warning: could not write data/hardware_logits.txt (does data/ exist?)\n");
     }
 
     delete dut;

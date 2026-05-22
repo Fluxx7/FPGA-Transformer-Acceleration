@@ -27,14 +27,12 @@ VM_TRACE_VCD = 0
 VM_CLASSES_FAST += \
   Vcomplete_transformer_decoder \
   Vcomplete_transformer_decoder___024root__0 \
-  Vcomplete_transformer_decoder___024root__1 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
   Vcomplete_transformer_decoder___024root__Slow \
   Vcomplete_transformer_decoder___024root__0__Slow \
   Vcomplete_transformer_decoder___024root__1__Slow \
-  Vcomplete_transformer_decoder___024root__2__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \

@@ -10,29 +10,30 @@ module token_embedding #(
     input wire clk,
     input wire rst,
     input wire start,
-    input wire [4:0] input_tokens [0:SEQ_LEN-1],
+    input wire [5:0] input_tokens [0:SEQ_LEN-1],
     output reg signed [15:0] embedded_output [0:SEQ_LEN-1][0:EMBED_DIM-1],
     output reg done,
     output reg valid
 );
 
     localparam IDLE = 0, PROCESSING = 1, COMPLETE = 2;
+    localparam DIM_BITS = $clog2(EMBED_DIM);
     reg [1:0] state;
     reg [2:0] seq_idx;
-    reg [5:0] dim_idx;
+    reg [DIM_BITS-1:0] dim_idx;
     reg [1:0] pipe_stage;
     
-    wire [10:0] embed_addr;
+    wire [11:0] embed_addr;
     wire [15:0] embed_data;
     wire mem_enable;
     
-    assign embed_addr = input_tokens[seq_idx] * EMBED_DIM + 11'(dim_idx);
+    assign embed_addr = input_tokens[seq_idx] * EMBED_DIM + 12'(dim_idx);
     assign mem_enable = (state == PROCESSING);
     
     memory_module #(
-        .ADDR_WIDTH(11), 
-        .DATA_WIDTH(16), 
-        .DEPTH(1600), 
+        .ADDR_WIDTH(12),
+        .DATA_WIDTH(16),
+        .DEPTH(2560),
         .MEM_FILE("memory/embedding.mem")
     ) embedding_memory (
         .clk(clk), 
@@ -79,7 +80,7 @@ module token_embedding #(
                         embedded_output[seq_idx][dim_idx] <= $signed(embed_data);
                         pipe_stage <= 0;
                         
-                        if (dim_idx == 6'(EMBED_DIM - 1)) begin
+                        if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                             dim_idx <= 0;
                             if (seq_idx == 3'(SEQ_LEN - 1)) begin
                                 state <= COMPLETE;
