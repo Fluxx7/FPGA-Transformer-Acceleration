@@ -4,7 +4,7 @@
 // COMPLETE TRANSFORMER DECODER - SYNTHESIS READY
 // ============================================================================
 module complete_transformer_decoder #(
-    parameter VOCAB_SIZE = 40,
+    parameter VOCAB_SIZE = 25,
     parameter EMBED_DIM = 16,
     parameter SEQ_LEN = 8,
     parameter NUM_HEADS = 4,
@@ -13,8 +13,8 @@ module complete_transformer_decoder #(
     input wire clk,
     input wire rst,
     input wire start,
-    input wire [5:0] input_sequence [0:SEQ_LEN-1],
-    output reg [5:0] predicted_token,
+    input wire [SEQ_LEN*6-1:0] input_sequence_flat,
+    output reg [$clog2(VOCAB_SIZE)-1:0] predicted_token,
     output reg done,
     output reg valid,
     output reg [31:0] cycle_count,
@@ -25,6 +25,15 @@ module complete_transformer_decoder #(
                LAYER_NORM1 = 4, FEED_FORWARD = 5, LAYER_NORM2 = 6,
                OUTPUT_PROJ = 7, ARGMAX = 8, FINISHED = 9;
     reg [3:0] current_state;
+    
+    // Unpack flat input into internal SV unpacked array
+    wire [5:0] input_sequence [0:SEQ_LEN-1];
+    genvar gi;
+    generate
+        for (gi = 0; gi < SEQ_LEN; gi = gi + 1) begin : unpack_seq
+            assign input_sequence[gi] = input_sequence_flat[gi*6 +: 6];
+        end
+    endgenerate
     
     assign current_state_debug = current_state;
     
@@ -74,10 +83,9 @@ module complete_transformer_decoder #(
     );
 
     multi_head_attention #(
-        .NUM_HEADS(NUM_HEADS),
-        .EMBED_DIM(EMBED_DIM),
-        .SEQ_LEN(SEQ_LEN),
-        .HEAD_DIM(EMBED_DIM / NUM_HEADS)
+        .NUM_HEADS(NUM_HEADS), 
+        .EMBED_DIM(EMBED_DIM), 
+        .SEQ_LEN(SEQ_LEN)
     ) attention_inst (
         .clk(clk), .rst(rst), .start(attn_start),
         .input_data(position_encoded), 

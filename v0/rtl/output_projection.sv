@@ -77,23 +77,26 @@ module output_projection #(
                 
                 COMPUTE: begin
                     pipe_stage <= pipe_stage + 1;
-                    
+
                     if (pipe_stage >= 2) begin
-                        logit_accumulator <= logit_accumulator + 
-                            (final_hidden_state[dim_idx] * $signed(proj_data));
                         pipe_stage <= 0;
-                        
+
                         if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            vocabulary_logits[vocab_idx] <= 16'(logit_accumulator >>> 8);
+                            // Final iteration: fold this product into the stored result
+                            // so the last element of final_hidden_state isn't optimized away.
+                            vocabulary_logits[vocab_idx] <= 16'((logit_accumulator +
+                                (final_hidden_state[dim_idx] * $signed(proj_data))) >>> 8);
                             logit_accumulator <= 0;
                             dim_idx <= 0;
-                            
+
                             if (vocab_idx == 6'(VOCAB_SIZE - 1)) begin
                                 state <= COMPLETE;
                             end else begin
                                 vocab_idx <= vocab_idx + 1;
                             end
                         end else begin
+                            logit_accumulator <= logit_accumulator +
+                                (final_hidden_state[dim_idx] * $signed(proj_data));
                             dim_idx <= dim_idx + 1;
                         end
                     end

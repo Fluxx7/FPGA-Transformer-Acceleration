@@ -26,6 +26,12 @@ module feed_forward_network #(
     reg [DIM_BITS-1:0] in_dim, out_dim;
     reg [FFN_BITS-1:0] hidden_dim;
     reg signed [31:0] accumulator;
+    // ram_style "registers" tells Vivado to keep this as flip-flops instead
+    // of trying to infer a 3D-RAM, which fixes Synth 8-11357 (3D-RAM runtime
+    // warning at SEQ_LEN*FFN_DIM*16 bits). The write pattern (conditional
+    // saturation on with_bias) isn't BRAM-inferrable, so "block" was being
+    // rejected with Synth 8-7186; "registers" is the honest hint here.
+    (* ram_style = "registers" *)
     reg signed [15:0] hidden_data [0:SEQ_LEN-1][0:FFN_DIM-1];
     reg [2:0] pipe_stage;
 
