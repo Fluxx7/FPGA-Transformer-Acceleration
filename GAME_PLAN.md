@@ -20,16 +20,14 @@ Replace all `reg` intermediate arrays with a shared BRAM scratchpad. Modules no 
 
 ## Step 5: AXI-Lite Control Interface
 
-Replace the top-level FSM with a set of memory-mapped control registers accessible from the PS (ARM) side. Registers for: operation type, dimensions, input/output/weight BRAM addresses, go signal, and a done/status register. The PS writes a register set describing one operation, pulses go, waits for done, then sets up the next operation. The model architecture is now defined entirely in software (Python on PYNQ). The PL just executes individual compute primitives.
+Add a set of memory-mapped control registers accessible from the PS (ARM) side. The model architecture and weight addresses remain hard-coded in the PL. Registers cover: input token address, go signal, and a done/status register. The PS writes the input, pulses go, polls done, then reads the output token. This is the minimum needed to drive the accelerator as a PYNQ overlay without requiring a full software-defined model structure.
 
-## Step 6: AXI DMA for Weight Loading
-
-Weights currently baked in via `.mem` files at synthesis time. Add an AXI DMA path so the PS can load weights from DDR into PL-side BRAM at runtime. This makes the accelerator fully model-agnostic — you can swap models without resynthesizing. Depending on model size vs available BRAM, you may need to load weights layer-by-layer (ping-pong buffering) rather than all at once.
+Weights stay baked in via `.mem` files at synthesis time. The design is tied to a specific model configuration and cannot be swapped without resynthesizing — this is an accepted constraint given the time budget.
 
 ## Notes
 
 - Each step produces a functional design — no step depends on a later one
 - Steps 1-2 solve the immediate resource problem and get the design running on the Z1
 - Steps 3-4 are cleanup/consolidation that further reduce resources and set up the accelerator architecture
-- Steps 5-6 turn it into a proper PYNQ overlay with software-defined model architecture
+- Step 5 turns it into a usable PYNQ overlay; model architecture is hard-coded, not software-defined
 - The fixed-point arithmetic (Q8.8 scaling, saturation clamping, softmax approximation) carries through unchanged across all steps
