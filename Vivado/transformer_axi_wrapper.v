@@ -101,6 +101,19 @@ module transformer_axi_wrapper #(
     wire [31:0] cycle_count;
     wire [3:0]  current_state_debug;
 
+    // Sticky latches for done/valid/predicted_token.
+    //
+    // The decoder's FINISHED state only asserts done/valid for one cycle before
+    // bouncing back to IDLE (because start_reg is a self-clearing pulse, so
+    // !start is true immediately on entry to FINISHED). At any non-trivial
+    // software polling interval the AXI host would never observe done=1.
+    // We latch the rising edge here so software can poll at its leisure.
+    //
+    // Latches clear on: hard reset, soft reset, or a new start pulse.
+    reg                  done_latched;
+    reg                  valid_latched;
+    reg [TOK_BITS-1:0]   predicted_token_latched;
+
     wire rst_internal = ~S_AXI_ARESETN | soft_rst_reg;
 
     // -------------------------------------------------------------------------
@@ -123,6 +136,22 @@ module transformer_axi_wrapper #(
         .cycle_count         (cycle_count),
         .current_state_debug (current_state_debug)
     );
+
+    // -------------------------------------------------------------------------
+    // Sticky done/valid/predicted_token latches (see declaration comment).
+    // Cleared by: hard reset, soft_rst_reg, or a new start_reg pulse.
+    // -------------------------------------------------------------------------
+    always @(posedge S_AXI_ACLK) begin
+        if (~S_AXI_ARESETN || soft_rst_reg || start_reg) begin
+            done_latched            <= 1'b0;
+            valid_latched           <= 1'b0;
+            predicted_token_latched <= {TOK_BITS{1'b0}};
+        end else if (done && valid) begin
+            done_latched            <= 1'b1;
+            valid_latched           <= 1'b1;
+            predicted_token_latched <= predicted_token;
+        end
+    end
 
     // -------------------------------------------------------------------------
     // Write address handshake
@@ -253,8 +282,11 @@ module transformer_axi_wrapper #(
             axi_rdata <= 0;
         end else if (~axi_rvalid) begin
             case (axi_araddr[5:2])
-                4'd0: axi_rdata <= {30'b0, valid, done};
-                4'd1: axi_rdata <= {{(32-2-TOK_BITS-4){1'b0}}, current_state_debug, predicted_token, valid, done};
+                // Report the *latched* done/valid/predicted_token so software
+                // doesn't have to catch the 1-cycle FINISHED pulse. The
+                // current_state_debug field reflects the live FSM state.
+                4'd0: axi_rdata <= {30'b0, valid_latched, done_latched};
+                4'd1: axi_rdata <= {{(32-2-TOK_BITS-4){1'b0}}, current_state_debug, predicted_token_latched, valid_latched, done_latched};
                 4'd2: axi_rdata <= cycle_count;
                 4'd3:  axi_rdata <= {27'b0, input_seq_flat[0*5  +: 5]};
                 4'd4:  axi_rdata <= {27'b0, input_seq_flat[1*5  +: 5]};

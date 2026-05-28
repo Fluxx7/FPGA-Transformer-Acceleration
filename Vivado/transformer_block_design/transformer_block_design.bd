@@ -449,7 +449,7 @@
             "value": "16"
           },
           "FFN_DIM": {
-            "value": "32"
+            "value": "128"
           },
           "NUM_HEADS": {
             "value": "4"

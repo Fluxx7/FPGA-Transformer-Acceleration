@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
--- Date        : Wed May 27 00:32:05 2026
+-- Date        : Wed May 27 00:32:03 2026
 -- Host        : Fluxxis-Battlestation running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/MQP/FPGA-Transformer-Acceleration/Vivado/transformer_block_design/ip/transformer_block_design_axi_smc_0/transformer_block_design_axi_smc_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top transformer_block_design_axi_smc_0 -prefix
+--               transformer_block_design_axi_smc_0_ transformer_block_design_axi_smc_0_stub.vhdl
 -- Design      : transformer_block_design_axi_smc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1
