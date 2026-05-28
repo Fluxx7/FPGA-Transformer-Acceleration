@@ -20,12 +20,12 @@
 module transformer_axi_wrapper #(
     parameter integer C_S_AXI_DATA_WIDTH = 32,
     parameter integer C_S_AXI_ADDR_WIDTH = 6,
-    // Transformer parameters
-    parameter integer VOCAB_SIZE = 25,
-    parameter integer EMBED_DIM  = 64,
+    // Transformer parameters -- must match Python model.py Config.
+    parameter integer VOCAB_SIZE = 40,
+    parameter integer EMBED_DIM  = 16,
     parameter integer SEQ_LEN    = 8,
-    parameter integer NUM_HEADS  = 8,
-    parameter integer FFN_DIM    = 256
+    parameter integer NUM_HEADS  = 4,
+    parameter integer FFN_DIM    = 128
 )(
     // AXI4-Lite slave interface
     input  wire                                S_AXI_ACLK,
@@ -201,7 +201,7 @@ module transformer_axi_wrapper #(
         if (~S_AXI_ARESETN) begin
             soft_rst_reg   <= 1'b0;
             start_reg      <= 1'b0;
-            input_seq_flat <= {SEQ_LEN*5{1'b0}};
+            input_seq_flat <= {SEQ_LEN*6{1'b0}};
         end else begin
             soft_rst_reg <= 1'b0;  // default: clear each cycle
             start_reg    <= 1'b0;  // default: self-clear each cycle
@@ -214,14 +214,16 @@ module transformer_axi_wrapper #(
                             soft_rst_reg <= S_AXI_WDATA[1];
                         end
                     end
-                    4'd3:  if (S_AXI_WSTRB[0]) input_seq_flat[0*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd4:  if (S_AXI_WSTRB[0]) input_seq_flat[1*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd5:  if (S_AXI_WSTRB[0]) input_seq_flat[2*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd6:  if (S_AXI_WSTRB[0]) input_seq_flat[3*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd7:  if (S_AXI_WSTRB[0]) input_seq_flat[4*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd8:  if (S_AXI_WSTRB[0]) input_seq_flat[5*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd9:  if (S_AXI_WSTRB[0]) input_seq_flat[6*5  +: 5] <= S_AXI_WDATA[4:0];
-                    4'd10: if (S_AXI_WSTRB[0]) input_seq_flat[7*5  +: 5] <= S_AXI_WDATA[4:0];
+                    // 6-bit slots: must match the decoder's
+                    // `input_sequence_flat[gi*6 +: 6]` unpack.
+                    4'd3:  if (S_AXI_WSTRB[0]) input_seq_flat[0*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd4:  if (S_AXI_WSTRB[0]) input_seq_flat[1*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd5:  if (S_AXI_WSTRB[0]) input_seq_flat[2*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd6:  if (S_AXI_WSTRB[0]) input_seq_flat[3*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd7:  if (S_AXI_WSTRB[0]) input_seq_flat[4*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd8:  if (S_AXI_WSTRB[0]) input_seq_flat[5*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd9:  if (S_AXI_WSTRB[0]) input_seq_flat[6*6 +: 6] <= S_AXI_WDATA[5:0];
+                    4'd10: if (S_AXI_WSTRB[0]) input_seq_flat[7*6 +: 6] <= S_AXI_WDATA[5:0];
                     default: ;
                 endcase
             end
@@ -288,14 +290,14 @@ module transformer_axi_wrapper #(
                 4'd0: axi_rdata <= {30'b0, valid_latched, done_latched};
                 4'd1: axi_rdata <= {{(32-2-TOK_BITS-4){1'b0}}, current_state_debug, predicted_token_latched, valid_latched, done_latched};
                 4'd2: axi_rdata <= cycle_count;
-                4'd3:  axi_rdata <= {27'b0, input_seq_flat[0*5  +: 5]};
-                4'd4:  axi_rdata <= {27'b0, input_seq_flat[1*5  +: 5]};
-                4'd5:  axi_rdata <= {27'b0, input_seq_flat[2*5  +: 5]};
-                4'd6:  axi_rdata <= {27'b0, input_seq_flat[3*5  +: 5]};
-                4'd7:  axi_rdata <= {27'b0, input_seq_flat[4*5  +: 5]};
-                4'd8:  axi_rdata <= {27'b0, input_seq_flat[5*5  +: 5]};
-                4'd9:  axi_rdata <= {27'b0, input_seq_flat[6*5  +: 5]};
-                4'd10: axi_rdata <= {27'b0, input_seq_flat[7*5  +: 5]};
+                4'd3:  axi_rdata <= {26'b0, input_seq_flat[0*6 +: 6]};
+                4'd4:  axi_rdata <= {26'b0, input_seq_flat[1*6 +: 6]};
+                4'd5:  axi_rdata <= {26'b0, input_seq_flat[2*6 +: 6]};
+                4'd6:  axi_rdata <= {26'b0, input_seq_flat[3*6 +: 6]};
+                4'd7:  axi_rdata <= {26'b0, input_seq_flat[4*6 +: 6]};
+                4'd8:  axi_rdata <= {26'b0, input_seq_flat[5*6 +: 6]};
+                4'd9:  axi_rdata <= {26'b0, input_seq_flat[6*6 +: 6]};
+                4'd10: axi_rdata <= {26'b0, input_seq_flat[7*6 +: 6]};
                 default: axi_rdata <= 32'hDEADBEEF;
             endcase
         end

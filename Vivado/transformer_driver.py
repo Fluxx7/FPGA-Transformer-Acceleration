@@ -23,10 +23,10 @@ from pynq import Overlay
 import time
 import os
 
-# These must match the parameters used at synthesis time.
+# These must match the parameters used at synthesis time (and Python model.py).
 SEQ_LEN    = 8
-VOCAB_SIZE = 25
-TOK_BITS   = (VOCAB_SIZE - 1).bit_length()   # = 5 for VOCAB_SIZE=25
+VOCAB_SIZE = 40
+TOK_BITS   = (VOCAB_SIZE - 1).bit_length()   # = 6 for VOCAB_SIZE=40
 
 # Register offsets
 REG_CONTROL_STATUS_BASIC = 0x00
@@ -84,8 +84,10 @@ class Transformer:
             raise ValueError(f"sequence length {len(tokens)} > SEQ_LEN ({SEQ_LEN})")
         for i in range(SEQ_LEN):
             tok = tokens[i] if i < len(tokens) else 0
-            if not (0 <= tok < (1 << 5)):  # input slots are 5 bits wide
-                raise ValueError(f"token {tok} at pos {i} out of range [0, 31]")
+            if not (0 <= tok < VOCAB_SIZE):
+                raise ValueError(
+                    f"token {tok} at pos {i} out of range [0, {VOCAB_SIZE - 1}]"
+                )
             self._w(REG_INPUT_SEQ_BASE + i * 4, tok)
 
     def start(self):
