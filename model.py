@@ -16,7 +16,7 @@ class Config:
     SEQ_LEN = 8
     NUM_HEADS = 4
     HEAD_DIM = EMBED_DIM // NUM_HEADS
-    FFN_DIM = 32
+    FFN_DIM = 128
     DATA_WIDTH = 16
     MAX_VAL = 2**(DATA_WIDTH - 1) - 1
     MIN_VAL = -2**(DATA_WIDTH - 1)
