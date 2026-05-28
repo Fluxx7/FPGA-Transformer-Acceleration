@@ -12,11 +12,11 @@ from typing import List
 # -- Model Configuration
 class Config:
     VOCAB_SIZE = 40
-    EMBED_DIM = 16
+    EMBED_DIM = 64
     SEQ_LEN = 8
-    NUM_HEADS = 4
+    NUM_HEADS = 8
     HEAD_DIM = EMBED_DIM // NUM_HEADS
-    FFN_DIM = 128
+    FFN_DIM = 256
     DATA_WIDTH = 16
     MAX_VAL = 2**(DATA_WIDTH - 1) - 1
     MIN_VAL = -2**(DATA_WIDTH - 1)
@@ -159,7 +159,7 @@ def quantize_weight(weight: torch.Tensor, data_width: int) -> np.ndarray:
     max_val, min_val = 2**(data_width-1) - 1, -2**(data_width-1)
     weight_np = weight.detach().cpu().numpy()
     max_abs = np.maximum(np.abs(weight_np.min()), np.abs(weight_np.max()))
-    scale = (max_val * 0.8) / max_abs if max_abs > 0 else 1.0
+    scale = 256 #(max_val * 0.8) / max_abs if max_abs > 0 else 1.0
     return np.clip(np.round(weight_np * scale), min_val, max_val).astype(np.int16)
 
 def save_memory_file(data: np.ndarray, filename: str, data_width: int):

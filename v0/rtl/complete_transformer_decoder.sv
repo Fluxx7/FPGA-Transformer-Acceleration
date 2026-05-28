@@ -4,11 +4,11 @@
 // COMPLETE TRANSFORMER DECODER - SYNTHESIS READY
 // ============================================================================
 module complete_transformer_decoder #(
-    parameter VOCAB_SIZE = 25,
-    parameter EMBED_DIM = 16,
+    parameter VOCAB_SIZE = 40,
+    parameter EMBED_DIM = 64,
     parameter SEQ_LEN = 8,
-    parameter NUM_HEADS = 4,
-    parameter FFN_DIM = 32
+    parameter NUM_HEADS = 8,
+    parameter FFN_DIM = 256
 )(
     input wire clk,
     input wire rst,
