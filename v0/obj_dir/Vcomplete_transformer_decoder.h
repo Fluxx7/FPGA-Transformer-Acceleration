@@ -31,12 +31,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vcomplete_transformer_decoder VL_NOT_FINAL : 
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
     VL_IN8(&start,0,0);
-    VL_OUT8(&predicted_token,5,0);
+    VL_OUT8(&predicted_token,4,0);
     VL_OUT8(&done,0,0);
     VL_OUT8(&valid,0,0);
     VL_OUT8(&current_state_debug,3,0);
     VL_OUT(&cycle_count,31,0);
-    VL_IN8((&input_sequence)[8],5,0);
+    VL_IN64(&input_sequence_flat,47,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

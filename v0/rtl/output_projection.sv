@@ -18,9 +18,10 @@ module output_projection #(
 
     localparam IDLE = 0, COMPUTE = 1, COMPLETE = 2;
     localparam DIM_BITS = $clog2(EMBED_DIM);
+    localparam VOCAB_BITS = $clog2(VOCAB_SIZE);
     reg [1:0] state;
 
-    reg [5:0] vocab_idx;
+    reg [VOCAB_BITS-1:0] vocab_idx;
     reg [DIM_BITS-1:0] dim_idx;
     reg signed [31:0] logit_accumulator;
     reg [2:0] pipe_stage;
@@ -89,7 +90,7 @@ module output_projection #(
                             logit_accumulator <= 0;
                             dim_idx <= 0;
 
-                            if (vocab_idx == 6'(VOCAB_SIZE - 1)) begin
+                            if (vocab_idx == VOCAB_BITS'(VOCAB_SIZE - 1)) begin
                                 state <= COMPLETE;
                             end else begin
                                 vocab_idx <= vocab_idx + 1;

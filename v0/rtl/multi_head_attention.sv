@@ -116,7 +116,7 @@ module multi_head_attention #(
                     begin // [Claude] bit-selects replace div/mod; avoids width warnings and is synthesis-friendly
                         reg [HEAD_NUM_BITS-1:0] head_id;
                         reg [HEAD_BITS-1:0] local_dim;
-                        head_id  = dim_idx[DIM_BITS-1:HEAD_BITS];   // upper bits = which head
+                        head_id = HEAD_NUM_BITS'(dim_idx[DIM_BITS-1:HEAD_BITS]);   // upper bits = which head
                         local_dim = dim_idx[HEAD_BITS-1:0];          // lower bits = offset within head
                         concatenated[seq_idx][dim_idx] <= head_outputs[head_id][seq_idx][local_dim];
                     end

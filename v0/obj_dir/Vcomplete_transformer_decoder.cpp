@@ -17,7 +17,7 @@ Vcomplete_transformer_decoder::Vcomplete_transformer_decoder(VerilatedContext* _
     , valid{vlSymsp->TOP.valid}
     , current_state_debug{vlSymsp->TOP.current_state_debug}
     , cycle_count{vlSymsp->TOP.cycle_count}
-    , input_sequence{vlSymsp->TOP.input_sequence}
+    , input_sequence_flat{vlSymsp->TOP.input_sequence_flat}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context
