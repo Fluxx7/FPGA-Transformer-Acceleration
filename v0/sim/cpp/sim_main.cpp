@@ -54,6 +54,8 @@ static uint64_t pack_input(const int* tokens, int count) {
 }
 
 int main(int argc, char** argv) {
+    // Unbuffer stderr so progress / error messages aren't lost on crash.
+    setvbuf(stderr, nullptr, _IONBF, 0);
     Verilated::commandArgs(argc, argv);
 
     // Parse positional tokens. argv[0] is the binary; argv[1..] are tokens.

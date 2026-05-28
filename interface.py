@@ -115,10 +115,16 @@ class VerilatorBackend:
         # Resolve binary relative to cwd if it's not absolute.
         if not os.path.isabs(binary):
             binary = os.path.join(cwd, binary)
+        # Verilator emits "<name>.exe" on Windows and bare "<name>" elsewhere.
+        # Accept whichever exists so the same default path works on both.
+        if not os.path.exists(binary) and os.path.exists(binary + ".exe"):
+            binary = binary + ".exe"
         if not os.path.exists(binary):
             raise FileNotFoundError(
                 f"Verilator sim binary not found at {binary}.\n"
-                f"Build it first:  cd {os.path.join(cwd, 'v0')} && make verilate"
+                f"Build it first:\n"
+                f"  Mac/Linux: cd {os.path.join(cwd, 'v0')} && make verilate\n"
+                f"  Windows:   cd {os.path.join(cwd, 'v0')}; .\\build_sim.ps1"
             )
         self._binary    = binary
         self._cwd       = cwd
@@ -143,9 +149,16 @@ class VerilatorBackend:
             ) from e
 
         if proc.returncode != 0:
+            # Negative returncode on POSIX means killed by signal -N.
+            sig_note = ""
+            if proc.returncode < 0:
+                sig_note = f" (killed by signal {-proc.returncode})"
             raise RuntimeError(
-                f"Verilator sim exited with code {proc.returncode} for "
-                f"context {context}.\nstderr tail:\n"
+                f"Verilator sim exited with code {proc.returncode}{sig_note} "
+                f"for context {context}.\n"
+                f"--- stdout tail ---\n"
+                + "\n".join(proc.stdout.splitlines()[-20:])
+                + "\n--- stderr tail ---\n"
                 + "\n".join(proc.stderr.splitlines()[-20:])
             )
 
