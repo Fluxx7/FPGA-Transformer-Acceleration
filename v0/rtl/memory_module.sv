@@ -34,7 +34,7 @@ module memory_module #(
         if (enable && 32'(addr) < DEPTH) begin
             data_out <= memory[addr];
         end else if (enable) begin
-            data_out <= 16'h0000;
+            data_out <= 0;
         end
     end
 

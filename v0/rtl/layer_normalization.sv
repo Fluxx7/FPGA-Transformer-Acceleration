@@ -7,7 +7,8 @@ module layer_normalization #(
     parameter SEQ_LEN = 8,
     parameter EMBED_DIM = 64,
     parameter GAMMA_FILE = "memory/layernorm1_gamma.mem",
-    parameter BETA_FILE = "memory/layernorm1_beta.mem"
+    parameter BETA_FILE = "memory/layernorm1_beta.mem",
+    parameter RSQRT_MEM = "memory/rsqrt_lut.mem"
 )(
     input wire clk,
     input wire rst,
@@ -20,41 +21,22 @@ module layer_normalization #(
 );
 
     localparam IDLE = 0, ADD_RESIDUAL = 1, COMPUTE_MEAN = 2,
-               COMPUTE_VAR = 3, NORMALIZE = 4, COMPLETE = 5;
+               COMPUTE_VAR = 3, VAR_RSQRT_DELAY = 4, NORMALIZE = 5, COMPLETE = 6;
     localparam DIM_BITS = $clog2(EMBED_DIM);
     reg [2:0] state;
 
     reg [2:0] seq_idx;
     reg [DIM_BITS-1:0] dim_idx;
     reg signed [15:0] sum_data [0:SEQ_LEN-1][0:EMBED_DIM-1];
-    reg signed [31:0] mean_acc, var_acc;
+    reg signed [31:0] mean_acc;
+    wire signed [31:0] next_mean_acc;
     reg signed [15:0] mean_val [0:SEQ_LEN-1];
-    reg signed [15:0] std_val [0:SEQ_LEN-1];
-    reg [2:0] pipe_stage;
+    reg [7:0] pipe_stage;
+   
 
-    /* verilator lint_off BLKSEQ */
-    function [15:0] improved_sqrt;
-        input [31:0] x;
-        reg [31:0] approx, new_approx;
-        integer iter;
-        begin
-            if (x == 0) begin
-                improved_sqrt = 0;
-            end else begin
-                approx = x >>> 1;
-                for (iter = 0; iter < 3; iter = iter + 1) begin
-                    new_approx = (approx + x / approx) >>> 1;
-                    approx = new_approx;
-                end
-                improved_sqrt = approx[15:0];
-            end
-        end
-    endfunction
-    /* verilator lint_on BLKSEQ */
-
-    reg signed [16:0] temp_sum;
-    reg signed [31:0] diff, diff_sq, normalized, with_gamma, final_result;
-    reg [31:0] variance;
+    logic signed [16:0] temp_sum;
+    reg signed [31:0] normalized, with_gamma, final_result;
+    
 
     wire [DIM_BITS-1:0] param_addr;
     wire [15:0] gamma_data, beta_data;
@@ -75,18 +57,58 @@ module layer_normalization #(
         .clk(clk), .addr(param_addr), .data_out(beta_data), .enable(mem_enable)
     );
 
+    
+
+    function automatic [4:0] leading_bit;
+        input [31:0] x;
+        integer i;
+        begin
+            leading_bit = 5'd0;
+            for (i = 0; i < 32; i = i + 1) begin
+                if (x[i] == 1'b1) leading_bit = i[4:0];
+            end
+        end
+    endfunction
+
+
+    // For COMPUTE_VAR
+    logic signed [31:0] diff;
+    logic signed [47:0] var_acc;
+    reg [31:0] var_lookup;
+
+    // For COMPUTE_VAR_RSQRT
+    wire [3:0] k = leading_bit(var_lookup)[4:1];
+    wire [4:0] n_even = {k, 1'b0};
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire [31:0] m_shift =   ((n_even > 5'd4) 
+                            ? (var_lookup >> (n_even - 6'd4))
+                            : (var_lookup << (6'd4 - n_even)));
+    wire [5:0] rsqrt_index = m_shift[5:0];
+    /* verilator lint_on UNUSEDSIGNAL */
+    wire [31:0] rsqrt_var;
+
+    memory_module #(
+        .ADDR_WIDTH(6), .DATA_WIDTH(32), .DEPTH(64), .MEM_FILE(RSQRT_MEM)
+    ) rsqrt_rom (
+        .clk(clk), .addr(rsqrt_index), .data_out(rsqrt_var), .enable(state == VAR_RSQRT_DELAY)
+    );
+
     // Fixed: Initialize arrays in initial block
     initial begin
         integer i, j;
         for (i = 0; i < SEQ_LEN; i = i + 1) begin
             mean_val[i] = 0;
-            std_val[i] = 0;
             for (j = 0; j < EMBED_DIM; j = j + 1) begin
                 sum_data[i][j] = 0;
                 output_data[i][j] = 0;
             end
         end
     end
+
+    // Using wires for intermediate values to avoid off-by-one errors
+    assign temp_sum = input_data[seq_idx][dim_idx] + residual_data[seq_idx][dim_idx];
+    assign next_mean_acc = mean_acc + 32'(sum_data[seq_idx][dim_idx]);
+    assign diff = 32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]);
 
     always @(posedge clk) begin
         if (rst) begin
@@ -99,13 +121,10 @@ module layer_normalization #(
             done <= 0;
             valid <= 0;
 
-            temp_sum <= 0;
-            diff <= 0;
-            diff_sq <= 0;
             normalized <= 0;
             with_gamma <= 0;
             final_result <= 0;
-            variance <= 0;
+            var_lookup <= 0;
         end else begin
             case (state)
                 IDLE: begin
@@ -119,14 +138,14 @@ module layer_normalization #(
                 end
 
                 ADD_RESIDUAL: begin
-                    temp_sum <= input_data[seq_idx][dim_idx] + residual_data[seq_idx][dim_idx];
-
                     if (temp_sum > 32767)
                         sum_data[seq_idx][dim_idx] <= 16'h7FFF;
                     else if (temp_sum < -32768)
                         sum_data[seq_idx][dim_idx] <= 16'h8000;
                     else
                         sum_data[seq_idx][dim_idx] <= temp_sum[15:0];
+
+                    
 
                     if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
                         dim_idx <= 0;
@@ -140,42 +159,45 @@ module layer_normalization #(
                     end else begin
                         dim_idx <= dim_idx + 1;
                     end
+
+                    
                 end
 
                 COMPUTE_MEAN: begin
-                    mean_acc <= mean_acc + 32'(sum_data[seq_idx][dim_idx]);
-
                     if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                        mean_val[seq_idx] <= 16'(mean_acc >>> DIM_BITS);
+                        mean_val[seq_idx] <= 16'(next_mean_acc >>> DIM_BITS);
                         dim_idx <= 0;
                         var_acc <= 0;
                         state <= COMPUTE_VAR;
                     end else begin
+                        mean_acc <= next_mean_acc;
                         dim_idx <= dim_idx + 1;
                     end
                 end
 
                 COMPUTE_VAR: begin
-                    diff <= 32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]);
-                    diff_sq <= (diff * diff) >>> 8;
-                    var_acc <= var_acc + diff_sq;
-
                     if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                        variance <= var_acc >>> DIM_BITS;
-                        std_val[seq_idx] <= improved_sqrt(variance + 32'd256);
+                        var_lookup <= (32'(var_acc + (diff * diff)) >>> (DIM_BITS + 8)) + 1;
                         dim_idx <= 0;
                         pipe_stage <= 0;
-                        state <= NORMALIZE;
+                        state <= VAR_RSQRT_DELAY;
                     end else begin
+                        var_acc <= var_acc + (diff * diff);
                         dim_idx <= dim_idx + 1;
                     end
                 end
+
+                VAR_RSQRT_DELAY: begin // one cycle delay for mem read to update
+                    state <= NORMALIZE;
+                end
+
+
 
                 NORMALIZE: begin
                     pipe_stage <= pipe_stage + 1;
 
                     if (pipe_stage >= 2) begin
-                        normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx])) << 8) / 32'(std_val[seq_idx]);
+                        normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx])) << 8) * (rsqrt_var >> k);
                         with_gamma <= (normalized * $signed(gamma_data)) >>> 8;
                         final_result <= with_gamma + 32'($signed(beta_data));
 
