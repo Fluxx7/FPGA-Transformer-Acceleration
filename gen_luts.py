@@ -59,19 +59,31 @@ MEM_DIR = "memory"
 RSQRT_LUT_SIZE   = 64           # must be a power of 2
 RSQRT_OUT_FRAC   = 15           # Q1.15
 
+# def gen_rsqrt_lut() -> np.ndarray:
+#     """64 entries of 1/sqrt(m), m in [1, 4), Q1.15 unsigned."""
+#     entries = np.zeros(RSQRT_LUT_SIZE, dtype=np.uint16)
+#     for i in range(RSQRT_LUT_SIZE):
+#         # Mantissa covers [1, 4); we sample at the *midpoint* of each bin so
+#         # the worst-case rounding error is symmetric (~half a bin instead of
+#         # one full bin).
+#         m = 1.0 + 3.0 * (i + 0.5) / RSQRT_LUT_SIZE
+#         rsqrt_m = 1.0 / math.sqrt(m)
+#         scaled = round(rsqrt_m * (1 << RSQRT_OUT_FRAC))
+#         # rsqrt(1) hits 32768; clamp to fit uint16 just in case rounding pushes
+#         # the boundary entry over.
+#         entries[i] = min(scaled, 0xFFFF)
+#     return entries
+
 def gen_rsqrt_lut() -> np.ndarray:
     """64 entries of 1/sqrt(m), m in [1, 4), Q1.15 unsigned."""
-    entries = np.zeros(RSQRT_LUT_SIZE, dtype=np.uint16)
-    for i in range(RSQRT_LUT_SIZE):
-        # Mantissa covers [1, 4); we sample at the *midpoint* of each bin so
-        # the worst-case rounding error is symmetric (~half a bin instead of
-        # one full bin).
-        m = 1.0 + 3.0 * (i + 0.5) / RSQRT_LUT_SIZE
-        rsqrt_m = 1.0 / math.sqrt(m)
-        scaled = round(rsqrt_m * (1 << RSQRT_OUT_FRAC))
-        # rsqrt(1) hits 32768; clamp to fit uint16 just in case rounding pushes
-        # the boundary entry over.
-        entries[i] = min(scaled, 0xFFFF)
+    entries = np.zeros(64, dtype=np.uint16)
+    for i in range(64):
+        m = i / 16.0
+        if m < 1.0:
+            rsqrt_m = 1.0
+        else:
+            rsqrt_m = 1.0 / math.sqrt(m)
+        entries[i] = min(round(rsqrt_m * (1 << 15)), 0xFFFF)
     return entries
 
 # =============================================================================

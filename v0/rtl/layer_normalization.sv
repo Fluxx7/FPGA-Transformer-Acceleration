@@ -80,15 +80,15 @@ module layer_normalization #(
     wire [3:0] k = leading_bit(var_lookup)[4:1];
     wire [4:0] n_even = {k, 1'b0};
     /* verilator lint_off UNUSEDSIGNAL */
-    wire [31:0] m_shift =   ((n_even > 5'd4) 
+    wire [31:0] m_shift =   ((n_even >= 5'd4) 
                             ? (var_lookup >> (n_even - 6'd4))
                             : (var_lookup << (6'd4 - n_even)));
     wire [5:0] rsqrt_index = m_shift[5:0];
     /* verilator lint_on UNUSEDSIGNAL */
-    wire [31:0] rsqrt_var;
+    wire [15:0] rsqrt_var;
 
     memory_module #(
-        .ADDR_WIDTH(6), .DATA_WIDTH(32), .DEPTH(64), .MEM_FILE(RSQRT_MEM)
+        .ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE(RSQRT_MEM)
     ) rsqrt_rom (
         .clk(clk), .addr(rsqrt_index), .data_out(rsqrt_var), .enable(state == VAR_RSQRT_DELAY)
     );
@@ -196,33 +196,34 @@ module layer_normalization #(
                 NORMALIZE: begin
                     pipe_stage <= pipe_stage + 1;
 
-                    if (pipe_stage >= 2) begin
-                        normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx])) << 8) * (rsqrt_var >> k);
-                        with_gamma <= (normalized * $signed(gamma_data)) >>> 8;
-                        final_result <= with_gamma + 32'($signed(beta_data));
+                    case (pipe_stage)
+                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * 32'(rsqrt_var)) >>> (11 + k);
+                        1: with_gamma <= (normalized * $signed(gamma_data)) >>> 8;
+                        2: final_result <= with_gamma + 32'($signed(beta_data));
+                        3: begin
+                            if (final_result > 32767)
+                                output_data[seq_idx][dim_idx] <= 16'h7FFF;
+                            else if (final_result < -32768)
+                                output_data[seq_idx][dim_idx] <= 16'h8000;
+                            else
+                                output_data[seq_idx][dim_idx] <= final_result[15:0];
 
-                        if (final_result > 32767)
-                            output_data[seq_idx][dim_idx] <= 16'h7FFF;
-                        else if (final_result < -32768)
-                            output_data[seq_idx][dim_idx] <= 16'h8000;
-                        else
-                            output_data[seq_idx][dim_idx] <= final_result[15:0];
+                            pipe_stage <= 0;
 
-                        pipe_stage <= 0;
-
-                        if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            dim_idx <= 0;
-                            if (seq_idx == 3'(SEQ_LEN - 1)) begin
-                                state <= COMPLETE;
+                            if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
+                                dim_idx <= 0;
+                                if (seq_idx == 3'(SEQ_LEN - 1)) begin
+                                    state <= COMPLETE;
+                                end else begin
+                                    seq_idx <= seq_idx + 1;
+                                    mean_acc <= 0;
+                                    state <= COMPUTE_MEAN;
+                                end
                             end else begin
-                                seq_idx <= seq_idx + 1;
-                                mean_acc <= 0;
-                                state <= COMPUTE_MEAN;
+                                dim_idx <= dim_idx + 1;
                             end
-                        end else begin
-                            dim_idx <= dim_idx + 1;
                         end
-                    end
+                    endcase
                 end
 
                 COMPLETE: begin
