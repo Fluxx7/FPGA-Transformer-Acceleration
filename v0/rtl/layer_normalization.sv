@@ -31,7 +31,7 @@ module layer_normalization #(
     reg signed [31:0] mean_acc;
     wire signed [31:0] next_mean_acc;
     reg signed [15:0] mean_val [0:SEQ_LEN-1];
-    reg [7:0] pipe_stage;
+    reg [1:0] pipe_stage;
    
 
     logic signed [16:0] temp_sum;
@@ -59,7 +59,9 @@ module layer_normalization #(
 
     
 
-    function automatic [4:0] leading_bit;
+    function automatic [4:0] leading_bit; 
+        // note: 0 and 1 will both return 0
+        // this is only used on var_lookup, which has an epsilon of 1 added to it so it's not a problem here
         input [31:0] x;
         integer i;
         begin
@@ -86,6 +88,7 @@ module layer_normalization #(
     wire [5:0] rsqrt_index = m_shift[5:0];
     /* verilator lint_on UNUSEDSIGNAL */
     wire [15:0] rsqrt_var;
+    wire signed [31:0] rsqrt_signed = $signed({16'b0, rsqrt_var});
 
     memory_module #(
         .ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE(RSQRT_MEM)
@@ -177,7 +180,7 @@ module layer_normalization #(
 
                 COMPUTE_VAR: begin
                     if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                        var_lookup <= (32'(var_acc + (diff * diff)) >>> (DIM_BITS + 8)) + 1;
+                        var_lookup <= 32'((var_acc + (diff * diff)) >>> (DIM_BITS + 8)) + 1;
                         dim_idx <= 0;
                         pipe_stage <= 0;
                         state <= VAR_RSQRT_DELAY;
@@ -197,7 +200,7 @@ module layer_normalization #(
                     pipe_stage <= pipe_stage + 1;
 
                     case (pipe_stage)
-                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * 32'(rsqrt_var)) >>> (11 + k);
+                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * rsqrt_signed) >>> (11 + k);
                         1: with_gamma <= (normalized * $signed(gamma_data)) >>> 8;
                         2: final_result <= with_gamma + 32'($signed(beta_data));
                         3: begin
