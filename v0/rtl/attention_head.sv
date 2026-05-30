@@ -89,7 +89,9 @@ module attention_head #(
         end
     end
 
-    wire [31:0] next_accum = accumulator + (input_data[seq_idx][embed_idx] * $signed(wq_data));
+    wire [31:0] next_accumq = accumulator + (input_data[seq_idx][embed_idx] * $signed(wq_data));
+    wire [31:0] next_accumk = accumulator + (input_data[seq_idx][embed_idx] * $signed(wk_data));
+    wire [31:0] next_accumv = accumulator + (input_data[seq_idx][embed_idx] * $signed(wv_data));
 
     always @(posedge clk) begin
         if (rst) begin
@@ -127,7 +129,7 @@ module attention_head #(
                         pipe_stage <= 0;
 
                         if (embed_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            Q[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(next_accum >>> 8);
+                            Q[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(next_accumq >>> 8);
                             accumulator <= 0;
                             embed_idx <= 0;
 
@@ -143,7 +145,7 @@ module attention_head #(
                                 head_idx <= head_idx + 1;
                             end
                         end else begin
-                            accumulator <= next_accum;
+                            accumulator <= next_accumq;
                             embed_idx <= embed_idx + 1;
                         end
                     end
@@ -153,11 +155,10 @@ module attention_head #(
                     pipe_stage <= pipe_stage + 1;
 
                     if (pipe_stage >= 2) begin
-                        accumulator <= accumulator + (input_data[seq_idx][embed_idx] * $signed(wk_data));
                         pipe_stage <= 0;
 
                         if (embed_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            K[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(accumulator >>> 8);
+                            K[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(next_accumk >>> 8);
                             accumulator <= 0;
                             embed_idx <= 0;
 
@@ -173,6 +174,7 @@ module attention_head #(
                                 head_idx <= head_idx + 1;
                             end
                         end else begin
+                            accumulator <= next_accumk;
                             embed_idx <= embed_idx + 1;
                         end
                     end
@@ -182,11 +184,10 @@ module attention_head #(
                     pipe_stage <= pipe_stage + 1;
 
                     if (pipe_stage >= 2) begin
-                        accumulator <= accumulator + (input_data[seq_idx][embed_idx] * $signed(wv_data));
                         pipe_stage <= 0;
 
                         if (embed_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            V[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(accumulator >>> 8);
+                            V[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(next_accumv >>> 8);
                             accumulator <= 0;
                             embed_idx <= 0;
 
@@ -204,6 +205,7 @@ module attention_head #(
                                 head_idx <= head_idx + 1;
                             end
                         end else begin
+                            accumulator <= next_accumv;
                             embed_idx <= embed_idx + 1;
                         end
                     end
