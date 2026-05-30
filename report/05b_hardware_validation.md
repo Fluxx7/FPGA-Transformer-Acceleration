@@ -40,25 +40,28 @@ This mistake appeared repeatedly throughout the original design: in `feed_forwar
 
 ```mermaid
 graph TD
-    IN1["input_data [SEQ_LEN x EMBED_DIM]"]
-    IN2["residual_data [SEQ_LEN x EMBED_DIM]"]
+    IN1["input_data - SEQ_LEN x EMBED_DIM"]
+    IN2["residual_data - SEQ_LEN x EMBED_DIM"]
+    ADD["ADD_RESIDUAL: sum = input + residual, saturate Q8.8"]
+    MEAN["COMPUTE_MEAN: mean = sum of elements / EMBED_DIM"]
+    VAR["COMPUTE_VAR: variance = sum of squared diffs / EMBED_DIM"]
+    RSQRT["Reciprocal Sqrt LUT - 64-entry BRAM, leading-bit index"]
+    GAMMA["gamma BRAM - EMBED_DIM learned scale factors"]
+    BETA["beta BRAM - EMBED_DIM learned offsets"]
+    NORMPIPE["NORMALIZE 4-stage pipeline: x-mean, times rsqrt, times gamma, plus beta, saturate"]
+    OUT["output_data - SEQ_LEN x EMBED_DIM"]
 
-    ADD["ADD_RESIDUAL — sum = input + residual, saturate to Q8.8"]
-    MEAN["COMPUTE_MEAN — mean = sum(sum_data) / EMBED_DIM"]
-    VAR["COMPUTE_VAR — variance = sum((x - mean)^2) / EMBED_DIM + epsilon"]
-    RSQRT["Reciprocal Sqrt LUT — 64-entry BRAM, leading-bit index extracts mantissa"]
-    GB["gamma BRAM + beta BRAM  [EMBED_DIM each]"]
-    NORMPIPE["NORMALIZE — 4-stage pipeline: (x-mean) x rsqrt -> x gamma -> + beta -> saturate"]
-    OUT["output_data [SEQ_LEN x EMBED_DIM]"]
+    s0[IDLE] --> s1[ADD_RESIDUAL] --> s2[COMPUTE_MEAN] --> s3[COMPUTE_VAR] --> s4[VAR_RSQRT_DELAY] --> s5[NORMALIZE] --> s6[COMPLETE]
 
-    subgraph FSM["FSM — execution order"]
-        f0[IDLE] --> f1[ADD_RESIDUAL] --> f2[COMPUTE_MEAN] --> f3[COMPUTE_VAR] --> f4[VAR_RSQRT_DELAY] --> f5[NORMALIZE] --> f6[COMPLETE]
-    end
-
-    IN1 & IN2 --> ADD --> MEAN --> VAR --> RSQRT
+    IN1 --> ADD
+    IN2 --> ADD
+    ADD --> MEAN
+    MEAN --> VAR
+    VAR --> RSQRT
     ADD --> NORMPIPE
     RSQRT --> NORMPIPE
-    GB --> NORMPIPE
+    GAMMA --> NORMPIPE
+    BETA --> NORMPIPE
     NORMPIPE --> OUT
 ```
 
@@ -78,14 +81,12 @@ An interesting property of this lookup table: despite operating on quantized Q8.
 
 ```mermaid
 graph LR
-    IN["input_tokens [SEQ_LEN] — 6-bit token IDs"]
-    ADDR["BRAM address: token_id x EMBED_DIM + dim_idx"]
-    EMB["Embedding BRAM [VOCAB_SIZE x EMBED_DIM] — learned Q8.8 weights"]
-    OUT["embedded_output [SEQ_LEN x EMBED_DIM]"]
+    IN["input_tokens - SEQ_LEN token IDs"]
+    ADDR["address = token_id x EMBED_DIM + dim_idx"]
+    EMB["Embedding BRAM - VOCAB_SIZE x EMBED_DIM learned weights"]
+    OUT["embedded_output - SEQ_LEN x EMBED_DIM Q8.8"]
 
-    subgraph FSM["FSM"]
-        f0[IDLE] --> f1[PROCESSING] --> f2[COMPLETE]
-    end
+    s0[IDLE] --> s1[PROCESSING] --> s2[COMPLETE]
 
     IN --> ADDR --> EMB --> OUT
 ```
@@ -98,14 +99,12 @@ Token embedding required no bug fixes — it passed at **1.0 correlation** on th
 
 ```mermaid
 graph LR
-    IN["embedded_input [SEQ_LEN x EMBED_DIM]"]
-    POS["Positional Encoding BRAM [SEQ_LEN x EMBED_DIM] — cosine-based, precomputed"]
-    ADD["Add: embedding + pos_enc — 3-stage pipeline, saturate to Q8.8"]
-    OUT["position_encoded_output [SEQ_LEN x EMBED_DIM]"]
+    IN["embedded_input - SEQ_LEN x EMBED_DIM"]
+    POS["Positional Encoding BRAM - SEQ_LEN x EMBED_DIM cosine values"]
+    ADD["Add: embedding + pos_enc, 3-stage pipeline, saturate to Q8.8"]
+    OUT["position_encoded_output - SEQ_LEN x EMBED_DIM"]
 
-    subgraph FSM["FSM"]
-        f0[IDLE] --> f1[PROCESSING] --> f2[COMPLETE]
-    end
+    s0[IDLE] --> s1[PROCESSING] --> s2[COMPLETE]
 
     IN --> ADD
     POS --> ADD
@@ -142,33 +141,28 @@ endcase
 
 ```mermaid
 graph TD
-    IN["input_scores [SEQ_LEN x SEQ_LEN]"]
-
-    FINDMAX["FIND_MAX — scan all scores, record max_val register"]
+    IN["input_scores - SEQ_LEN x SEQ_LEN"]
+    FINDMAX["FIND_MAX: scan all scores, record max_val"]
     MAXVAL["max_val register"]
+    SUB["shifted_score = score minus max_val"]
+    CLAMP2["Clamp to range -2016 to 0"]
+    IDX["LUT index = neg_value div 32, range 0 to 63"]
+    ROM["exp_rom BRAM - 64-entry exp lookup table"]
+    TEMP["temp_exp - SEQ_LEN register array"]
+    EXPSUM["exp_sum - 32-bit accumulator"]
+    NORM["NORMALIZE: temp_exp times 4096 divided by exp_sum, output Q8.8"]
+    OUT["output_weights - SEQ_LEN x SEQ_LEN"]
 
-    subgraph ExpPipe["Exp LUT pipeline — one lookup per column per row"]
-        SUB["score minus max_val, giving shifted score"]
-        CLAMP2["Clamp to [-2016, 0]"]
-        IDX["LUT index = neg_clamped div 32, range 0 to 63"]
-        ROM["exp_rom BRAM — 64-entry LUT"]
-        TEMP["temp_exp[SEQ_LEN] register array"]
-    end
-
-    EXPSUM["exp_sum — 32-bit accumulator"]
-    NORM["NORMALIZE: temp_exp[i] x 4096 / exp_sum, output Q8.8"]
-    OUT["output_weights [SEQ_LEN x SEQ_LEN]"]
-
-    subgraph FSM["FSM — iterates per row, then per column"]
-        f0[IDLE] --> f1[FIND_MAX] --> f2[PREPARE_EXP] --> f3[LOAD_EXP] --> f4[COMPUTE_EXP] --> f5[NORMALIZE] --> f6[COMPLETE]
-    end
+    s0[IDLE] --> s1[FIND_MAX] --> s2[PREPARE_EXP] --> s3[LOAD_EXP] --> s4[COMPUTE_EXP] --> s5[NORMALIZE] --> s6[COMPLETE]
 
     IN --> FINDMAX --> MAXVAL
     IN --> SUB
     MAXVAL --> SUB
     SUB --> CLAMP2 --> IDX --> ROM --> TEMP
     TEMP --> EXPSUM
-    TEMP & EXPSUM --> NORM --> OUT
+    TEMP --> NORM
+    EXPSUM --> NORM
+    NORM --> OUT
 ```
 
 Softmax uses an exponential function internally. The original implementation used a piecewise linear approximation that was coarse and inaccurate. This was replaced with a **64-entry exponential lookup table** stored in BRAM, indexed by the quantized input value.
@@ -193,33 +187,30 @@ This is a good illustration of why unit testing alone is insufficient: a bug tha
 
 ```mermaid
 graph TD
-    IN["input_data [SEQ_LEN x EMBED_DIM]"]
+    IN["input_data - SEQ_LEN x EMBED_DIM"]
+    W1["W1 BRAM - EMBED_DIM x FFN_DIM weights"]
+    B1["b1 BRAM - FFN_DIM biases"]
+    MAC1["32-bit MAC accumulator plus bias - LINEAR1"]
+    RELU["ReLU: clamp negatives to 0, saturate positives to 32767"]
+    HIDDEN["hidden_data - SEQ_LEN x FFN_DIM"]
+    W2["W2 BRAM - FFN_DIM x EMBED_DIM weights"]
+    B2["b2 BRAM - EMBED_DIM biases"]
+    MAC2["32-bit MAC accumulator plus bias - LINEAR2"]
+    CLAMP["Saturate to Q8.8 range"]
+    OUT["output_data - SEQ_LEN x EMBED_DIM"]
 
-    subgraph Layer1["Layer 1 — LINEAR1 state"]
-        W1["W1 BRAM [EMBED_DIM x FFN_DIM]"]
-        B1["b1 BRAM [FFN_DIM]"]
-        MAC1["32-bit MAC accumulator + add bias"]
-        RELU["ReLU — clamp negative values to 0, saturate positive to 32767"]
-        HIDDEN["hidden_data [SEQ_LEN x FFN_DIM]"]
-    end
+    s0[IDLE] --> s1[LINEAR1] --> s2[LINEAR2] --> s3[COMPLETE]
 
-    subgraph Layer2["Layer 2 — LINEAR2 state"]
-        W2["W2 BRAM [FFN_DIM x EMBED_DIM]"]
-        B2["b2 BRAM [EMBED_DIM]"]
-        MAC2["32-bit MAC accumulator + add bias"]
-        CLAMP["Saturate to Q8.8 range"]
-    end
-
-    OUT["output_data [SEQ_LEN x EMBED_DIM]"]
-
-    subgraph FSM["FSM — execution order"]
-        f0[IDLE] --> f1[LINEAR1] --> f2[LINEAR2] --> f3[COMPLETE]
-    end
-
-    IN --> W1 & B1
-    W1 & B1 --> MAC1 --> RELU --> HIDDEN
-    HIDDEN --> W2 & B2
-    W2 & B2 --> MAC2 --> CLAMP --> OUT
+    IN --> W1
+    IN --> B1
+    W1 --> MAC1
+    B1 --> MAC1
+    MAC1 --> RELU --> HIDDEN
+    HIDDEN --> W2
+    HIDDEN --> B2
+    W2 --> MAC2
+    B2 --> MAC2
+    MAC2 --> CLAMP --> OUT
 ```
 
 The FFN is a two-layer linear transformation with bias and activation. Both layers share essentially identical structure: loop over the weight matrix, accumulate the dot product, add the bias, then apply the activation and pass to the next layer.
@@ -275,14 +266,12 @@ Fixing the first layer's timing initially appeared to make results *worse* — a
 
 ```mermaid
 graph LR
-    IN["final_hidden_state [EMBED_DIM]"]
-    PROJ["Output Projection BRAM [EMBED_DIM x VOCAB_SIZE]"]
-    ACC["32-bit MAC accumulator — 2-cycle pipeline per dimension"]
-    OUT["vocabulary_logits [VOCAB_SIZE]"]
+    IN["final_hidden_state - EMBED_DIM"]
+    PROJ["Output Projection BRAM - EMBED_DIM x VOCAB_SIZE"]
+    ACC["32-bit MAC accumulator, 2-cycle pipeline"]
+    OUT["vocabulary_logits - VOCAB_SIZE"]
 
-    subgraph FSM["FSM"]
-        f0[IDLE] --> f1[COMPUTE] --> f2[COMPLETE]
-    end
+    s0[IDLE] --> s1[COMPUTE] --> s2[COMPLETE]
 
     IN --> ACC
     PROJ --> ACC
@@ -303,36 +292,28 @@ Argmax is the simplest module — it iterates over the vocabulary logits and out
 
 ```mermaid
 graph TD
-    IN["input_data [SEQ_LEN x EMBED_DIM]"]
+    IN["input_data - SEQ_LEN x EMBED_DIM"]
+    WQ["WQ BRAM - EMBED_DIM x HEAD_DIM"]
+    WK["WK BRAM - EMBED_DIM x HEAD_DIM"]
+    WV["WV BRAM - EMBED_DIM x HEAD_DIM"]
+    Q["Q registers - SEQ_LEN x HEAD_DIM"]
+    K["K registers - SEQ_LEN x HEAD_DIM"]
+    V["V registers - SEQ_LEN x HEAD_DIM"]
+    SCORES["attention_scores - SEQ x SEQ, Q dot K-transposed, causal mask, bit-shift scale"]
+    SFX["enhanced_softmax submodule - 64-entry exp LUT, per-row normalisation"]
+    WEIGHTS["attention_weights - SEQ x SEQ"]
+    OUT["output_data - SEQ_LEN x HEAD_DIM"]
 
-    subgraph WeightBRAMs["Weight BRAMs — one set per head, initialised from .mem files"]
-        WQ["WQ [EMBED_DIM x HEAD_DIM]"]
-        WK["WK [EMBED_DIM x HEAD_DIM]"]
-        WV["WV [EMBED_DIM x HEAD_DIM]"]
-    end
+    s0[IDLE] --> s1[COMPUTE_Q] --> s2[COMPUTE_K] --> s3[COMPUTE_V] --> s4[ATTENTION_SCORES] --> s5[SOFTMAX] --> s6[APPLY_ATTENTION] --> s7[COMPLETE]
 
-    subgraph QKVRegs["Q / K / V Register Arrays  [SEQ_LEN x HEAD_DIM each]"]
-        Q["Q"]
-        K["K"]
-        V["V"]
-    end
-
-    SCORES["attention_scores [SEQ x SEQ] — Q·K^T, causal mask on future positions, bit-shift scaling"]
-    SFX["enhanced_softmax — 64-entry exp LUT, per-row normalisation"]
-    WEIGHTS["attention_weights [SEQ x SEQ]"]
-    OUT["output_data [SEQ_LEN x HEAD_DIM]"]
-
-    subgraph FSM["FSM — execution order"]
-        s0[IDLE] --> s1[COMPUTE_Q] --> s2[COMPUTE_K] --> s3[COMPUTE_V] --> s4[ATTENTION_SCORES] --> s5[SOFTMAX] --> s6[APPLY_ATTENTION] --> s7[COMPLETE]
-    end
-
-    IN --> WQ & WK & WV
-    WQ --> Q
-    WK --> K
-    WV --> V
-    Q & K --> SCORES
+    IN --> WQ --> Q
+    IN --> WK --> K
+    IN --> WV --> V
+    Q --> SCORES
+    K --> SCORES
     SCORES --> SFX --> WEIGHTS
-    WEIGHTS & V --> OUT
+    WEIGHTS --> OUT
+    V --> OUT
 ```
 
 Attention head is the most complex module, internally performing five sequential matrix multiplications (Q, K, V projections, attention score computation, and weighted sum application) plus a softmax pass. It was also the most difficult to debug, for a reason that became clear early: with this many sequential operations, a failure in any one stage corrupts every stage after it, making the final output useless as a diagnostic signal.
