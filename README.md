@@ -24,7 +24,11 @@ gen_luts.py      Export trained weights to .mem files
 
 ### Python dependencies
 
+Create and activate a virtual environment, then install dependencies:
+
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate   # re-run this each time you open a new terminal
 pip install torch numpy scipy
 ```
 
@@ -35,10 +39,10 @@ brew install verilator   # macOS
 # or: apt install verilator  (Linux)
 ```
 
-Then build the simulator:
+Then build the simulators. `make verilate` builds the full-pipeline binary; `make tests` builds the per-module binaries required by the Python test drivers:
 
 ```bash
-cd v0 && make verilate
+cd v0 && make tests
 ```
 
 ### Report build dependencies
