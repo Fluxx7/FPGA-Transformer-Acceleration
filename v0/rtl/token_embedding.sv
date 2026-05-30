@@ -27,7 +27,7 @@ module token_embedding #(
     wire [15:0] embed_data;
     wire mem_enable;
     
-    assign embed_addr = input_tokens[seq_idx] * EMBED_DIM + 12'(dim_idx);
+    assign embed_addr = 12'(input_tokens[seq_idx] * EMBED_DIM + dim_idx);
     assign mem_enable = (state == PROCESSING);
     
     memory_module #(

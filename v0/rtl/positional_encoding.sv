@@ -29,7 +29,7 @@ module positional_encoding #(
     wire mem_enable;
     reg signed [16:0] temp_sum;
     
-    assign pos_addr = seq_idx * EMBED_DIM + POS_BITS'(dim_idx);
+    assign pos_addr = POS_BITS'(seq_idx * EMBED_DIM + dim_idx);
     assign mem_enable = (state == PROCESSING);
 
     memory_module #(

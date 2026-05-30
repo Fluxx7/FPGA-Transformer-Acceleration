@@ -41,8 +41,8 @@ module feed_forward_network #(
     wire [15:0] w1_data, w2_data, b1_data, b2_data;
     wire mem_enable_w1, mem_enable_w2, mem_enable_b1, mem_enable_b2;
 
-    assign w1_addr = in_dim * FFN_DIM + (DIM_BITS+FFN_BITS)'(hidden_dim);
-    assign w2_addr = hidden_dim * EMBED_DIM + (DIM_BITS+FFN_BITS)'(out_dim);
+    assign w1_addr = (DIM_BITS+FFN_BITS)'(in_dim * FFN_DIM + hidden_dim);
+    assign w2_addr = (DIM_BITS+FFN_BITS)'(hidden_dim * EMBED_DIM + out_dim);
     assign b1_addr = hidden_dim;
     assign b2_addr = out_dim;
 

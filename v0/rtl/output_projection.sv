@@ -30,7 +30,7 @@ module output_projection #(
     wire [15:0] proj_data;
     wire mem_enable;
     
-    assign proj_addr = dim_idx * VOCAB_SIZE + 12'(vocab_idx);
+    assign proj_addr = 12'(dim_idx * VOCAB_SIZE + vocab_idx);
     assign mem_enable = (state == COMPUTE);
     
     memory_module #(
