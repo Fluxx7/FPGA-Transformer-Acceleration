@@ -91,7 +91,7 @@ module enhanced_softmax #(
 
                 PREPARE_EXP: begin // one cycle delay for lookup to update
                     exp_lookup <= input_scores[row_idx][col_idx] - max_val;
-                    state <= COMPUTE_EXP;
+                    state <= LOAD_EXP;
                 end
 
                 LOAD_EXP: begin // one cycle delay for lookup to update
