@@ -18,6 +18,15 @@ int main(int argc, char** argv) {
     if (sim::run_to_done_with(dut, [&]() { return dut->done; },
                             2000000) < 0) return 1;
 
+    // Internal-signal dump from the final sample (helpful when debugging).
+    auto* r = dut->rootp;
+    fprintf(stderr, "--- internal signals at completion ---\n");
+    fprintf(stderr, "exp_lookup   = %d\n", (int)r->enhanced_softmax__DOT__exp_lookup);
+    fprintf(stderr, "exp_index    = %d\n", (int)r->enhanced_softmax__DOT__exp_index);
+    //fprintf(stderr, "temp_exp[i]  = %d\n", (int)r->enhanced_softmax__DOT__temp_exp);
+    fprintf(stderr, "exp_sum      = %d\n", (int)r->enhanced_softmax__DOT__exp_sum);
+    // fprintf(stderr, "normalized   = %d\n", (int)r->enhanced_softmax__DOT__exp_lookup);
+
     int16_t out[SEQ_LEN * SEQ_LEN];
     for (int i = 0; i < SEQ_LEN; ++i)
         for (int j = 0; j < SEQ_LEN; ++j)

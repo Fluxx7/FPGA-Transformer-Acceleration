@@ -16,7 +16,7 @@ module enhanced_softmax #(
     output reg done
 );
 
-    localparam IDLE = 0, FIND_MAX = 1, EXP_DELAY = 2, COMPUTE_EXP = 3, NORMALIZE = 4, COMPLETE = 5;
+    localparam IDLE = 0, FIND_MAX = 1, PREPARE_EXP = 2, LOAD_EXP = 3, COMPUTE_EXP = 4, NORMALIZE = 5, COMPLETE = 6;
     reg [2:0] state;
     reg [2:0] row_idx, col_idx;
     reg signed [15:0] max_val;
@@ -33,7 +33,7 @@ module enhanced_softmax #(
     memory_module #(
         .ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE(EXP_MEM)
     ) exp_rom (
-        .clk(clk), .addr(exp_index), .data_out(exp_val_raw), .enable(state == COMPUTE_EXP)
+        .clk(clk), .addr(exp_index), .data_out(exp_val_raw), .enable(state == LOAD_EXP)
     );
 
     wire [15:0] exp_val = (exp_val_raw == 16'd0) ? 16'd1 : exp_val_raw;
@@ -77,10 +77,9 @@ module enhanced_softmax #(
                     if (col_idx == 3'(SEQ_LEN - 1)) begin
                         col_idx <= 0;
                         if (row_idx == 3'(SEQ_LEN - 1)) begin
-                            state <= COMPUTE_EXP;
+                            state <= PREPARE_EXP;
                             row_idx <= 0;
                             exp_sum <= 0;
-                            exp_lookup <= input_scores[row_idx][col_idx] - max_val;
                         end else begin
                             row_idx <= row_idx + 1;
                         end
@@ -89,7 +88,12 @@ module enhanced_softmax #(
                     end
                 end
 
-                EXP_DELAY: begin // one cycle delay for lookup to update
+                PREPARE_EXP: begin // one cycle delay for lookup to update
+                    exp_lookup <= input_scores[row_idx][col_idx] - max_val;
+                    state <= COMPUTE_EXP;
+                end
+
+                LOAD_EXP: begin // one cycle delay for lookup to update
                     state <= COMPUTE_EXP;
                 end
 
@@ -102,7 +106,8 @@ module enhanced_softmax #(
                         state <= NORMALIZE;
                     end else begin
                         col_idx <= col_idx + 1;
-                        exp_lookup <= input_scores[row_idx][col_idx] - max_val;
+                        exp_lookup <= input_scores[row_idx][col_idx + 1] - max_val;
+                        state <= LOAD_EXP;
                     end
                 end
 
@@ -123,7 +128,7 @@ module enhanced_softmax #(
                         end else begin
                             row_idx <= row_idx + 1;
                             exp_sum <= 0;
-                            state <= COMPUTE_EXP;
+                            state <= PREPARE_EXP;
                         end
                     end else begin
                         col_idx <= col_idx + 1;

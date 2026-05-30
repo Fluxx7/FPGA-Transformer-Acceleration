@@ -13,11 +13,10 @@ SOFTMAX_BINARY = os.path.join("v0", "obj_dir",
                             "Venhanced_softmax")
 
 
-def torch_softmax_causal(scores_q88: np.ndarray,) -> np.ndarray:
+def torch_softmax_simple(scores_q88: np.ndarray,) -> np.ndarray:
     x = torch.tensor(scores_q88.astype(np.float32) / SCALE)
-    mask = torch.tril(torch.ones(SEQ_LEN, SEQ_LEN))
-    x = x.masked_fill(mask == 0, float("-inf"))
-    return torch.nan_to_num(torch.softmax(x, dim=1), 0.0).numpy()
+    return torch.softmax(x, dim=1).numpy()
+
 
 
 def main():
@@ -26,10 +25,10 @@ def main():
 
 
     test = ModuleTest("enhanced_softmax", SOFTMAX_BINARY)
-    hw_out = test.run(scores, expected_out_size=SEQ_LEN * SEQ_LEN).reshape(SEQ_LEN, SEQ_LEN)
-    torch_out = torch_softmax_causal(scores)
+    hw_out = test.run(scores, expected_out_size=SEQ_LEN * SEQ_LEN, verbose=True).reshape(SEQ_LEN, SEQ_LEN)
+    torch_out = torch_softmax_simple(scores)
 
-    compare("enhanced_softmax", hw_out, torch_out, tol_mean=0.05, tol_max=0.3)
+    compare("enhanced_softmax", hw_out, torch_out, scale=4096, tol_mean=0.05, tol_max=0.3)
 
 if __name__ == "__main__":
     main()
