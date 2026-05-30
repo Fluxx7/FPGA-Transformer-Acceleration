@@ -15,7 +15,8 @@ int main(int argc, char** argv) {
         for (int j = 0; j < SEQ_LEN; ++j)
             dut->input_scores[i][j] = scores[i * SEQ_LEN + j];
 
-    if (sim::run_to_done(dut) < 0) return 1;
+    if (sim::run_to_done_with(dut, [&]() { return dut->done; },
+                            2000000) < 0) return 1;
 
     int16_t out[SEQ_LEN * SEQ_LEN];
     for (int i = 0; i < SEQ_LEN; ++i)
