@@ -46,10 +46,10 @@ After training on 5,000 sentences, the software model produces the following for
 | Input | Output |
 |-------|--------|
 | *(empty)* | *the tall fish jumps gently* |
-| `the` | *the cat sleeps gently* |
-| `the cat` | *the cat sleeps gently* |
-| `the dog` | *the dog jumps gently* |
-| `the bird swims` | *the bird swims gently* |
-| `the bird flies` | *the bird flies and flies quickly* |
+| `the` | *the tall fish jumps gently* |
+| `the cat` | *the cat jumps and jumps quickly* |
+| `the dog` | *the dog jumps and jumps quickly* |
+| `the bird swims` | *the bird swims and swims quickly* |
+| `the bird flies and` | *the bird flies and flies quickly* |
 
 <!-- TODO: Confirm these outputs against the current trained model and add/replace as needed -->
