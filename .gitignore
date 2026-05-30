@@ -92,9 +92,9 @@ report/output/
 report/figures/generated/
 
 # =============================================================================
-# Session transcripts and private context
+# Private context directory (transcripts, reference docs, session notes)
 # =============================================================================
-context/transcripts/
+context/
 
 # Vivado project itself (uncomment if you ever check the .xpr into this repo)
 # *.xpr
