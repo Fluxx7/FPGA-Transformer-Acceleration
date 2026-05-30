@@ -184,6 +184,16 @@ gen_luts.py      — LUT generation from model weights
 GAME_PLAN.md     — Earlier planning document (Claude-generated, partially obsolete)
 ```
 
+## Diagrams and Report Notes
+
+Per-module Mermaid architecture diagrams live in `report/05b_hardware_validation.md`, inserted before each `### Module Name` subsection with an italic `*Figure: ...*` caption. Diagrams cover: `attention_head`, `feed_forward_network`, `enhanced_softmax`, `layer_normalization`, `output_projection`, `positional_encoding`, `token_embedding`. No diagrams for `argmax`, `multi_head_attention`, or `complete_transformer_decoder`.
+
+**Mermaid syntax rules for VS Code preview compatibility:**
+- Do **not** use `direction LR` or `direction TB` inside subgraph blocks — VS Code's bundled Mermaid version does not support it and silently fails with "No diagram type detected".
+- Do **not** put `>>`, `=>`, or Unicode arrows (`→`) inside node label strings — they are tokenized as operators even inside double quotes in some renderers.
+- Set graph direction only at the top-level declaration (`graph TD` / `graph LR`).
+- Use plain ASCII in node labels; avoid operators and special symbols.
+
 ## Code Authorship Convention
 
 When writing new comments or code blocks, suffix them with `// [Claude]` (or `# [Claude]` for Python) so AI-generated additions are identifiable.
