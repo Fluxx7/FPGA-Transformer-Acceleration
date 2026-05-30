@@ -203,15 +203,14 @@ class HardwareBackend:
 # ---------------------------------------------------------------------------
 
 def generate(backend: Backend, prompt_tokens: list[int],
-             max_tokens: int, stop_on_end: bool = True) -> list[int]:
-    """Autoregressively extend prompt_tokens until SEQ_LEN, max_tokens, or END."""
+             max_tokens: int) -> list[int]:
+    """Autoregressively extend prompt_tokens until END or max tokens."""
     context = list(prompt_tokens)
-    seq_len = Config.SEQ_LEN
 
-    while len(context) < min(seq_len, max_tokens):
-        next_tok = backend.predict_next(context)
+    while len(context) < max_tokens:
+        next_tok = backend.predict_next(context[-min(len(context), 8):])
         context.append(next_tok)
-        if stop_on_end and next_tok == END_TOKEN:
+        if next_tok == END_TOKEN:
             break
     return context
 
@@ -262,8 +261,8 @@ def main():
                     default="torch", help="Which inference backend to use.")
     ap.add_argument("--prompt", default="",
                     help='Prompt words (e.g. "the cat"). Defaults to just <START>.')
-    ap.add_argument("--max-tokens", type=int, default=Config.SEQ_LEN,
-                    help=f"Stop after this many tokens (default: SEQ_LEN={Config.SEQ_LEN}).")
+    ap.add_argument("--max-tokens", type=int, default=100,
+                    help=f"Stop after this many tokens (default: {100}).")
     ap.add_argument("--model-path", default=DEFAULT_MODEL_PATH,
                     help="Torch backend: path to decoder_model.pth.")
     ap.add_argument("--bitfile", default="transformer.bit",

@@ -78,30 +78,31 @@ module positional_encoding #(
                 
                 PROCESSING: begin
                     pipe_stage <= pipe_stage + 1;
-                    
-                    if (pipe_stage >= 2) begin
-                        temp_sum <= embedded_input[seq_idx][dim_idx] + $signed(pos_data);
-                        
-                        if (temp_sum > 32767) 
+                    case (pipe_stage)
+                        0: temp_sum <= embedded_input[seq_idx][dim_idx] + $signed(pos_data);
+                        1: begin
+                            if (temp_sum > 32767) 
                             position_encoded_output[seq_idx][dim_idx] <= 16'h7FFF;
-                        else if (temp_sum < -32768) 
-                            position_encoded_output[seq_idx][dim_idx] <= 16'h8000;
-                        else 
-                            position_encoded_output[seq_idx][dim_idx] <= temp_sum[15:0];
-                        
-                        pipe_stage <= 0;
-                        
-                        if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            dim_idx <= 0;
-                            if (seq_idx == 3'(SEQ_LEN - 1)) begin
-                                state <= COMPLETE;
-                            end else begin
-                                seq_idx <= seq_idx + 1;
-                            end
-                        end else begin
-                            dim_idx <= dim_idx + 1;
+                            else if (temp_sum < -32768) 
+                                position_encoded_output[seq_idx][dim_idx] <= 16'h8000;
+                            else 
+                                position_encoded_output[seq_idx][dim_idx] <= temp_sum[15:0];
                         end
-                    end
+                        2: begin
+                            pipe_stage <= 0;
+                        
+                            if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin
+                                dim_idx <= 0;
+                                if (seq_idx == 3'(SEQ_LEN - 1)) begin
+                                    state <= COMPLETE;
+                                end else begin
+                                    seq_idx <= seq_idx + 1;
+                                end
+                            end else begin
+                                dim_idx <= dim_idx + 1;
+                            end
+                        end
+                    endcase
                 end
                 
                 COMPLETE: begin

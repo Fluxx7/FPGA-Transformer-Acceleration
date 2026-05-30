@@ -5,10 +5,10 @@
 // ============================================================================
 module complete_transformer_decoder #(
     parameter VOCAB_SIZE = 40,
-    parameter EMBED_DIM = 64, // must be power of 2
+    parameter EMBED_DIM = 16, // must be power of 2
     parameter SEQ_LEN = 8,
-    parameter NUM_HEADS = 8,
-    parameter FFN_DIM = 256
+    parameter NUM_HEADS = 4,
+    parameter FFN_DIM = 128
 )(
     input wire clk,
     input wire rst,
