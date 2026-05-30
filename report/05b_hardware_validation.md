@@ -20,6 +20,8 @@ A shared `module_tester.py` class handles the mechanics of running the Verilator
 
 The motivation for per-module testing is straightforward: if the end-to-end test fails, there is no way to know which of the ten modules is responsible. By testing each module in isolation, a failure immediately localizes the problem.
 
+The framework was built incrementally. The first test — layer normalization — was written by hand to validate the framework itself before expanding to other modules. Once layer normalization confirmed the approach worked, the remaining test benches and Python drivers were generated with the help of Claude, with the shared `module_tester.py` class factored out at the same time. The test suite now covers all ten RTL modules.
+
 ### Intermediate Value Exposure
 
 For complex modules like `attention_head`, it was not sufficient to just compare the final output — if the final output was wrong, the error could originate at any of five internal computation stages (Q projection, K projection, V projection, attention scores, softmax, attention application). To address this, additional output ports were added to expose intermediate values from within the module, allowing the test harness to compare hardware against software at each intermediate stage and pinpoint exactly where the error occurred.
@@ -36,7 +38,11 @@ This mistake appeared repeatedly throughout the original design: in `feed_forwar
 
 Layer normalization was the first module tested. The original implementation computed the reciprocal square root using a chained sequence of divisions, all performed combinationally (within a single clock cycle). This was both inaccurate and the likely dominant source of negative timing slack in the design — a complex combinational path that the clock had to wait for.
 
-This was replaced with a **reciprocal square root lookup table**: a BRAM initialized with precomputed values, indexed by the quantized input. The lookup table introduces a one-cycle latency but eliminates the complex combinational path entirely. After this replacement, layer normalization achieved **1.0 correlation** against the PyTorch reference.
+This was replaced with a **reciprocal square root lookup table**: a BRAM initialized with precomputed values, indexed by the quantized input. The lookup table introduces a one-cycle latency but eliminates the complex combinational path entirely.
+
+The initial test run after this replacement showed 0.9813 correlation — good, but not the 1.0 expected for a pure table lookup with no approximation. The output range was also suspicious: PyTorch produced values in the range [-3.318, +4.704], while the hardware produced [-6.531, +9.273], a roughly uniform 2× scale error. Giving the hardware a controlled input of all-ones confirmed the same scaling pattern, pointing to a systematic error rather than random noise.
+
+The culprit was a parameter mismatch in the test bench. The layer normalization module is parameterized by `EMBED_DIM`, which it needs to determine the size of the vectors being normalized. The test bench had not been given an explicit value, so it was defaulting to 64 — the original repository's embedding dimension — rather than the 16 being used in the cut-down design. With the wrong embedding dimension, the normalization was computing on a different vector size, producing the observed uniform scale error. After correcting the parameter in the test bench and the Makefile, layer normalization immediately reached **1.0 correlation**.
 
 An interesting property of this lookup table: despite operating on quantized Q8.8 values (far coarser than float32), the correlation is exactly 1.0. The lookup process includes a leading-coefficient extraction step that compensates naturally for the quantization, producing results that match the reference within the noise floor of the fixed-point representation itself.
 
@@ -68,9 +74,13 @@ This is a good illustration of why unit testing alone is insufficient: a bug tha
 
 ### Feed Forward Network
 
-The FFN is a two-layer linear transformation with bias and ReLU activation. Both layers contained non-blocking assignment errors: the accumulator value was being written and read in the same clock cycle. Since both layers are structurally identical, the same fix was applied to each.
+The FFN is a two-layer linear transformation with bias and activation. Both layers share essentially identical structure: loop over the weight matrix, accumulate the dot product, add the bias, then apply the activation and pass to the next layer.
 
-After fixing both layers: **1.0 correlation**.
+The initial test run was striking: mean error 0.75, max error 2.12, and a Pearson correlation of **-0.0229** — essentially the output had no relationship to the expected values whatsoever, or worse, an inverted one. This level of failure ruled out a subtle quantization issue and pointed to something structurally wrong.
+
+The cause was a non-blocking assignment error in the accumulator logic. The FFN accumulates a partial sum over multiple clock cycles and then adds the bias to the accumulated value. The original code tried to do both in the same cycle: write the accumulated value, then immediately read it to add the bias. Due to non-blocking semantics, the read returned the old (pre-accumulation) value rather than the just-written one.
+
+Fixing the first layer's timing initially appeared to make results *worse* — and on one attempt, the test timed out after 2 million simulation cycles with the module stuck in a state machine loop, the result of an incorrectly introduced state transition. The fix was backed out and reapplied more carefully. The second layer had the same structural error and required the same fix. After correcting both layers: **1.0 correlation**.
 
 ### Output Projection
 
@@ -84,15 +94,17 @@ Argmax is the simplest module — it iterates over the vocabulary logits and out
 
 ### Attention Head
 
-Attention head is the most complex module, internally performing five sequential matrix multiplications (Q, K, V projections, attention score computation, and weighted sum application) plus a softmax pass. Testing required exposing intermediate values at each stage to localize failures.
+Attention head is the most complex module, internally performing five sequential matrix multiplications (Q, K, V projections, attention score computation, and weighted sum application) plus a softmax pass. It was also the most difficult to debug, for a reason that became clear early: with this many sequential operations, a failure in any one stage corrupts every stage after it, making the final output useless as a diagnostic signal.
 
-**Parameter propagation bug.** The module accepts a `HEAD_DIM` parameter, but this was never being passed from the parent `multi_head_attention` module. The parameter defaulted to 8 in the original code. With 4 attention heads and a 16-dimensional embedding, the correct head dimension is 16/4 = 4. With the wrong value, Q/K/V projections operated on the wrong matrix dimensions, producing systematically wrong results. The fix was to compute `HEAD_DIM = EMBED_DIM / NUM_HEADS` at the top level and pass it explicitly. After this fix, Q/K/V projections all jumped to **1.0 correlation**.
+**Intermediate value exposure.** The initial test runs with both PyTorch memory layout and hardware addressing layout both produced poor correlation — which meant the standard layout-swapping fix that worked for `output_projection` was not the issue here. To make progress, the test bench was extended to expose intermediate values from within the module: after each of the Q, K, V projections, after the attention score computation, and after the softmax. This made it possible to compare hardware against software at each stage and see exactly where the error first appeared.
 
-**Non-blocking assignment errors in Q/K/V projections.** Each of the three projections also had the same register write/read timing issue seen in other modules. Fixed with additional pipeline stages.
+**Parameter propagation bug.** With intermediate values exposed, all three projections (Q, K, V) were immediately flagged as failing. The cause was a missing parameter: the module accepts a `HEAD_DIM` parameter, but this was never being passed down from the parent `multi_head_attention` module. The parameter silently defaulted to 8. With 4 attention heads and a 16-dimensional embedding, the correct head dimension is 16/4 = 4. Operating at the wrong dimension produced systematically wrong matrix dimensions throughout the Q/K/V projections. The fix was to compute `HEAD_DIM = EMBED_DIM / NUM_HEADS` explicitly at the top level and pass it down. After this change, all three projections jumped to **1.0 correlation**.
 
-**Score shift.** The attention score computation requires dividing by the square root of `HEAD_DIM` (the standard scaled dot-product attention scaling). The hardware approximates this with bit shifts. When `HEAD_DIM` is not a perfect square, the shift amount is approximate, introducing a uniform scaling error across all attention scores. However, this scaling error is harmless: the softmax operation that immediately follows normalizes relative values, and a uniform multiplicative scale applied to all inputs has no effect on the softmax output. The correlation at this stage reaches ~1.0.
+**Non-blocking assignment errors in Q/K/V projections.** Each projection also had the familiar register write/read timing issue. Fixed with additional pipeline stages alongside the parameter fix.
 
-**Softmax clamp bug (see above).** Once the Q/K/V and score issues were fixed, the softmax clamp edge case became the remaining source of error in attention head. After the -2016 clamp fix, attention head correlation reached **~0.98+**. The residual error reflects the accumulation of quantization noise and softmax approximation error across the multiple matrix multiplications within the module — not a fixable bug but an inherent property of Q8.8 arithmetic.
+**Score shift.** The attention score computation requires scaling by the square root of `HEAD_DIM`. The hardware approximates this with bit shifts, which introduces a uniform scaling error when `HEAD_DIM` is not a perfect square. This error is harmless: the softmax operation immediately following normalizes relative values, and a uniform multiplicative scale across all attention scores cancels out through the normalization. The correlation at this stage reaches ~1.0.
+
+**Softmax clamp bug (see above).** Once the Q/K/V and score issues were fixed, the softmax clamp edge case became the remaining source of error. After the -2016 clamp fix, attention head correlation reached **~0.98+**. The residual error reflects the accumulation of quantization noise and softmax approximation error across multiple matrix multiplications — an inherent property of Q8.8 arithmetic at this depth, not a fixable bug.
 
 ### Multi-Head Attention
 
@@ -102,7 +114,19 @@ Multi-head attention is primarily a structural wrapper around `attention_head` �
 
 With all individual modules validated, an end-to-end test was run using `test_complete_transformer_decoder.py`. This test runs the full inference pipeline in Verilator, compares intermediate values at every module boundary, and reports the final predicted token.
 
-After training on 5,000 sentences, the end-to-end test showed final logit correlations of **0.9996 or higher** across all four test cases. The hardware and software predicted the same token in most cases. In the one case where they differed (`a cat runs`), the top-five logit rankings were identical between hardware and software — the divergence was in which of the two top-ranked tokens each selected, suggesting a very small absolute logit difference at the boundary.
+**Memory layout in the full pipeline.** The first end-to-end run revealed one more layout issue. The per-module tests for `attention_head` had correctly handled the PyTorch-to-hardware transposition for the weight files, but the full-pipeline test was loading weights differently — the transposition was not being applied consistently across all weight files. After applying the same reshape-and-transpose transformation to all attention weight matrices in `gen_luts.py` (while leaving bias vectors untransposed, as they are 1-D and layout-independent), attention head correlation in the full pipeline improved substantially.
+
+**The dog token edge case.** Initial end-to-end testing was done with a model trained on only 500 sentences. Most inputs worked well, but the prompt `the dog` produced garbage output — the hardware and software diverged sharply at the final logit stage, with correlation dropping to ~0.57. The diagnosis was that the dog token's embedding had been pushed outside the representable Q8.8 range during training on too little data: with only 500 training examples, the distribution of the token embeddings was not well-constrained, and some embeddings drifted to values that the 8.8 fixed-point format could not accurately represent.
+
+Retraining on 5,000 sentences resolved the issue completely. With the larger training set, the dog token's embedding stayed within range and the hardware-software correlation jumped to **1.0** for that test case. This is a practical lesson about the relationship between training data scale and quantization: a model that works fine in floating point can fail in hardware if the training distribution allows embeddings to drift outside the fixed-point representable range.
+
+**Final results.** After training on 5,000 sentences, the end-to-end test showed final logit correlations of **0.9996 or higher** across all four test cases. The hardware and software predicted the same token in most cases. In the one case where they differed (`a cat runs`), the top-five logit rankings were identical between hardware and software — the divergence was in which of the two top-ranked tokens each selected, suggesting a very small absolute logit difference at the boundary.
+
+End-to-end hardware outputs (from Verilator simulation with the trained model):
+- Input `the` → `the cat sleeps gently`
+- Input `the cat` → `the cat sleeps gently`
+- Input `the dog` → `the dog jumps gently`
+- Input *(nothing)* → `the tall fish jumps gently`
 
 ## Bug Fix Freeze
 
