@@ -212,41 +212,51 @@ module attention_head #(
                 end
 
                 ATTENTION_SCORES: begin
-                    if (head_idx == 0) begin
-                        accumulator <= Q[seq_idx][head_idx[HEAD_BITS-1:0]] * K[seq_idx2][head_idx[HEAD_BITS-1:0]];
-                    end else begin
-                        accumulator <= accumulator + (Q[seq_idx][head_idx[HEAD_BITS-1:0]] * K[seq_idx2][head_idx[HEAD_BITS-1:0]]);
-                    end
-
-                    if (head_idx == 4'(HEAD_DIM - 1)) begin
-                        if (seq_idx2 <= seq_idx) begin
-                            reg signed [31:0] scaled_score;
-                            scaled_score = (accumulator >>> 2) + (accumulator >>> 4);
-
-                            if (scaled_score > 32767) attention_scores[seq_idx][seq_idx2] <= 16'h7FFF;
-                            else if (scaled_score < -32768) attention_scores[seq_idx][seq_idx2] <= 16'h8000;
-                            else attention_scores[seq_idx][seq_idx2] <= scaled_score[15:0];
-                        end else begin
-                            attention_scores[seq_idx][seq_idx2] <= -16'h4000;
-                        end
-
-                        head_idx <= 0;
-                        accumulator <= 0;
-
-                        if (seq_idx2 == 3'(SEQ_LEN - 1)) begin
-                            seq_idx2 <= 0;
-                            if (seq_idx == 3'(SEQ_LEN - 1)) begin
-                                state <= SOFTMAX;
-                                softmax_start <= 1;
+                    
+                    case (pipe_stage) 
+                        0: begin
+                            if (head_idx == 0) begin
+                                accumulator <= Q[seq_idx][head_idx[HEAD_BITS-1:0]] * K[seq_idx2][head_idx[HEAD_BITS-1:0]];
                             end else begin
-                                seq_idx <= seq_idx + 1;
+                                accumulator <= accumulator + (Q[seq_idx][head_idx[HEAD_BITS-1:0]] * K[seq_idx2][head_idx[HEAD_BITS-1:0]]);
                             end
-                        end else begin
-                            seq_idx2 <= seq_idx2 + 1;
                         end
-                    end else begin
-                        head_idx <= head_idx + 1;
-                    end
+                        1: begin 
+                            if (head_idx == 4'(HEAD_DIM - 1)) begin
+                                if (seq_idx2 <= seq_idx) begin
+                                    reg signed [31:0] scaled_score;
+                                    scaled_score = accumulator >>> 9;
+
+                                    if (scaled_score > 32767) attention_scores[seq_idx][seq_idx2] <= 16'h7FFF;
+                                    else if (scaled_score < -32768) attention_scores[seq_idx][seq_idx2] <= 16'h8000;
+                                    else attention_scores[seq_idx][seq_idx2] <= scaled_score[15:0];
+                                end else begin
+                                    attention_scores[seq_idx][seq_idx2] <= -16'h4000;
+                                end
+
+                                head_idx <= 0;
+                                accumulator <= 0;
+
+                                if (seq_idx2 == 3'(SEQ_LEN - 1)) begin
+                                    seq_idx2 <= 0;
+                                    if (seq_idx == 3'(SEQ_LEN - 1)) begin
+                                        state <= SOFTMAX;
+                                        softmax_start <= 1;
+                                    end else begin
+                                        seq_idx <= seq_idx + 1;
+                                    end
+                                end else begin
+                                    seq_idx2 <= seq_idx2 + 1;
+                                end
+                            end else begin
+                                head_idx <= head_idx + 1;
+                            end
+                        end
+                    endcase
+                    pipe_stage <= pipe_stage + 1;
+                    
+
+                    
                 end
 
                 SOFTMAX: begin

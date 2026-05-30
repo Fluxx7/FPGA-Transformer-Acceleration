@@ -75,7 +75,7 @@ feed_forward_network_RTL := $(RTL_DIR)/feed_forward_network.sv $(RTL_DIR)/memory
 feed_forward_network_PARAMS := $(P_SEQ) $(P_EMBED) $(P_FFN)
 
 attention_head_RTL       := $(RTL_DIR)/attention_head.sv $(RTL_DIR)/enhanced_softmax.sv $(RTL_DIR)/memory_module.sv
-attention_head_PARAMS    := $(P_SEQ) $(P_EMBED)
+attention_head_PARAMS    := $(P_SEQ) $(P_EMBED) -GHEAD_DIM=4
 
 multi_head_attention_RTL := $(RTL_DIR)/multi_head_attention.sv $(RTL_DIR)/attention_head.sv $(RTL_DIR)/enhanced_softmax.sv $(RTL_DIR)/memory_module.sv
 multi_head_attention_PARAMS := $(P_SEQ) $(P_EMBED) $(P_HEADS)

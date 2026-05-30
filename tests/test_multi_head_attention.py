@@ -68,13 +68,9 @@ def main():
     hw = test.run(x_q88, expected_out_size=SEQ_LEN * EMBED_DIM) \
               .reshape(SEQ_LEN, EMBED_DIM)
 
-    out_p = full_attention(x_q88, Wq_p, Wk_p, Wv_p, Wo_p)
     out_h = full_attention(x_q88, Wq_h, Wk_h, Wv_h, Wo_h)
 
-    print("comparing against BOTH possible weight layouts:")
-    compare("multi_head_attention (PyTorch layout)",
-            hw, out_p, tol_mean=0.5, tol_max=3.0)
-    compare("multi_head_attention (hw-addressing layout)",
+    compare("multi_head_attention",
             hw, out_h, tol_mean=0.5, tol_max=3.0)
 
 

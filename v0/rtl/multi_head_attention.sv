@@ -6,8 +6,7 @@
 module multi_head_attention #(
     parameter SEQ_LEN = 8,
     parameter EMBED_DIM = 64,
-    parameter NUM_HEADS = 8,
-    parameter HEAD_DIM = 8
+    parameter NUM_HEADS = 8
 )(
     input wire clk,
     input wire rst,
@@ -19,6 +18,7 @@ module multi_head_attention #(
 );
 
     localparam IDLE = 0, PROCESS_HEADS = 1, CONCAT_OUTPUT = 2, OUTPUT_PROJ = 3, COMPLETE = 4;
+    localparam HEAD_DIM = EMBED_DIM / NUM_HEADS;
     localparam DIM_BITS      = $clog2(EMBED_DIM);
     localparam HEAD_BITS     = $clog2(HEAD_DIM);
     localparam SEQ_BITS      = $clog2(SEQ_LEN);        // [Claude]

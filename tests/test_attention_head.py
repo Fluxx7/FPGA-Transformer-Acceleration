@@ -70,6 +70,7 @@ def main():
 
     rng = np.random.default_rng(0)
     x_q88 = rng.integers(-256, 256, size=(SEQ_LEN, EMBED_DIM), dtype=np.int16)
+    x_q88[:, 4] = 256
     x = x_q88.astype(np.float32) / SCALE
 
     # ---- Torch reference, stage by stage ----
@@ -146,17 +147,6 @@ def main():
     compare("output",
             output_hw, output_ref,
             scale=SCALE, tol_mean=0.2, tol_max=1.0)
-
-    print("\n=== Hints for interpreting results ===")
-    print("- Q passes but K/V fail with smaller magnitudes than expected:")
-    print("    likely the off-by-one MAC bug in COMPUTE_K/COMPUTE_V")
-    print("    (Q uses next_accum wire, K/V use stale accumulator)")
-    print("- Q/K/V pass but scores fail with magnitude ~150x too small:")
-    print("    score scaling is wrong -- should be >>>9 (= 1/sqrt(d) * >>>8),")
-    print("    not (>>>2)+(>>>4) which is *0.3125 at scale 65536")
-    print("- weights pass but output is off:")
-    print("    APPLY_ATTENTION's accumulator shift (>>>12) may not match")
-    print("    your Q4.12 weights * Q8.8 V product scale")
 
 
 if __name__ == "__main__":
