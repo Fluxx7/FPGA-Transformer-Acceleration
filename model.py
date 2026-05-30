@@ -132,7 +132,7 @@ def generate_sentences(seed: int = 0, max_samples: int | None = None, templates 
         sentences = sentences[:max_samples]
     return sentences
 
-TRAINING_SENTENCES = generate_sentences(max_samples=500, templates=TEMPLATES_SHORT)
+TRAINING_SENTENCES = generate_sentences(max_samples=5000, templates=TEMPLATES_SHORT)
 
 # --- Data Helpers ---
 def tokenize_sentence(sentence: str) -> List[int]:
