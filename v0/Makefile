@@ -92,6 +92,9 @@ output_projection_PARAMS := $(P_EMBED) $(P_VOCAB)
 argmax_RTL               := $(RTL_DIR)/argmax.sv
 argmax_PARAMS            := $(P_VOCAB)
 
+complete_transformer_decoder_RTL    := $(RTL_SRCS)
+complete_transformer_decoder_PARAMS := $(ALL_PARAMS)
+
 # -----------------------------------------------------------------------------
 # Generic per-module build rule. Each instantiation generates:
 #   test-<name>                                phony target
@@ -115,10 +118,11 @@ $(eval $(call build_module_test,positional_encoding))
 $(eval $(call build_module_test,token_embedding))
 $(eval $(call build_module_test,output_projection))
 $(eval $(call build_module_test,argmax))
+$(eval $(call build_module_test,complete_transformer_decoder))
 
 tests: test-layer_normalization test-enhanced_softmax test-feed_forward_network \
        test-attention_head test-multi_head_attention test-positional_encoding \
-       test-token_embedding test-output_projection test-argmax
+       test-token_embedding test-output_projection test-argmax test-complete_transformer_decoder
 
 # -----------------------------------------------------------------------------
 clean:
