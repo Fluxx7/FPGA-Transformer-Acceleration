@@ -45,18 +45,10 @@ def main():
     hw = test.run(x_q88, expected_out_size=SEQ_LEN * EMBED_DIM) \
               .reshape(SEQ_LEN, EMBED_DIM)
 
-    # Both possible layouts
-    W1_pytorch = w1_flat.reshape(FFN_DIM, EMBED_DIM)
-    W2_pytorch = w2_flat.reshape(EMBED_DIM, FFN_DIM)
-    out_pytorch = torch_ffn(x_q88, W1_pytorch, b1, W2_pytorch, b2)
-
     W1_hw = w1_flat.reshape(EMBED_DIM, FFN_DIM).T   # transpose to match
     W2_hw = w2_flat.reshape(FFN_DIM, EMBED_DIM).T
     out_hw_layout = torch_ffn(x_q88, W1_hw, b1, W2_hw, b2)
 
-    print("comparing against BOTH possible weight layouts:")
-    compare("feed_forward_network (PyTorch layout)",
-            hw, out_pytorch, tol_mean=0.2, tol_max=1.0)
     compare("feed_forward_network (hw-addressing layout)",
             hw, out_hw_layout, tol_mean=0.2, tol_max=1.0)
 

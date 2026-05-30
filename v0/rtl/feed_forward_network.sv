@@ -104,14 +104,19 @@ module feed_forward_network #(
 
                 LINEAR1: begin
                     pipe_stage <= pipe_stage + 1;
-
-                    if (pipe_stage >= 2) begin
-                        accumulator <= accumulator + (input_data[seq_idx][in_dim] * $signed(w1_data));
-                        pipe_stage <= 0;
-
-                        if (in_dim == DIM_BITS'(EMBED_DIM - 1)) begin
-                            with_bias <= (accumulator >>> 8) + 32'($signed(b1_data));
-
+                    case (pipe_stage)
+                        2: accumulator <= accumulator + (input_data[seq_idx][in_dim] * $signed(w1_data));
+                        3: begin
+                            pipe_stage <= 0;
+                            if (in_dim == DIM_BITS'(EMBED_DIM - 1)) begin
+                                with_bias <= (accumulator >>> 8) + 32'($signed(b1_data));
+                                pipe_stage <= 4;
+                            end else begin
+                                in_dim <= in_dim + 1;
+                            end
+                        end
+                        4: begin
+                            pipe_stage <= 0;
                             if (with_bias > 32767) begin
                                 hidden_data[seq_idx][hidden_dim] <= 16'h7FFF;
                             end else if (with_bias < 0) begin
@@ -136,22 +141,25 @@ module feed_forward_network #(
                             end else begin
                                 hidden_dim <= hidden_dim + 1;
                             end
-                        end else begin
-                            in_dim <= in_dim + 1;
                         end
-                    end
+                    endcase
                 end
 
                 LINEAR2: begin
                     pipe_stage <= pipe_stage + 1;
-
-                    if (pipe_stage >= 2) begin
-                        accumulator <= accumulator + (hidden_data[seq_idx][hidden_dim] * $signed(w2_data));
-                        pipe_stage <= 0;
-
-                        if (hidden_dim == FFN_BITS'(FFN_DIM - 1)) begin
-                            with_bias <= (accumulator >>> 8) + 32'($signed(b2_data));
-
+                    case (pipe_stage)
+                        2: accumulator <= accumulator + (hidden_data[seq_idx][hidden_dim] * $signed(w2_data));
+                        3: begin
+                            pipe_stage <= 0;
+                            if (hidden_dim == FFN_BITS'(FFN_DIM - 1)) begin
+                                with_bias <= (accumulator >>> 8) + 32'($signed(b2_data));
+                                pipe_stage <= 4;
+                            end else begin
+                                hidden_dim <= hidden_dim + 1;
+                            end
+                        end
+                        4: begin
+                            pipe_stage <= 0;
                             if (with_bias > 32767)
                                 output_data[seq_idx][out_dim] <= 16'h7FFF;
                             else if (with_bias < -32768)
@@ -172,10 +180,8 @@ module feed_forward_network #(
                             end else begin
                                 out_dim <= out_dim + 1;
                             end
-                        end else begin
-                            hidden_dim <= hidden_dim + 1;
                         end
-                    end
+                    endcase
                 end
 
                 COMPLETE: begin

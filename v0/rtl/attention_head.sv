@@ -214,7 +214,6 @@ module attention_head #(
                 end
 
                 ATTENTION_SCORES: begin
-                    
                     case (pipe_stage) 
                         0: begin
                             if (head_idx == 0) begin
@@ -264,6 +263,7 @@ module attention_head #(
                         softmax_start <= 1;
                         pipe_stage <= 1;
                     end else begin
+                        softmax_start <= 0;
                         if (softmax_done) begin
                             state <= APPLY_ATTENTION;
                             seq_idx <= 0;
@@ -276,30 +276,40 @@ module attention_head #(
                 end
 
                 APPLY_ATTENTION: begin
-                    if (seq_idx2 == 0) begin
-                        accumulator <= (attention_weights[seq_idx][seq_idx2] * V[seq_idx2][head_idx[HEAD_BITS-1:0]]);
-                    end else begin
-                        accumulator <= accumulator + (attention_weights[seq_idx][seq_idx2] * V[seq_idx2][head_idx[HEAD_BITS-1:0]]);
-                    end
-
-                    if (seq_idx2 == 3'(SEQ_LEN - 1)) begin
-                        output_data[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(accumulator >>> 12);
-                        seq_idx2 <= 0;
-                        accumulator <= 0;
-
-                        if (head_idx == 4'(HEAD_DIM - 1)) begin
-                            head_idx <= 0;
-                            if (seq_idx == 3'(SEQ_LEN - 1)) begin
-                                state <= COMPLETE;
+                    pipe_stage <= pipe_stage + 1;
+                    case (pipe_stage)
+                        0: begin
+                            if (seq_idx2 == 0) begin
+                                accumulator <= (attention_weights[seq_idx][seq_idx2] * V[seq_idx2][head_idx[HEAD_BITS-1:0]]);
                             end else begin
-                                seq_idx <= seq_idx + 1;
+                                accumulator <= accumulator + (attention_weights[seq_idx][seq_idx2] * V[seq_idx2][head_idx[HEAD_BITS-1:0]]);
                             end
-                        end else begin
-                            head_idx <= head_idx + 1;
                         end
-                    end else begin
-                        seq_idx2 <= seq_idx2 + 1;
-                    end
+                        1: begin
+                            if (seq_idx2 == 3'(SEQ_LEN - 1)) begin
+                                output_data[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(accumulator >>> 12);
+                                seq_idx2 <= 0;
+                                accumulator <= 0;
+
+                                if (head_idx == 4'(HEAD_DIM - 1)) begin
+                                    head_idx <= 0;
+                                    if (seq_idx == 3'(SEQ_LEN - 1)) begin
+                                        state <= COMPLETE;
+                                    end else begin
+                                        seq_idx <= seq_idx + 1;
+                                    end
+                                end else begin
+                                    head_idx <= head_idx + 1;
+                                end
+                            end else begin
+                                seq_idx2 <= seq_idx2 + 1;
+                            end
+                            pipe_stage <= 0;
+                        end
+                    endcase
+                    
+
+                    
                 end
 
                 COMPLETE: begin

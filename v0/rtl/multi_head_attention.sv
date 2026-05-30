@@ -141,30 +141,34 @@ module multi_head_attention #(
                 OUTPUT_PROJ: begin
                     pipe_stage <= pipe_stage + 1;
 
-                    if (pipe_stage >= 2) begin
-                        proj_accumulator <= proj_accumulator +
+                    case (pipe_stage) 
+                        2: begin 
+                            proj_accumulator <= proj_accumulator +
                             (concatenated[seq_idx][in_dim] * $signed(wo_data));
-                        pipe_stage <= 0;
+                        end
+                        3: begin
+                            pipe_stage <= 0;
 
-                        if (in_dim == DIM_BITS'(EMBED_DIM - 1)) begin
-                            output_data[seq_idx][out_dim] <= 16'(proj_accumulator >>> 8);
-                            proj_accumulator <= 0;
-                            in_dim <= 0;
+                            if (in_dim == DIM_BITS'(EMBED_DIM - 1)) begin
+                                output_data[seq_idx][out_dim] <= 16'(proj_accumulator >>> 8);
+                                proj_accumulator <= 0;
+                                in_dim <= 0;
 
-                            if (out_dim == DIM_BITS'(EMBED_DIM - 1)) begin
-                                out_dim <= 0;
-                                if (seq_idx == SEQ_BITS'(SEQ_LEN - 1)) begin
-                                    state <= COMPLETE;
+                                if (out_dim == DIM_BITS'(EMBED_DIM - 1)) begin
+                                    out_dim <= 0;
+                                    if (seq_idx == SEQ_BITS'(SEQ_LEN - 1)) begin
+                                        state <= COMPLETE;
+                                    end else begin
+                                        seq_idx <= seq_idx + 1;
+                                    end
                                 end else begin
-                                    seq_idx <= seq_idx + 1;
+                                    out_dim <= out_dim + 1;
                                 end
                             end else begin
-                                out_dim <= out_dim + 1;
+                                in_dim <= in_dim + 1;
                             end
-                        end else begin
-                            in_dim <= in_dim + 1;
                         end
-                    end
+                    endcase
                 end
 
                 COMPLETE: begin
