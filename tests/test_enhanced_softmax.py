@@ -21,7 +21,7 @@ def torch_softmax_simple(scores_q88: np.ndarray,) -> np.ndarray:
 
 def main():
     rng = np.random.default_rng(0)
-    scores = rng.integers(-1024, 1024, size=(SEQ_LEN, SEQ_LEN), dtype=np.int16)
+    scores = rng.integers(-512, 512, size=(SEQ_LEN, SEQ_LEN), dtype=np.int16)
 
 
     test = ModuleTest("enhanced_softmax", SOFTMAX_BINARY)

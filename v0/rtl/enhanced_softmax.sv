@@ -27,7 +27,8 @@ module enhanced_softmax #(
     wire signed [15:0] clamped = (exp_lookup > 16'sd0) ? 
                                     16'sd0 :
                                     (exp_lookup < -16'sd2048) ? -16'sd2048 : exp_lookup;
-    wire [5:0] exp_index = 6'((-clamped) >>> 5);
+    wire [10:0] neg_clamped = 11'(-clamped);
+    wire [5:0] exp_index = neg_clamped[10] ? 6'd63 : neg_clamped[10:5];
 
     wire [15:0] exp_val_raw;
     memory_module #(
