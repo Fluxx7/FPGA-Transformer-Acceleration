@@ -36,6 +36,33 @@ This mistake appeared repeatedly throughout the original design: in `feed_forwar
 
 ### Layer Normalization
 
+*Figure: Data-flow in `layer_normalization.sv`. The reciprocal-sqrt LUT (64-entry BRAM with leading-bit addressing) replaced a multi-stage combinational divider, eliminating the dominant source of timing slack and achieving 1.0 correlation.*
+
+```mermaid
+graph TD
+    IN1["input_data [SEQ_LEN x EMBED_DIM]"]
+    IN2["residual_data [SEQ_LEN x EMBED_DIM]"]
+
+    ADD["ADD_RESIDUAL — sum = input + residual, saturate to Q8.8"]
+    MEAN["COMPUTE_MEAN — mean = sum(sum_data) / EMBED_DIM"]
+    VAR["COMPUTE_VAR — variance = sum((x - mean)^2) / EMBED_DIM + epsilon"]
+    RSQRT["Reciprocal Sqrt LUT — 64-entry BRAM, leading-bit index extracts mantissa"]
+    GB["gamma BRAM + beta BRAM  [EMBED_DIM each]"]
+    NORMPIPE["NORMALIZE — 4-stage pipeline: (x-mean) x rsqrt -> x gamma -> + beta -> saturate"]
+    OUT["output_data [SEQ_LEN x EMBED_DIM]"]
+
+    subgraph FSM["FSM — execution order"]
+        direction LR
+        f0[IDLE] --> f1[ADD_RESIDUAL] --> f2[COMPUTE_MEAN] --> f3[COMPUTE_VAR] --> f4[VAR_RSQRT_DELAY] --> f5[NORMALIZE] --> f6[COMPLETE]
+    end
+
+    IN1 & IN2 --> ADD --> MEAN --> VAR --> RSQRT
+    ADD --> NORMPIPE
+    RSQRT --> NORMPIPE
+    GB --> NORMPIPE
+    NORMPIPE --> OUT
+```
+
 Layer normalization was the first module tested. The original implementation computed the reciprocal square root using a chained sequence of divisions, all performed combinationally (within a single clock cycle). This was both inaccurate and the likely dominant source of negative timing slack in the design — a complex combinational path that the clock had to wait for.
 
 This was replaced with a **reciprocal square root lookup table**: a BRAM initialized with precomputed values, indexed by the quantized input. The lookup table introduces a one-cycle latency but eliminates the complex combinational path entirely.
@@ -48,9 +75,45 @@ An interesting property of this lookup table: despite operating on quantized Q8.
 
 ### Token Embedding
 
+*Figure: Data-flow in `token_embedding.sv`. Each 6-bit token ID is multiplied by EMBED_DIM and used as a BRAM base address; the 2-cycle pipeline reads one Q8.8 weight per clock after the memory latency.*
+
+```mermaid
+graph LR
+    IN["input_tokens [SEQ_LEN] — 6-bit token IDs"]
+    ADDR["BRAM address: token_id x EMBED_DIM + dim_idx"]
+    EMB["Embedding BRAM [VOCAB_SIZE x EMBED_DIM] — learned Q8.8 weights"]
+    OUT["embedded_output [SEQ_LEN x EMBED_DIM]"]
+
+    subgraph FSM["FSM"]
+        direction TB
+        f0[IDLE] --> f1[PROCESSING] --> f2[COMPLETE]
+    end
+
+    IN --> ADDR --> EMB --> OUT
+```
+
 Token embedding required no bug fixes — it passed at **1.0 correlation** on the first test run. It is the simplest module: a memory lookup with no arithmetic.
 
 ### Positional Encoding
+
+*Figure: Data-flow in `positional_encoding.sv`. Cosine-based positional encodings are precomputed and stored in BRAM; the 3-stage pipeline inserts an idle cycle to let the BRAM output settle before the addition.*
+
+```mermaid
+graph LR
+    IN["embedded_input [SEQ_LEN x EMBED_DIM]"]
+    POS["Positional Encoding BRAM [SEQ_LEN x EMBED_DIM] — cosine-based, precomputed"]
+    ADD["Add: embedding + pos_enc — 3-stage pipeline, saturate to Q8.8"]
+    OUT["position_encoded_output [SEQ_LEN x EMBED_DIM]"]
+
+    subgraph FSM["FSM"]
+        direction TB
+        f0[IDLE] --> f1[PROCESSING] --> f2[COMPLETE]
+    end
+
+    IN --> ADD
+    POS --> ADD
+    ADD --> OUT
+```
 
 Positional encoding failed initially due to a non-blocking assignment error. The module used a `pipe_stage` counter to manage multi-cycle memory reads, but an incorrect fix had been applied previously that caused the memory read to occur one cycle too early — before the address register had been updated. The fix was to shift the read by one additional cycle, allowing the updated address to propagate. After this correction: **1.0 correlation**.
 
@@ -78,6 +141,40 @@ endcase
 
 ### Enhanced Softmax
 
+*Figure: State machine and data-flow in `enhanced_softmax.sv`. The PREPARE_EXP → LOAD_EXP → COMPUTE_EXP loop iterates over each column of a row before advancing to NORMALIZE; the lower clamp bound of −2016 (not −2048) is the key correctness fix.*
+
+```mermaid
+graph TD
+    IN["input_scores [SEQ_LEN x SEQ_LEN]"]
+
+    FINDMAX["FIND_MAX — scan all scores, record max_val register"]
+    MAXVAL["max_val register"]
+
+    subgraph ExpPipe["Exp LUT pipeline — one lookup per column per row"]
+        SUB["score minus max_val  →  shifted score"]
+        CLAMP2["Clamp to [-2016, 0]"]
+        IDX["Index = (-clamped) >> 5  =>  [0..63]"]
+        ROM["exp_rom BRAM — 64-entry LUT"]
+        TEMP["temp_exp[SEQ_LEN] register array"]
+    end
+
+    EXPSUM["exp_sum — 32-bit accumulator"]
+    NORM["NORMALIZE — temp_exp[i] x 4096 / exp_sum  =>  Q8.8 weight"]
+    OUT["output_weights [SEQ_LEN x SEQ_LEN]"]
+
+    subgraph FSM["FSM — iterates per row, then per column"]
+        direction LR
+        f0[IDLE] --> f1[FIND_MAX] --> f2[PREPARE_EXP] --> f3[LOAD_EXP] --> f4[COMPUTE_EXP] --> f5[NORMALIZE] --> f6[COMPLETE]
+    end
+
+    IN --> FINDMAX --> MAXVAL
+    IN --> SUB
+    MAXVAL --> SUB
+    SUB --> CLAMP2 --> IDX --> ROM --> TEMP
+    TEMP --> EXPSUM
+    TEMP & EXPSUM --> NORM --> OUT
+```
+
 Softmax uses an exponential function internally. The original implementation used a piecewise linear approximation that was coarse and inaccurate. This was replaced with a **64-entry exponential lookup table** stored in BRAM, indexed by the quantized input value.
 
 The softmax result after this change achieved approximately **0.999 correlation** — not 1.0. This is expected and acceptable: an exponential function is a continuous curve, and a 64-entry lookup table cannot represent it perfectly. Adding linear interpolation between table entries would improve this further but would add hardware cost. The error is sufficiently small relative to the quantization noise already present in the Q8.8 representation.
@@ -95,6 +192,40 @@ The fix was to hard-code the lower clamp bound to -2016. After this correction, 
 This is a good illustration of why unit testing alone is insufficient: a bug that is essentially invisible in isolation becomes conspicuous in integration.
 
 ### Feed Forward Network
+
+*Figure: Two-layer data-flow in `feed_forward_network.sv`. The hidden layer (FFN_DIM = 64) is held in flip-flop registers; both layers share identical MAC-accumulate-bias-saturate structure and both required the same non-blocking assignment fix.*
+
+```mermaid
+graph TD
+    IN["input_data [SEQ_LEN x EMBED_DIM]"]
+
+    subgraph Layer1["Layer 1 — LINEAR1 state"]
+        W1["W1 BRAM [EMBED_DIM x FFN_DIM]"]
+        B1["b1 BRAM [FFN_DIM]"]
+        MAC1["32-bit MAC accumulator + add bias"]
+        RELU["ReLU — clamp negative values to 0, saturate positive to 32767"]
+        HIDDEN["hidden_data [SEQ_LEN x FFN_DIM]"]
+    end
+
+    subgraph Layer2["Layer 2 — LINEAR2 state"]
+        W2["W2 BRAM [FFN_DIM x EMBED_DIM]"]
+        B2["b2 BRAM [EMBED_DIM]"]
+        MAC2["32-bit MAC accumulator + add bias"]
+        CLAMP["Saturate to Q8.8 range"]
+    end
+
+    OUT["output_data [SEQ_LEN x EMBED_DIM]"]
+
+    subgraph FSM["FSM — execution order"]
+        direction LR
+        f0[IDLE] --> f1[LINEAR1] --> f2[LINEAR2] --> f3[COMPLETE]
+    end
+
+    IN --> W1 & B1
+    W1 & B1 --> MAC1 --> RELU --> HIDDEN
+    HIDDEN --> W2 & B2
+    W2 & B2 --> MAC2 --> CLAMP --> OUT
+```
 
 The FFN is a two-layer linear transformation with bias and activation. Both layers share essentially identical structure: loop over the weight matrix, accumulate the dot product, add the bias, then apply the activation and pass to the next layer.
 
@@ -145,6 +276,25 @@ Fixing the first layer's timing initially appeared to make results *worse* — a
 
 ### Output Projection
 
+*Figure: Data-flow in `output_projection.sv`. A single matrix-vector multiply (final hidden state against the learned token weight matrix) produces one logit per vocabulary entry; the 2-cycle pipeline accommodates the BRAM read latency.*
+
+```mermaid
+graph LR
+    IN["final_hidden_state [EMBED_DIM]"]
+    PROJ["Output Projection BRAM [EMBED_DIM x VOCAB_SIZE]"]
+    ACC["32-bit MAC accumulator — 2-cycle pipeline per dimension"]
+    OUT["vocabulary_logits [VOCAB_SIZE]"]
+
+    subgraph FSM["FSM"]
+        direction TB
+        f0[IDLE] --> f1[COMPUTE] --> f2[COMPLETE]
+    end
+
+    IN --> ACC
+    PROJ --> ACC
+    ACC --> OUT
+```
+
 Output projection multiplies the final hidden state by a learned weight matrix to produce vocabulary logits. The first test run showed poor correlation — not from a computation error, but from a **memory layout mismatch**.
 
 PyTorch stores weight matrices in row-major order (C-contiguous layout). The hardware was reading the `.mem` file assuming a different layout, effectively transposing the matrix. The fix was applied in the weight export step (`gen_luts.py`): before saving, weight matrices are reshaped and transposed so that the hardware reads them in the correct order. Bias vectors are *not* transposed — they are 1-D and layout-independent. After this fix: **1.0 correlation**.
@@ -154,6 +304,43 @@ PyTorch stores weight matrices in row-major order (C-contiguous layout). The har
 Argmax is the simplest module — it iterates over the vocabulary logits and outputs the index of the maximum value. It passed **20/20 test cases on the first run** with no changes required.
 
 ### Attention Head
+
+*Figure: Internal data-flow and state machine of `attention_head.sv`. The 32-bit MAC accumulator is shared across all six compute states; `enhanced_softmax` runs as a blocking submodule during the SOFTMAX state.*
+
+```mermaid
+graph TD
+    IN["input_data [SEQ_LEN x EMBED_DIM]"]
+
+    subgraph WeightBRAMs["Weight BRAMs — one set per head, initialised from .mem files"]
+        WQ["WQ [EMBED_DIM x HEAD_DIM]"]
+        WK["WK [EMBED_DIM x HEAD_DIM]"]
+        WV["WV [EMBED_DIM x HEAD_DIM]"]
+    end
+
+    subgraph QKVRegs["Q / K / V Register Arrays  [SEQ_LEN x HEAD_DIM each]"]
+        Q["Q"]
+        K["K"]
+        V["V"]
+    end
+
+    SCORES["attention_scores [SEQ x SEQ] — Q·K^T, causal mask on future positions, bit-shift scaling"]
+    SFX["enhanced_softmax — 64-entry exp LUT, per-row normalisation"]
+    WEIGHTS["attention_weights [SEQ x SEQ]"]
+    OUT["output_data [SEQ_LEN x HEAD_DIM]"]
+
+    subgraph FSM["FSM — execution order"]
+        direction LR
+        s0[IDLE] --> s1[COMPUTE_Q] --> s2[COMPUTE_K] --> s3[COMPUTE_V] --> s4[ATTENTION_SCORES] --> s5[SOFTMAX] --> s6[APPLY_ATTENTION] --> s7[COMPLETE]
+    end
+
+    IN --> WQ & WK & WV
+    WQ --> Q
+    WK --> K
+    WV --> V
+    Q & K --> SCORES
+    SCORES --> SFX --> WEIGHTS
+    WEIGHTS & V --> OUT
+```
 
 Attention head is the most complex module, internally performing five sequential matrix multiplications (Q, K, V projections, attention score computation, and weighted sum application) plus a softmax pass. It was also the most difficult to debug, for a reason that became clear early: with this many sequential operations, a failure in any one stage corrupts every stage after it, making the final output useless as a diagnostic signal.
 
