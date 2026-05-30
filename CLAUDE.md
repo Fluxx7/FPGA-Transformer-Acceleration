@@ -188,11 +188,13 @@ GAME_PLAN.md     — Earlier planning document (Claude-generated, partially obso
 
 Per-module Mermaid architecture diagrams live in `report/05b_hardware_validation.md`, inserted before each `### Module Name` subsection with an italic `*Figure: ...*` caption. Diagrams cover: `attention_head`, `feed_forward_network`, `enhanced_softmax`, `layer_normalization`, `output_projection`, `positional_encoding`, `token_embedding`. No diagrams for `argmax`, `multi_head_attention`, or `complete_transformer_decoder`.
 
-**Mermaid syntax rules for VS Code preview compatibility:**
-- Do **not** use `direction LR` or `direction TB` inside subgraph blocks — VS Code's bundled Mermaid version does not support it and silently fails with "No diagram type detected".
-- Do **not** put `>>`, `=>`, or Unicode arrows (`→`) inside node label strings — they are tokenized as operators even inside double quotes in some renderers.
-- Set graph direction only at the top-level declaration (`graph TD` / `graph LR`).
-- Use plain ASCII in node labels; avoid operators and special symbols.
+**Mermaid syntax rules for VS Code preview compatibility** (learned the hard way — breaking any of these causes "No diagram type detected" for the whole block):
+- Do **not** use subgraphs with quoted titles (`subgraph id["Title"]`) — not supported by VS Code's bundled Mermaid renderer; omit subgraphs entirely or use bare `subgraph Title`.
+- Do **not** use `direction LR` or `direction TB` inside subgraph blocks.
+- Do **not** use `A & B --> C` or `A --> B & C` multi-connection shorthand — expand to separate arrow lines.
+- Do **not** put `>>`, `=>`, Unicode arrows (`→`), or em-dashes (`—`) in node labels — use plain ASCII words instead.
+- Set graph direction only at the top-level (`graph TD` / `graph LR`).
+- Safe subset: `graph TD`/`LR`, `ID["Label"]` nodes, `A --> B` edges, plain `subgraph Title ... end`.
 
 ## Code Authorship Convention
 
