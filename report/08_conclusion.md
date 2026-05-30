@@ -1,0 +1,15 @@
+# Conclusion
+
+This project set out to demonstrate that a transformer decoder can be implemented as hardware acceleration logic on a low-cost FPGA, producing results that match a software reference model to within acceptable quantization error. That goal was achieved.
+
+The GenCore starting repository provided a workable architectural foundation — a complete transformer decoder pipeline in SystemVerilog — but required substantial work before it could be validated or deployed. A constraint file and AXI-Lite wrapper had to be added. Model parameters had to be reduced to fit within the PYNQ-Z1's resource budget. And a pervasive class of non-blocking assignment bugs, along with several approximation errors in the original arithmetic implementations, had to be systematically found and fixed.
+
+The per-module validation framework built for this project — Verilator-based C++ test benches paired with Python comparison scripts — proved essential. It enabled precise localization of bugs that would have been difficult or impossible to diagnose from end-to-end testing alone. The softmax clamp edge case is a clear example: a boundary condition that passed unit testing with excellent correlation but caused correlation collapse in end-to-end testing, because real attention score distributions hit the boundary range with far higher frequency than random test inputs.
+
+After fixing all identified bugs, the full pipeline achieves final logit correlations of 0.9996 or higher against the PyTorch reference model. The hardware generates valid, grammatically correct sentences from partial inputs, matching the software model's predictions in the vast majority of test cases. The residual error in the most complex modules — attention head and multi-head attention — reflects the inherent quantization noise of Q8.8 fixed-point arithmetic and the approximation error of the 64-entry exponential lookup table, not correctable bugs.
+
+<!-- TODO (Nicholas): Once the board run is complete, add a sentence here about the on-board result — e.g. "Running on the physical PYNQ-Z1 board confirmed that the Verilator simulation accurately predicts hardware behavior, with [match / slight divergence] observed between simulated and physical outputs." -->
+
+The current implementation runs with parameters far below the original design's defaults — 4 heads, 16-dimensional embeddings, 32-dimensional FFN — due to resource constraints. The architectural improvements outlined in Section 7 (sequential attention heads, a shared matrix multiplication unit, and a shared BRAM scratchpad) are expected to reduce resource consumption sufficiently to support significantly larger parameters on the same hardware, and are planned for implementation following the submission of this report.
+
+The proof of concept demonstrates that FPGA-based transformer acceleration is feasible within embedded system resource budgets, that the quantization error introduced by Q8.8 fixed-point arithmetic remains acceptable, and that the validation methodology developed here provides a reliable path to diagnosing and correcting hardware bugs in complex pipelined designs.
