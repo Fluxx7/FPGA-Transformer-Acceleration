@@ -76,7 +76,7 @@ def run_hardware(test: ModuleTest, tokens: list[int]) -> dict:
         ("predicted_token",  1),
     ]
     total = sum(n for _, n in sizes)
-    hw_flat = test.run(in_array, expected_out_size=total, timeout_s=300.0) \
+    hw_flat = test.run(in_array, expected_out_size=total) \
                   if hasattr(test, "_orig_run") else test.run(
                       in_array, expected_out_size=total)
 

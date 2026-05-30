@@ -42,7 +42,6 @@ def main():
     test = ModuleTest("multi_head_attention", BIN)
 
     # Per-head Q/K/V weights
-    Wq_p, Wk_p, Wv_p = [], [], []   # PyTorch layout interpretation
     Wq_h, Wk_h, Wv_h = [], [], []   # hw-addressing layout
     for head in range(NUM_HEADS):
         wq = read_mem_q8_8(os.path.join(REPO_ROOT, "memory",
@@ -51,15 +50,11 @@ def main():
                                          f"attention_wk_head{head}.mem"))
         wv = read_mem_q8_8(os.path.join(REPO_ROOT, "memory",
                                          f"attention_wv_head{head}.mem"))
-        Wq_p.append(wq.reshape(HEAD_DIM, EMBED_DIM))
-        Wk_p.append(wk.reshape(HEAD_DIM, EMBED_DIM))
-        Wv_p.append(wv.reshape(HEAD_DIM, EMBED_DIM))
         Wq_h.append(wq.reshape(EMBED_DIM, HEAD_DIM).T)
         Wk_h.append(wk.reshape(EMBED_DIM, HEAD_DIM).T)
         Wv_h.append(wv.reshape(EMBED_DIM, HEAD_DIM).T)
 
     wo_flat = read_mem_q8_8(WO_MEM)
-    Wo_p = wo_flat.reshape(EMBED_DIM, EMBED_DIM)   # PyTorch nn.Linear convention
     Wo_h = wo_flat.reshape(EMBED_DIM, EMBED_DIM).T   # opposite interpretation
 
     rng = np.random.default_rng(0)
