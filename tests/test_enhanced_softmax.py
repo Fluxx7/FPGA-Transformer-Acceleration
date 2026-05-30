@@ -25,7 +25,7 @@ def main():
 
 
     test = ModuleTest("enhanced_softmax", SOFTMAX_BINARY)
-    hw_out = test.run(scores, expected_out_size=SEQ_LEN * SEQ_LEN, verbose=True).reshape(SEQ_LEN, SEQ_LEN)
+    hw_out = test.run(scores, expected_out_size=SEQ_LEN * SEQ_LEN).reshape(SEQ_LEN, SEQ_LEN)
     torch_out = torch_softmax_simple(scores)
 
     compare("enhanced_softmax", hw_out, torch_out, scale=4096, tol_mean=0.05, tol_max=0.3)

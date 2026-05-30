@@ -75,7 +75,7 @@ def export_model_weights(model: DecoderTransformer):
     save_memory_file(quantize_weight(cast(torch.Tensor, model.ffn[2].bias), 16), "memory/ffn_b2.mem", 16)
     save_memory_file(quantize_weight(model.layer_norm2.weight, 16), "memory/layernorm2_gamma.mem", 16)
     save_memory_file(quantize_weight(model.layer_norm2.bias, 16), "memory/layernorm2_beta.mem", 16)
-    save_memory_file(quantize_weight(model.output_projection.weight, 16), "memory/output_proj.mem", 16)
+    save_memory_file(quantize_weight(model.output_projection.weight.T.contiguous(), 16), "memory/output_proj.mem", 16)
     print(f"✓ Saved all {12 + 3 * config.NUM_HEADS} memory files to memory/.")
 
     os.makedirs(PLOTS_DIR, exist_ok=True)

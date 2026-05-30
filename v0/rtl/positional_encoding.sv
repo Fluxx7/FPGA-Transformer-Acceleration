@@ -79,8 +79,9 @@ module positional_encoding #(
                 PROCESSING: begin
                     pipe_stage <= pipe_stage + 1;
                     case (pipe_stage)
-                        0: temp_sum <= embedded_input[seq_idx][dim_idx] + $signed(pos_data);
-                        1: begin
+                        0: ;// memory delay
+                        1: temp_sum <= embedded_input[seq_idx][dim_idx] + $signed(pos_data);
+                        2: begin
                             if (temp_sum > 32767) 
                             position_encoded_output[seq_idx][dim_idx] <= 16'h7FFF;
                             else if (temp_sum < -32768) 
@@ -88,7 +89,7 @@ module positional_encoding #(
                             else 
                                 position_encoded_output[seq_idx][dim_idx] <= temp_sum[15:0];
                         end
-                        2: begin
+                        3: begin
                             pipe_stage <= 0;
                         
                             if (dim_idx == DIM_BITS'(EMBED_DIM - 1)) begin

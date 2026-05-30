@@ -30,7 +30,7 @@ module attention_head #(
     reg [2:0] seq_idx, seq_idx2;
     reg [DIM_BITS-1:0] embed_idx;
     reg [3:0] head_idx;
-    reg [2:0] pipe_stage;
+    reg [3:0] pipe_stage;
 
     // Q, K, V matrices
     reg signed [15:0] Q [0:SEQ_LEN-1][0:HEAD_DIM-1];
@@ -89,6 +89,8 @@ module attention_head #(
         end
     end
 
+    wire [31:0] next_accum = accumulator + (input_data[seq_idx][embed_idx] * $signed(wq_data));
+
     always @(posedge clk) begin
         if (rst) begin
             state <= IDLE;
@@ -122,11 +124,10 @@ module attention_head #(
                     pipe_stage <= pipe_stage + 1;
 
                     if (pipe_stage >= 2) begin
-                        accumulator <= accumulator + (input_data[seq_idx][embed_idx] * $signed(wq_data));
                         pipe_stage <= 0;
 
                         if (embed_idx == DIM_BITS'(EMBED_DIM - 1)) begin
-                            Q[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(accumulator >>> 8);
+                            Q[seq_idx][head_idx[HEAD_BITS-1:0]] <= 16'(next_accum >>> 8);
                             accumulator <= 0;
                             embed_idx <= 0;
 
@@ -142,6 +143,7 @@ module attention_head #(
                                 head_idx <= head_idx + 1;
                             end
                         end else begin
+                            accumulator <= next_accum;
                             embed_idx <= embed_idx + 1;
                         end
                     end

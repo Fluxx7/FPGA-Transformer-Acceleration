@@ -33,18 +33,11 @@ def main():
 
     hw = test.run(hidden_q88, expected_out_size=VOCAB_SIZE)
 
-    # Reference 1: assume file is [VOCAB_SIZE][EMBED_DIM] (PyTorch layout)
-    W_pytorch = proj_flat.reshape(VOCAB_SIZE, EMBED_DIM)
-    torch_out_pytorch = hidden @ W_pytorch.T
-
-    # Reference 2: assume file is [EMBED_DIM][VOCAB_SIZE] (what hw addresses)
+    # assume file is [EMBED_DIM][VOCAB_SIZE] (what hw addresses)
     W_hw = proj_flat.reshape(EMBED_DIM, VOCAB_SIZE)
     torch_out_hw = hidden @ W_hw
 
-    print("comparing against BOTH possible weight layouts:")
-    compare("output_projection (assume PyTorch layout)",
-            hw, torch_out_pytorch, tol_mean=0.1, tol_max=0.5)
-    compare("output_projection (assume hw-addressing layout)",
+    compare("output_projection",
             hw, torch_out_hw, tol_mean=0.1, tol_max=0.5)
 
 
