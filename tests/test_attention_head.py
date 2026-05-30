@@ -38,22 +38,35 @@ WK_MEM = os.path.join(REPO_ROOT, "memory", "attention_wk_head0.mem")
 WV_MEM = os.path.join(REPO_ROOT, "memory", "attention_wv_head0.mem")
 
 
-def load_w_hw_layout(path):
-    """Load a weight file the way attention_head's hardware addresses it:
-    addr = embed_idx * HEAD_DIM + head_idx, so the file is row-major
-    [EMBED_DIM][HEAD_DIM]. Returns a [HEAD_DIM, EMBED_DIM] tensor in the
-    PyTorch nn.Linear convention so torch matmul works naturally."""
+# Toggle this to swap between weight-file layout interpretations.
+#   "hw"      -- file is [EMBED_DIM][HEAD_DIM] row-major (what addr = embed*HD+head implies)
+#   "pytorch" -- file is [HEAD_DIM][EMBED_DIM] row-major (what train.py actually saves)
+WEIGHT_LAYOUT = "hw"     # try "pytorch" to compare
+
+
+def load_w(path):
+    """Load a weight file under the configured layout, return a
+    [HEAD_DIM, EMBED_DIM] tensor in PyTorch's nn.Linear convention so the
+    downstream `x @ W.T` math is uniform."""
     flat = read_mem_q8_8(path)
     assert flat.size == EMBED_DIM * HEAD_DIM
-    return flat.reshape(EMBED_DIM, HEAD_DIM).T   # [HEAD_DIM, EMBED_DIM]
+    if WEIGHT_LAYOUT == "hw":
+        # File is [EMBED_DIM][HEAD_DIM] row-major -> transpose to [HEAD_DIM, EMBED_DIM]
+        return flat.reshape(EMBED_DIM, HEAD_DIM).T
+    elif WEIGHT_LAYOUT == "pytorch":
+        # File is [HEAD_DIM][EMBED_DIM] row-major -- already PyTorch-shaped
+        return flat.reshape(HEAD_DIM, EMBED_DIM)
+    else:
+        raise ValueError(f"Unknown WEIGHT_LAYOUT: {WEIGHT_LAYOUT!r}")
 
 
 def main():
     test = ModuleTest("attention_head", BIN)
 
-    Wq = load_w_hw_layout(WQ_MEM)   # [HEAD_DIM, EMBED_DIM]
-    Wk = load_w_hw_layout(WK_MEM)
-    Wv = load_w_hw_layout(WV_MEM)
+    print(f"Using weight layout: {WEIGHT_LAYOUT!r}")
+    Wq = load_w(WQ_MEM)   # [HEAD_DIM, EMBED_DIM]
+    Wk = load_w(WK_MEM)
+    Wv = load_w(WV_MEM)
 
     rng = np.random.default_rng(0)
     x_q88 = rng.integers(-256, 256, size=(SEQ_LEN, EMBED_DIM), dtype=np.int16)
