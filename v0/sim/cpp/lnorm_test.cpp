@@ -1,4 +1,5 @@
 #include "Vlayer_normalization.h"
+#include "Vlayer_normalization___024root.h"
 #include "verilated.h"
 #include <cstdio>
 #include <cstdint>
@@ -36,26 +37,36 @@ int main(int argc, char** argv) {
     dut->rst = 1; dut->start = 0;
     for (int i = 0; i < 5; ++i) tick(dut);
     dut->rst = 0; tick(dut); tick(dut);
-    printf("reset sent\n");
     // Start pulse
     dut->start = 1; tick(dut);
     dut->start = 0;
-    printf("start sent\n");
     // Run until done && valid (with a generous timeout)
     int cycles = 0;
     while (!(dut->done && dut->valid)) {
         tick(dut);
-        if (++cycles > 10000) {
-            fprintf(stderr, "TIMEOUT after %d cycles\n", cycles);
+        if (++cycles > 100000) {
+            fprintf(stdout, "TIMEOUT after %d cycles\n", cycles);
             return 1;
         }
     }
     fprintf(stderr, "done after %d cycles\n", cycles);
-
+    // After done && valid:
+    auto* r = dut->rootp;
+    fprintf(stdout, "var_lookup    = %d\n", (int)r->layer_normalization__DOT__var_lookup);
+    fprintf(stdout, "k             = %d\n", (int)r->layer_normalization__DOT__k);
+    fprintf(stdout, "rsqrt_index   = %d\n", (int)r->layer_normalization__DOT__rsqrt_index);
+    fprintf(stdout, "rsqrt_var     = %d\n", (int)r->layer_normalization__DOT__rsqrt_var);
+    fprintf(stdout, "rsqrt_signed  = %d\n", (int)r->layer_normalization__DOT__rsqrt_signed);
+    fprintf(stdout, "normalized    = %d\n", (int)r->layer_normalization__DOT__normalized);
+    fprintf(stdout, "with_gamma    = %d\n", (int)r->layer_normalization__DOT__with_gamma);
+    fprintf(stdout, "final_result  = %d\n", (int)r->layer_normalization__DOT__final_result);
+    
     // Dump output_data to stdout, one int16 per line
     for (int s = 0; s < SEQ_LEN; ++s)
         for (int d = 0; d < EMBED_DIM; ++d)
             printf("%d\n", (int16_t)dut->output_data[s][d]);
+    
+    
 
     delete dut;
     return 0;

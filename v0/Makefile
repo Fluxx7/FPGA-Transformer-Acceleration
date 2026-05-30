@@ -9,7 +9,7 @@ OBJ_DIR     = obj_dir
 RTL_SRCS    = $(wildcard $(RTL_DIR)/*.sv)
 
 # Verilator flags
-VERILATOR_FLAGS = --cc --exe --build -Wall \
+VERILATOR_FLAGS = --cc --exe --build -Wall --public-flat-rw\
                   --top-module $(TOP_MODULE) \
                   -CFLAGS "-std=c++17"
 

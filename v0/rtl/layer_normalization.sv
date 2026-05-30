@@ -5,7 +5,7 @@
 // ============================================================================
 module layer_normalization #(
     parameter SEQ_LEN = 8,
-    parameter EMBED_DIM = 64,
+    parameter EMBED_DIM = 16,
     parameter GAMMA_FILE = "memory/layernorm1_gamma.mem",
     parameter BETA_FILE = "memory/layernorm1_beta.mem",
     parameter RSQRT_MEM = "memory/rsqrt_lut.mem"
