@@ -31,6 +31,37 @@ The following experiments were run, reducing parameters incrementally to find th
 | 16 | 32 | 8 | <!-- TODO --> | No |
 | 16 | 32 | 4 | ~72% | Yes |
 
+The individual sub-modules still carry the original GenCore defaults in their parameter declarations — these are the values that drove 220% utilization:
+
+```systemverilog
+// multi_head_attention.sv — original GenCore defaults
+module multi_head_attention #(
+    parameter SEQ_LEN   = 8,
+    parameter EMBED_DIM = 64,
+    parameter NUM_HEADS = 8
+)(
+
+// feed_forward_network.sv — original GenCore defaults
+module feed_forward_network #(
+    parameter SEQ_LEN   = 8,
+    parameter EMBED_DIM = 64,
+    parameter FFN_DIM   = 256
+)(
+```
+
+The top-level `complete_transformer_decoder.sv` overrides all of these, and those overrides are where each reduction experiment was applied. The final values that fit the board:
+
+```systemverilog
+// complete_transformer_decoder.sv — cut-down parameters
+module complete_transformer_decoder #(
+    parameter VOCAB_SIZE = 40,
+    parameter EMBED_DIM  = 16,  // reduced from 64
+    parameter SEQ_LEN    = 8,
+    parameter NUM_HEADS  = 4,   // reduced from 8
+    parameter FFN_DIM    = 128  // reduced from 256
+)(
+```
+
 Ultimately, achieving successful placement required more aggressive parameter cuts than initially hoped. Reducing embedding and FFN dimensions alone was insufficient — even at EMBED_DIM=16 and FFN_DIM=32, the design still failed to place with 8 heads. Halving the number of attention heads from 8 to 4 was necessary, despite concerns that synthesis tools might not eliminate the unused hardware associated with hard-coded head counts.
 
 ![Utilization report at final parameters (EMBED_DIM=16, FFN_DIM=32, NUM_HEADS=4)](../context/figures/utilization_final.png)

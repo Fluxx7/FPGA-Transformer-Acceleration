@@ -54,6 +54,28 @@ Token embedding required no bug fixes — it passed at **1.0 correlation** on th
 
 Positional encoding failed initially due to a non-blocking assignment error. The module used a `pipe_stage` counter to manage multi-cycle memory reads, but an incorrect fix had been applied previously that caused the memory read to occur one cycle too early — before the address register had been updated. The fix was to shift the read by one additional cycle, allowing the updated address to propagate. After this correction: **1.0 correlation**.
 
+The before/after in `positional_encoding.sv` (commit `60161e8`) is a two-line change that inserts one idle pipeline stage:
+
+```systemverilog
+// Before: pipe_stage 0 reads pos_data in the same cycle the address is presented
+case (pipe_stage)
+    0: temp_sum <= embedded_input[seq_idx][dim_idx] + $signed(pos_data);
+    //  ^ BRAM output hasn't settled; pos_data still reflects the previous address
+    1: position_encoded_output[seq_idx][dim_idx] <= temp_sum[15:0];
+    2: begin pipe_stage <= 0; /* advance to next element */ end
+endcase
+```
+
+```systemverilog
+// After: pipe_stage 0 is an idle wait; pos_data is valid by pipe_stage 1
+case (pipe_stage)
+    0: ; // memory delay — allow BRAM output to settle
+    1: temp_sum <= embedded_input[seq_idx][dim_idx] + $signed(pos_data);
+    2: position_encoded_output[seq_idx][dim_idx] <= temp_sum[15:0];
+    3: begin pipe_stage <= 0; /* advance to next element */ end
+endcase
+```
+
 ### Enhanced Softmax
 
 Softmax uses an exponential function internally. The original implementation used a piecewise linear approximation that was coarse and inaccurate. This was replaced with a **64-entry exponential lookup table** stored in BRAM, indexed by the quantized input value.
@@ -80,6 +102,45 @@ The initial test run was striking: mean error 0.75, max error 2.12, and a Pearso
 
 The cause was a non-blocking assignment error in the accumulator logic. The FFN accumulates a partial sum over multiple clock cycles and then adds the bias to the accumulated value. The original code tried to do both in the same cycle: write the accumulated value, then immediately read it to add the bias. Due to non-blocking semantics, the read returned the old (pre-accumulation) value rather than the just-written one.
 
+The original `LINEAR1` state in `feed_forward_network.sv` (before commit `d57d60d`):
+
+```systemverilog
+// Before: accumulator updated and read in the same clock cycle
+if (pipe_stage >= 2) begin
+    accumulator <= accumulator + (input_data[seq_idx][in_dim] * $signed(w1_data));
+    pipe_stage  <= 0;
+    if (in_dim == EMBED_DIM - 1) begin
+        with_bias <= (accumulator >>> 8) + $signed(b1_data);
+        //           ^ non-blocking: accumulator still holds the previous value here
+        if (with_bias > 32767)
+            hidden_data[seq_idx][hidden_dim] <= 16'h7FFF;
+        //  ^ with_bias was written above in the same cycle — same problem again
+```
+
+The fix adds two extra pipeline states to break the chain: one cycle for the accumulator to settle, a second for `with_bias`:
+
+```systemverilog
+// After: three distinct pipeline stages (commit d57d60d)
+case (pipe_stage)
+    2: accumulator <= accumulator + (input_data[seq_idx][in_dim] * $signed(w1_data));
+    3: begin  // accumulator is now the updated value
+        pipe_stage <= 0;
+        if (in_dim == EMBED_DIM - 1) begin
+            with_bias  <= (accumulator >>> 8) + $signed(b1_data);
+            pipe_stage <= 4;
+        end else in_dim <= in_dim + 1;
+    end
+    4: begin  // with_bias is now correct
+        pipe_stage <= 0;
+        if (with_bias > 32767)
+            hidden_data[seq_idx][hidden_dim] <= 16'h7FFF;
+        ...
+    end
+endcase
+```
+
+Both `LINEAR1` and `LINEAR2` had identical structure and required the same fix.
+
 Fixing the first layer's timing initially appeared to make results *worse* — and on one attempt, the test timed out after 2 million simulation cycles with the module stuck in a state machine loop, the result of an incorrectly introduced state transition. The fix was backed out and reapplied more carefully. The second layer had the same structural error and required the same fix. After correcting both layers: **1.0 correlation**.
 
 ### Output Projection
@@ -100,7 +161,35 @@ Attention head is the most complex module, internally performing five sequential
 
 **Parameter propagation bug.** With intermediate values exposed, all three projections (Q, K, V) were immediately flagged as failing. The cause was a missing parameter: the module accepts a `HEAD_DIM` parameter, but this was never being passed down from the parent `multi_head_attention` module. The parameter silently defaulted to 8. With 4 attention heads and a 16-dimensional embedding, the correct head dimension is 16/4 = 4. Operating at the wrong dimension produced systematically wrong matrix dimensions throughout the Q/K/V projections. The fix was to compute `HEAD_DIM = EMBED_DIM / NUM_HEADS` explicitly at the top level and pass it down. After this change, all three projections jumped to **1.0 correlation**.
 
-**Non-blocking assignment errors in Q/K/V projections.** Each projection also had the familiar register write/read timing issue. Fixed with additional pipeline stages alongside the parameter fix.
+**Non-blocking assignment errors in Q/K/V projections.** Each projection also had the familiar register write/read timing issue. The Q projection used a combinational wire (`next_accum`) for its accumulation, but the K and V projections omitted this and read `accumulator` directly in the same cycle it was written. The fix in commit `cfb8ac8` introduces separate wires for each projection:
+
+```systemverilog
+// Before: single combinational wire only used for Q; K and V read the register directly
+wire [31:0] next_accum = accumulator + (input_data[seq_idx][embed_idx] * $signed(wq_data));
+// ...
+COMPUTE_K: begin
+    if (pipe_stage >= 2) begin
+        accumulator <= accumulator + (input_data[seq_idx][embed_idx] * $signed(wk_data));
+        if (embed_idx == EMBED_DIM - 1)
+            K[seq_idx][head_idx] <= 16'(accumulator >>> 8);
+            //                          ^ stale — the line above hasn't taken effect yet
+```
+
+```systemverilog
+// After: one combinational wire per projection (commit cfb8ac8)
+wire [31:0] next_accumq = accumulator + (input_data[seq_idx][embed_idx] * $signed(wq_data));
+wire [31:0] next_accumk = accumulator + (input_data[seq_idx][embed_idx] * $signed(wk_data));
+wire [31:0] next_accumv = accumulator + (input_data[seq_idx][embed_idx] * $signed(wv_data));
+// ...
+COMPUTE_K: begin
+    if (pipe_stage >= 2) begin
+        if (embed_idx == EMBED_DIM - 1)
+            K[seq_idx][head_idx] <= 16'(next_accumk >>> 8);
+            //                          ^ combinational — reflects the current cycle's product
+        else accumulator <= next_accumk;
+```
+
+After this fix, all three projections jumped to **1.0 correlation**.
 
 **Score shift.** The attention score computation requires scaling by the square root of `HEAD_DIM`. The hardware approximates this with bit shifts, which introduces a uniform scaling error when `HEAD_DIM` is not a perfect square. This error is harmless: the softmax operation immediately following normalizes relative values, and a uniform multiplicative scale across all attention scores cancels out through the normalization. The correlation at this stage reaches ~1.0.
 
