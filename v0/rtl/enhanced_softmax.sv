@@ -5,7 +5,8 @@
 // ENHANCED SOFTMAX MODULE - SYNTHESIS OPTIMIZED
 // ============================================================================
 module enhanced_softmax #(
-    parameter SEQ_LEN = 8
+    parameter SEQ_LEN = 8,
+    parameter EXP_MEM = "memory/exp_lut.mem"
 )(
     input wire clk,
     input wire rst,
@@ -15,29 +16,27 @@ module enhanced_softmax #(
     output reg done
 );
 
-    /* verilator lint_off BLKSEQ */
-    function [15:0] enhanced_exp;
-        input signed [15:0] x;
-        reg signed [15:0] shifted_x;
-        begin
-            shifted_x = x >>> 4;
-            if (shifted_x < -16) enhanced_exp = 1;
-            else if (shifted_x > 16) enhanced_exp = 512;
-            else if (shifted_x < 0) enhanced_exp = 64 + (shifted_x * 3);
-            else enhanced_exp = 64 + (shifted_x * 8);
-
-            if (enhanced_exp < 1) enhanced_exp = 1;
-        end
-    endfunction
-    /* verilator lint_on BLKSEQ */
-
-    localparam IDLE = 0, FIND_MAX = 1, COMPUTE_EXP = 2, NORMALIZE = 3, COMPLETE = 4;
+    localparam IDLE = 0, FIND_MAX = 1, EXP_DELAY = 2, COMPUTE_EXP = 3, NORMALIZE = 4, COMPLETE = 5;
     reg [2:0] state;
     reg [2:0] row_idx, col_idx;
     reg signed [15:0] max_val;
     reg signed [31:0] exp_sum;
     reg signed [15:0] temp_exp [0:SEQ_LEN-1];
 
+    reg signed [15:0] exp_lookup;
+    wire signed [15:0] clamped = (exp_lookup > 16'sd0) ? 
+                                    16'sd0 :
+                                    (exp_lookup < -16'sd2048) ? -16'sd2048 : exp_lookup;
+    wire [5:0] exp_index = 6'((-clamped) >>> 5);
+
+    wire [15:0] exp_val_raw;
+    memory_module #(
+        .ADDR_WIDTH(6), .DATA_WIDTH(16), .DEPTH(64), .MEM_FILE(EXP_MEM)
+    ) exp_rom (
+        .clk(clk), .addr(exp_index), .data_out(exp_val_raw), .enable(state == COMPUTE_EXP)
+    );
+
+    wire [15:0] exp_val = (exp_val_raw == 16'd0) ? 16'd1 : exp_val_raw;
     // Fixed: Initialize arrays in initial block
     initial begin
         integer i, j;
@@ -56,6 +55,7 @@ module enhanced_softmax #(
             col_idx <= 0;
             max_val <= -16'h4000;
             exp_sum <= 0;
+            exp_lookup <= 0;
             done <= 0;
         end else begin
             case (state)
@@ -80,6 +80,7 @@ module enhanced_softmax #(
                             state <= COMPUTE_EXP;
                             row_idx <= 0;
                             exp_sum <= 0;
+                            exp_lookup <= input_scores[row_idx][col_idx] - max_val;
                         end else begin
                             row_idx <= row_idx + 1;
                         end
@@ -88,17 +89,20 @@ module enhanced_softmax #(
                     end
                 end
 
-                COMPUTE_EXP: begin
-                    if (col_idx == 0) exp_sum <= 0;
+                EXP_DELAY: begin // one cycle delay for lookup to update
+                    state <= COMPUTE_EXP;
+                end
 
-                    temp_exp[col_idx] <= enhanced_exp(input_scores[row_idx][col_idx] - max_val);
-                    exp_sum <= exp_sum + 32'(enhanced_exp(input_scores[row_idx][col_idx] - max_val));
+                COMPUTE_EXP: begin
+                    temp_exp[col_idx] <= exp_val;
+                    exp_sum <= exp_sum + 32'(exp_val);
 
                     if (col_idx == 3'(SEQ_LEN - 1)) begin
                         col_idx <= 0;
                         state <= NORMALIZE;
                     end else begin
                         col_idx <= col_idx + 1;
+                        exp_lookup <= input_scores[row_idx][col_idx] - max_val;
                     end
                 end
 
@@ -118,6 +122,7 @@ module enhanced_softmax #(
                             state <= COMPLETE;
                         end else begin
                             row_idx <= row_idx + 1;
+                            exp_sum <= 0;
                             state <= COMPUTE_EXP;
                         end
                     end else begin

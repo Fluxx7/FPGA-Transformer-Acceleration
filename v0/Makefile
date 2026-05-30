@@ -68,7 +68,7 @@ sim: verilate
 layer_normalization_RTL  := $(RTL_DIR)/layer_normalization.sv $(RTL_DIR)/memory_module.sv
 layer_normalization_PARAMS := $(P_SEQ) $(P_EMBED)
 
-enhanced_softmax_RTL     := $(RTL_DIR)/enhanced_softmax.sv
+enhanced_softmax_RTL     := $(RTL_DIR)/enhanced_softmax.sv $(RTL_DIR)/memory_module.sv
 enhanced_softmax_PARAMS  := $(P_SEQ)
 
 feed_forward_network_RTL := $(RTL_DIR)/feed_forward_network.sv $(RTL_DIR)/memory_module.sv
