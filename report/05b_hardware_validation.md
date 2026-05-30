@@ -52,7 +52,6 @@ graph TD
     OUT["output_data [SEQ_LEN x EMBED_DIM]"]
 
     subgraph FSM["FSM — execution order"]
-        direction LR
         f0[IDLE] --> f1[ADD_RESIDUAL] --> f2[COMPUTE_MEAN] --> f3[COMPUTE_VAR] --> f4[VAR_RSQRT_DELAY] --> f5[NORMALIZE] --> f6[COMPLETE]
     end
 
@@ -85,7 +84,6 @@ graph LR
     OUT["embedded_output [SEQ_LEN x EMBED_DIM]"]
 
     subgraph FSM["FSM"]
-        direction TB
         f0[IDLE] --> f1[PROCESSING] --> f2[COMPLETE]
     end
 
@@ -106,7 +104,6 @@ graph LR
     OUT["position_encoded_output [SEQ_LEN x EMBED_DIM]"]
 
     subgraph FSM["FSM"]
-        direction TB
         f0[IDLE] --> f1[PROCESSING] --> f2[COMPLETE]
     end
 
@@ -151,19 +148,18 @@ graph TD
     MAXVAL["max_val register"]
 
     subgraph ExpPipe["Exp LUT pipeline — one lookup per column per row"]
-        SUB["score minus max_val  →  shifted score"]
+        SUB["score minus max_val, giving shifted score"]
         CLAMP2["Clamp to [-2016, 0]"]
-        IDX["Index = (-clamped) >> 5  =>  [0..63]"]
+        IDX["LUT index = neg_clamped div 32, range 0 to 63"]
         ROM["exp_rom BRAM — 64-entry LUT"]
         TEMP["temp_exp[SEQ_LEN] register array"]
     end
 
     EXPSUM["exp_sum — 32-bit accumulator"]
-    NORM["NORMALIZE — temp_exp[i] x 4096 / exp_sum  =>  Q8.8 weight"]
+    NORM["NORMALIZE: temp_exp[i] x 4096 / exp_sum, output Q8.8"]
     OUT["output_weights [SEQ_LEN x SEQ_LEN]"]
 
     subgraph FSM["FSM — iterates per row, then per column"]
-        direction LR
         f0[IDLE] --> f1[FIND_MAX] --> f2[PREPARE_EXP] --> f3[LOAD_EXP] --> f4[COMPUTE_EXP] --> f5[NORMALIZE] --> f6[COMPLETE]
     end
 
@@ -217,7 +213,6 @@ graph TD
     OUT["output_data [SEQ_LEN x EMBED_DIM]"]
 
     subgraph FSM["FSM — execution order"]
-        direction LR
         f0[IDLE] --> f1[LINEAR1] --> f2[LINEAR2] --> f3[COMPLETE]
     end
 
@@ -286,7 +281,6 @@ graph LR
     OUT["vocabulary_logits [VOCAB_SIZE]"]
 
     subgraph FSM["FSM"]
-        direction TB
         f0[IDLE] --> f1[COMPUTE] --> f2[COMPLETE]
     end
 
@@ -329,7 +323,6 @@ graph TD
     OUT["output_data [SEQ_LEN x HEAD_DIM]"]
 
     subgraph FSM["FSM — execution order"]
-        direction LR
         s0[IDLE] --> s1[COMPUTE_Q] --> s2[COMPUTE_K] --> s3[COMPUTE_V] --> s4[ATTENTION_SCORES] --> s5[SOFTMAX] --> s6[APPLY_ATTENTION] --> s7[COMPLETE]
     end
 
