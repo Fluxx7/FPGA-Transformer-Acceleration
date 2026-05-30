@@ -128,12 +128,10 @@ def generate_sentences(seed: int = 0, max_samples: int | None = None, templates 
         sentences.extend(generate_from_template(tmpl))
     rng = np.random.default_rng(seed)
     rng.shuffle(sentences)
-    print(f"Number of sentences generated: {len(sentences)}")
     if max_samples is not None:
         sentences = sentences[:max_samples]
     return sentences
 
-# [Claude] Full generated set — slice as needed (e.g. TRAINING_SENTENCES[:500])
 TRAINING_SENTENCES = generate_sentences(max_samples=10000, templates=TEMPLATES_SHORT)
 
 # --- Data Helpers ---
