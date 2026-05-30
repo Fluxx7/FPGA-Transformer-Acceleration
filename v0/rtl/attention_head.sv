@@ -25,6 +25,8 @@ module attention_head #(
     localparam DIM_BITS  = $clog2(EMBED_DIM);
     localparam HEAD_BITS = $clog2(HEAD_DIM);
     localparam WQ_BITS   = $clog2(EMBED_DIM * HEAD_DIM);
+    localparam SQRT_HEAD_BITS = HEAD_BITS / 2;
+    localparam SCORE_SHIFT = 8 + SQRT_HEAD_BITS;
     reg [2:0] state;
 
     reg [2:0] seq_idx, seq_idx2;
@@ -220,12 +222,14 @@ module attention_head #(
                             end else begin
                                 accumulator <= accumulator + (Q[seq_idx][head_idx[HEAD_BITS-1:0]] * K[seq_idx2][head_idx[HEAD_BITS-1:0]]);
                             end
+                            pipe_stage <= 1;
                         end
                         1: begin 
+                            pipe_stage <= 0;
                             if (head_idx == 4'(HEAD_DIM - 1)) begin
                                 if (seq_idx2 <= seq_idx) begin
                                     reg signed [31:0] scaled_score;
-                                    scaled_score = accumulator >>> 9;
+                                    scaled_score = accumulator >>> SCORE_SHIFT;
 
                                     if (scaled_score > 32767) attention_scores[seq_idx][seq_idx2] <= 16'h7FFF;
                                     else if (scaled_score < -32768) attention_scores[seq_idx][seq_idx2] <= 16'h8000;
@@ -241,8 +245,8 @@ module attention_head #(
                                     seq_idx2 <= 0;
                                     if (seq_idx == 3'(SEQ_LEN - 1)) begin
                                         state <= SOFTMAX;
-                                        softmax_start <= 1;
                                     end else begin
+                                        
                                         seq_idx <= seq_idx + 1;
                                     end
                                 end else begin
@@ -253,19 +257,21 @@ module attention_head #(
                             end
                         end
                     endcase
-                    pipe_stage <= pipe_stage + 1;
-                    
-
-                    
                 end
 
                 SOFTMAX: begin
-                    if (softmax_done) begin
-                        state <= APPLY_ATTENTION;
-                        seq_idx <= 0;
-                        seq_idx2 <= 0;
-                        head_idx <= 0;
-                        accumulator <= 0;
+                    if (pipe_stage == 0) begin
+                        softmax_start <= 1;
+                        pipe_stage <= 1;
+                    end else begin
+                        if (softmax_done) begin
+                            state <= APPLY_ATTENTION;
+                            seq_idx <= 0;
+                            seq_idx2 <= 0;
+                            head_idx <= 0;
+                            accumulator <= 0;
+                            pipe_stage <= 0;
+                        end
                     end
                 end
 

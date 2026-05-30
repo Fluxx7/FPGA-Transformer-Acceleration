@@ -114,6 +114,9 @@ def main():
     weights_hw = chunks["weights"].reshape(SEQ_LEN, SEQ_LEN)
     output_hw  = chunks["output"].reshape(SEQ_LEN, HEAD_DIM)
 
+    print(f"\nscores hw, row 0: {scores_hw[0]}")
+    print(f"  (j=0 should be a real score; j=1..7 should be -16384, NOT 0)")
+
     # ---- Stage-by-stage comparison ----
     print("\n--- Stage 1: Q = x @ Wq.T ---")
     compare("Q matrix",      Q_hw,       Q_ref,
