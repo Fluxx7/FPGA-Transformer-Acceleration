@@ -85,6 +85,9 @@ TEMPLATES_SHORT = [
     "START {article} {animal} {verb} {adverb} END PAD PAD",
     "START {article} {adjective} {animal} {verb} {adverb} END PAD",
     "START {article} {animal} {verb} and {verb} {adverb} END",
+    "START PAD PAD PAD PAD PAD PAD PAD",
+    "START {article} PAD PAD PAD PAD PAD PAD",
+    "START {article} {animal} PAD PAD PAD PAD PAD",
 ]
 def _placeholders(template: str) -> list[str]:
     """Unique placeholder names in order of first appearance."""
