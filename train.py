@@ -12,7 +12,7 @@ from typing import cast
 import matplotlib.pyplot as plt
 
 from model import (
-    Config, DecoderTransformer, TRAINING_SENTENCES, VOCAB_REVERSE,
+    Config, DecoderTransformer, TRAINING_SENTENCES, SENTENCE_COUNT, VOCAB_REVERSE,
     tokenize_sentence, pad_sequence, quantize_weight, save_memory_file, probe_logits
 )
 
@@ -133,6 +133,7 @@ def export_model_weights(model: DecoderTransformer):
 #         print(f"Info: {hardware_path} not found. Run the Verilog simulation first.")
 
 def main():
+    print(f"Number of sentences generated {SENTENCE_COUNT}")
     config = Config()
     os.makedirs(MODELS_DIR, exist_ok=True)
     model_path = os.path.join(MODELS_DIR, "decoder_model.pth")

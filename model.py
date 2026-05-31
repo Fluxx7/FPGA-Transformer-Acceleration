@@ -122,17 +122,18 @@ def generate_from_template(template: str, window_size: int = 8) -> list[str]:
             out.append(" ".join(window))
     return out
 
-def generate_sentences(seed: int = 0, max_samples: int | None = None, templates = TEMPLATES_LONG) -> list[str]:
+def generate_sentences(seed: int = 0, max_samples: int | None = None, templates = TEMPLATES_LONG):
     sentences = []
     for tmpl in templates:
         sentences.extend(generate_from_template(tmpl))
     rng = np.random.default_rng(seed)
     rng.shuffle(sentences)
+    count = len(sentences)
     if max_samples is not None:
         sentences = sentences[:max_samples]
-    return sentences
+    return count, sentences
 
-TRAINING_SENTENCES = generate_sentences(max_samples=5000, templates=TEMPLATES_SHORT)
+SENTENCE_COUNT, TRAINING_SENTENCES = generate_sentences(max_samples=5000, templates=TEMPLATES_SHORT)
 
 # --- Data Helpers ---
 def tokenize_sentence(sentence: str) -> List[int]:

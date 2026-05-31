@@ -79,8 +79,8 @@ module layer_normalization #(
     reg [31:0] var_lookup;
 
     // For COMPUTE_VAR_RSQRT
-    wire [3:0] k = leading_bit(var_lookup)[4:1];
-    wire [4:0] n_even = {k, 1'b0};
+    wire [4:0] k = leading_bit(var_lookup);
+    wire [4:0] n_even = {k[4:1], 1'b0};
     /* verilator lint_off UNUSEDSIGNAL */
     wire [31:0] m_shift =   ((n_even >= 5'd4) 
                             ? (var_lookup >> (n_even - 6'd4))
@@ -200,7 +200,7 @@ module layer_normalization #(
                     pipe_stage <= pipe_stage + 1;
 
                     case (pipe_stage)
-                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * rsqrt_signed) >>> (11 + k);
+                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * rsqrt_signed) >>> (11 + k[4:1]);
                         1: with_gamma <= (normalized * $signed(gamma_data)) >>> 8;
                         2: final_result <= with_gamma + 32'($signed(beta_data));
                         3: begin

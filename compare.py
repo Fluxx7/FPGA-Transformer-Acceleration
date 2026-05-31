@@ -20,7 +20,14 @@ from model import (
 from train import PLOTS_DIR
 
 # --- Edit this to match your reduced hyperparameters ---
-class ReducedConfig(Config):
+class Config1(Config):
+    EMBED_DIM = 64
+    NUM_HEADS = 8
+    HEAD_DIM  = EMBED_DIM // NUM_HEADS
+    FFN_DIM   = 256
+
+
+class Config2(Config):
     EMBED_DIM = 16
     NUM_HEADS = 4
     HEAD_DIM  = EMBED_DIM // NUM_HEADS
@@ -153,13 +160,13 @@ def main():
     train_sents, val_sents, test_sents = make_split(TRAINING_SENTENCES)
     print(f"Split: {len(train_sents)} train / {len(val_sents)} val / {len(test_sents)} test")
 
-    full_label    = f"Full (E={Config.EMBED_DIM}, H={Config.NUM_HEADS}, F={Config.FFN_DIM})"
-    reduced_label = f"Reduced (E={ReducedConfig.EMBED_DIM}, H={ReducedConfig.NUM_HEADS}, F={ReducedConfig.FFN_DIM})"
+    full_label    = f"Full (E={Config1.EMBED_DIM}, H={Config1.NUM_HEADS}, F={Config1.FFN_DIM})"
+    reduced_label = f"Reduced (E={Config2.EMBED_DIM}, H={Config2.NUM_HEADS}, F={Config2.FFN_DIM})"
 
     print("\n=== Full model ===")
-    full_agg,    full_train,    full_val,    full_epochs    = run_seeds(Config(),        train_sents, val_sents, test_sents, "full")
+    full_agg,    full_train,    full_val,    full_epochs    = run_seeds(Config1(), train_sents, val_sents, test_sents, "configuration 1")
     print("\n=== Reduced model ===")
-    reduced_agg, reduced_train, reduced_val, reduced_epochs = run_seeds(ReducedConfig(), train_sents, val_sents, test_sents, "reduced")
+    reduced_agg, reduced_train, reduced_val, reduced_epochs = run_seeds(Config2(), train_sents, val_sents, test_sents, "configuration 2")
 
     # --- Print results table ---
     print(f"\n{'Metric':<14} {'Full mean':>12} {'Full std':>10} {'Reduced mean':>14} {'Reduced std':>12}")
@@ -211,8 +218,8 @@ def main():
 
     # --- Plot 3: Logit comparison (best seed = last trained) ---
     torch.manual_seed(SEEDS[-1]); np.random.seed(SEEDS[-1])
-    full_final,    _, _, _ = train_with_early_stopping(Config(),        train_sents, val_sents)
-    reduced_final, _, _, _ = train_with_early_stopping(ReducedConfig(), train_sents, val_sents)
+    full_final,    _, _, _ = train_with_early_stopping(Config1(), train_sents, val_sents)
+    reduced_final, _, _, _ = train_with_early_stopping(Config2(), train_sents, val_sents)
 
     full_logits    = probe_logits(full_final,    PROBE_SENTENCE)
     reduced_logits = probe_logits(reduced_final, PROBE_SENTENCE)
