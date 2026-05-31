@@ -132,6 +132,10 @@ def compare_one_prompt(tokens: list[int], tag: str, model, test):
     print(f"[{status}] predicted_token{'':<22} "
           f"hw={hw_tok}  torch={torch_tok}")
     all_pass = all_pass and (hw_tok == torch_tok)
+    print(f"\n hw logits range: {hw_out['final_logits'].min()},"
+          f"{hw_out['final_logits'].max()}")
+    print(f"\n torch logits range: {torch_out['final_logits'].min():.2f},"
+          f"{torch_out['final_logits'].max():.2f}")
 
     # Top-5 of torch logits for context when tokens disagree
     if hw_tok != torch_tok:
