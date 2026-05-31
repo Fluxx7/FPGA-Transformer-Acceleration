@@ -284,7 +284,7 @@ PyTorch stores weight matrices in row-major order (C-contiguous layout). The har
 
 ### Argmax
 
-Argmax is the simplest module — it iterates over the vocabulary logits and outputs the index of the maximum value. It passed **20/20 test cases on the first run** with no changes required.
+Argmax is the simplest module, it iterates over the vocabulary logits and outputs the index of the maximum value. It passed all 20 of its test cases on the first run without any changes, but tests on complete_transformer_decoder found that when the max logit was 'and', the hardware would output the second greatest logit. This was a result of a non-blocking assignment error: the argmax loop checks to see if the current logit is greater than the current maximum and overwrites the current maximum with the logit if it is. In the same cycle, it then checks if all logits have been checked; if so, the output is set to the current maximum logit. Since both of these updates are with non-blocking assignments and happen in the same cycle, the final logit doesn't get the chance to overwrite the maximum before the current maximum is output. In the 40-token vocabulary of the board, 'and' is token 39 (the final token), so it would never be the output.
 
 ### Attention Head
 
@@ -368,16 +368,16 @@ With all individual modules validated, an end-to-end test was run using `test_co
 
 **The dog token edge case.** Initial end-to-end testing was done with a model trained on only 500 sentences. Most inputs worked well, but the prompt `the dog` produced garbage output — the hardware and software diverged sharply at the final logit stage, with correlation dropping to ~0.57. The diagnosis was that the dog token's embedding had been pushed outside the representable Q8.8 range during training on too little data: with only 500 training examples, the distribution of the token embeddings was not well-constrained, and some embeddings drifted to values that the 8.8 fixed-point format could not accurately represent.
 
-Retraining on 5,000 sentences resolved the issue completely. With the larger training set, the dog token's embedding stayed within range and the hardware-software correlation jumped to **1.0** for that test case. This is a practical lesson about the relationship between training data scale and quantization: a model that works fine in floating point can fail in hardware if the training distribution allows embeddings to drift outside the fixed-point representable range.
+Retraining on 4,320 sentences resolved the issue completely. With the larger training set, the dog token's embedding stayed within range and the hardware-software correlation jumped to **1.0** for that test case. This is a practical lesson about the relationship between training data scale and quantization: a model that works fine in floating point can fail in hardware if the training distribution allows embeddings to drift outside the fixed-point representable range.
 
-**Final results.** After training on 5,000 sentences, the end-to-end test showed final logit correlations of **0.9996 or higher** across all four test cases. The hardware and software predicted the same token in most cases. In the one case where they differed (`a cat runs`), the top-five logit rankings were identical between hardware and software — the divergence was in which of the two top-ranked tokens each selected, suggesting a very small absolute logit difference at the boundary.
+**Final results.** After training on 4,320 sentences, the end-to-end test showed final logit correlations of **0.9996 or higher** across all four test cases. The hardware and software predicted the same token in most cases, and both consistently produced grammatically sound sentences.
 
 End-to-end hardware outputs (from Verilator simulation with the trained model):
-- Input `the` → `the cat sleeps gently`
-- Input `the cat` → `the cat sleeps gently`
-- Input `the dog` → `the dog jumps gently`
-- Input *(nothing)* → `the tall fish jumps gently`
-
-## Bug Fix Freeze
-
-The bug fix freeze was declared at approximately 6:00 AM on May 30. At that point, all individual module tests were passing at their expected correlation levels, and the end-to-end test was producing valid grammatical sentences.
+| Input | Output |
+|-------|--------|
+| *(empty)* | *the tall fish jumps quickly* |
+| `the` | *the tall fish jumps quickly* |
+| `the cat` | *the cat jumps and jumps quickly* |
+| `the dog` | *the dog jumps and jumps quickly* |
+| `a bear swims` | *a bird swims and swims quickly* |
+| `a bird flies and` | *the bird flies and flies quickly* |

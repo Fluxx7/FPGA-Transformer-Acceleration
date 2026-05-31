@@ -20,7 +20,7 @@ To produce a meaningful training set, I built a template-based sentence generato
 
 The `and` conjunction token was present in the vocabulary (token index 39) but had never appeared in any training sentence. Adding it to a template ensured the model learned a representation for it.
 
-Training on 5,000 generated sentences takes approximately one minute and produces a model that reliably generates valid grammatical sentences. Training on only 500 sentences is sufficient for most tokens but causes edge cases — the `dog` token's embedding shifted outside the hardware's Q8.8 quantization range, causing garbage hardware output for inputs beginning with `the dog`. Increasing to 5,000 sentences resolved this entirely, with final logit correlations of 0.9996 or higher across all test cases.
+Training on all 4,320 generated sentences takes one or two minutes and produces a model that reliably generates valid grammatical sentences. Training on only 500 sentences is sufficient for most tokens but causes edge cases — the `dog` token's embedding shifted outside the hardware's Q8.8 quantization range, causing garbage hardware output for inputs beginning with `the dog`. Increasing to 5,000 sentences resolved this entirely, with final logit correlations of 0.9996 or higher across all test cases.
 
 <!-- TODO (Nicholas): 
   - Confirm the exact epoch count used for the 5000-sentence run
@@ -41,12 +41,12 @@ Generation runs autoregressively: the interface feeds the current sequence to th
 
 ## Example Software Outputs
 
-After training on 5,000 sentences, the software model produces the following for representative inputs:
+After training on 4,320 sentences, the software model produces the following for representative inputs:
 
 | Input | Output |
 |-------|--------|
-| *(empty)* | *the tall fish jumps gently* |
-| `the` | *the tall fish jumps gently* |
+| *(empty)* | *the tall fish jumps quickly* |
+| `the` | *the tall fish jumps quickly* |
 | `the cat` | *the cat jumps and jumps quickly* |
 | `the dog` | *the dog jumps and jumps quickly* |
 | `the bird swims` | *the bird swims and swims quickly* |

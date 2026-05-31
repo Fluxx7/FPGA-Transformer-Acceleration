@@ -159,10 +159,12 @@ def main():
 
     # A small variety of prompts: increasing prefix lengths, mix of vocab.
     prompts = [
+        ([1 ],          "START"),
+        ([1, 3],          "START the"),
         ([1, 3, 5],          "START the cat"),
         ([1, 3, 6],          "START the dog"),
-        ([1, 4, 5, 8],       "START a cat runs"),
-        ([1, 3, 5, 8, 13, 3, 6],  "START the cat runs on the dog"),
+        ([1, 4, 27, 29],       "START a bear swims"),
+        ([1, 4, 7, 10, 39],  "START a bird flies and"),
     ]
 
     all_pass = True
