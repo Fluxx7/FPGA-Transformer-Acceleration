@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="680" viewBox="0 0 900 680">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#444"/>
+    </marker>
+  </defs>
+  <rect width="900" height="680" fill="white"/>
+  <rect x="5" y="5" width="890" height="670" fill="none" stroke="#DDD" stroke-width="1" rx="3"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#17202A">output_projection — Module Schematic</text>
+  <rect x="80" y="38" width="740" height="22" fill="#EBF5FB" rx="4" stroke="#AED6F1"/>
+  <text x="450" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#2C3E50">EMBED_DIM=64  ·  VOCAB_SIZE=25  ·  Projects the last hidden state to vocabulary logits via matrix-vector multiply</text>
+
+  <text x="80" y="84" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">INPUTS</text>
+  <text x="820" y="84" text-anchor="end" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">OUTPUTS</text>
+
+  <rect x="80" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">clk · rst · start</text>
+  <line x1="100" y1="118" x2="300" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="200" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">final_hidden_state</text>
+  <text x="200" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[EMBED_DIM] · INT16  (1 token)</text>
+
+  <rect x="580" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="700" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">done · valid</text>
+  <line x1="600" y1="118" x2="800" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="700" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">vocabulary_logits</text>
+  <text x="700" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[VOCAB_SIZE] · INT16</text>
+
+  <!-- FSM -->
+  <text x="450" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">FINITE STATE MACHINE</text>
+
+  <circle cx="180" cy="225" r="38" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="180" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">IDLE</text>
+  <text x="180" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">wait</text>
+
+  <circle cx="450" cy="225" r="50" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="450" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">COMPUTE</text>
+  <text x="450" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">MAC across</text>
+  <text x="450" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">vocab × embed</text>
+
+  <circle cx="720" cy="225" r="42" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="720" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">COMPLETE</text>
+  <text x="720" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">done=1, valid=1</text>
+
+  <line x1="218" y1="225" x2="397" y2="225" stroke="#444" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text x="305" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">start</text>
+  <line x1="500" y1="225" x2="673" y2="225" stroke="#444" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text x="585" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">last logit written</text>
+  <text x="585" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#666">(vocab_idx == VOCAB_SIZE-1)</text>
+
+  <path d="M 720 267 Q 720 320 530 320 Q 200 320 180 268" fill="none" stroke="#444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <text x="450" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">!start  →  return to IDLE</text>
+
+  <!-- Datapath -->
+  <text x="450" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">DATAPATH — Inner MAC loop (3-cycle pipeline)</text>
+
+  <rect x="60" y="384" width="160" height="70" fill="#F4F6F7" stroke="#566573" rx="4"/>
+  <text x="140" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34495E">Counters</text>
+  <text x="140" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">vocab_idx : 0..24</text>
+  <text x="140" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">dim_idx   : 0..63</text>
+  <text x="140" y="449" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#7B7D7D">pipe_stage : 0..2</text>
+
+  <line x1="220" y1="419" x2="245" y2="419" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="245" y="384" width="170" height="70" fill="#C0392B" rx="4"/>
+  <text x="330" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Address calc</text>
+  <text x="330" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">proj_addr =</text>
+  <text x="330" y="436" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">dim_idx × VOCAB_SIZE</text>
+  <text x="330" y="450" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">+ vocab_idx</text>
+
+  <line x1="415" y1="419" x2="440" y2="419" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="440" y="384" width="160" height="70" fill="#B7950B" rx="4"/>
+  <text x="520" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">memory_module</text>
+  <text x="520" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">output_proj.mem</text>
+  <text x="520" y="436" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">EMBED_DIM × VOCAB_SIZE</text>
+  <text x="520" y="450" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">= 1600 INT16</text>
+
+  <line x1="600" y1="419" x2="625" y2="419" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="625" y="384" width="220" height="70" fill="#7D3C98" rx="4"/>
+  <text x="735" y="402" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Multiply-accumulate</text>
+  <text x="735" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">acc += hidden[dim_idx] ×</text>
+  <text x="735" y="434" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">$signed(proj_data)</text>
+  <text x="735" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#E8DAEF">INT32 accumulator</text>
+
+  <!-- After dim loop completes per vocab_idx -->
+  <line x1="735" y1="454" x2="735" y2="488" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="745" y="475" font-family="Arial,sans-serif" font-size="8" fill="#666" font-style="italic">after dim_idx loop</text>
+
+  <rect x="565" y="488" width="340" height="50" fill="#0E6655" rx="4"/>
+  <text x="735" y="506" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Output write + shift down</text>
+  <text x="735" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#A9DFBF">vocabulary_logits[vocab_idx] ← (acc &gt;&gt;&gt; 8)</text>
+  <text x="735" y="532" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">reset acc · dim_idx ← 0 · advance vocab_idx</text>
+
+  <!-- Loop structure -->
+  <rect x="60" y="488" width="490" height="50" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="305" y="506" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#566573">Loop structure (outer to inner)</text>
+  <text x="305" y="525" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">for vocab_idx ∈ [0, 24] : for dim_idx ∈ [0, 63] : pipe(0→1→2 then accumulate)</text>
+
+  <!-- Pipeline -->
+  <text x="450" y="566" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">PIPELINE TIMING (per dim_idx tick)</text>
+  <rect x="180" y="578" width="540" height="42" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="450" y="595" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">pipe 0 : drive addr  ·  pipe 1 : BRAM read latency</text>
+  <text x="450" y="610" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">pipe 2 : multiply + add to acc · reset pipe_stage · advance dim_idx (or vocab_idx)</text>
+
+  <!-- Memory footer -->
+  <rect x="80" y="630" width="740" height="32" fill="#FEF9E7" rx="4" stroke="#F4D03F"/>
+  <text x="450" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7D6608">memory/output_proj.mem  ·  EMBED_DIM × VOCAB_SIZE = 64 × 25 = 1600 INT16 weights (row-major over dim, column-major over vocab)</text>
+</svg>

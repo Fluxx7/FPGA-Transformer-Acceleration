@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="580" viewBox="0 0 900 580">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#444"/>
+    </marker>
+  </defs>
+  <rect width="900" height="580" fill="white"/>
+  <rect x="5" y="5" width="890" height="570" fill="none" stroke="#DDD" stroke-width="1" rx="3"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#17202A">argmax — Module Schematic</text>
+  <rect x="80" y="38" width="740" height="22" fill="#EBF5FB" rx="4" stroke="#AED6F1"/>
+  <text x="450" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#2C3E50">VOCAB_SIZE=25  ·  Linearly scans logits, tracks the max-valued index — produces the predicted token</text>
+
+  <text x="80" y="84" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">INPUTS</text>
+  <text x="820" y="84" text-anchor="end" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">OUTPUTS</text>
+
+  <rect x="80" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">clk · rst · start</text>
+  <line x1="100" y1="118" x2="300" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="200" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">input_logits</text>
+  <text x="200" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[VOCAB_SIZE] · INT16</text>
+
+  <rect x="580" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="700" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">done · valid</text>
+  <line x1="600" y1="118" x2="800" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="700" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">selected_token</text>
+  <text x="700" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">5-bit (index of max)</text>
+
+  <!-- FSM -->
+  <text x="450" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">FINITE STATE MACHINE</text>
+
+  <circle cx="180" cy="225" r="38" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="180" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">IDLE</text>
+  <text x="180" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">wait</text>
+
+  <circle cx="450" cy="225" r="52" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="450" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">COMPARE</text>
+  <text x="450" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">scan logits</text>
+  <text x="450" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">update max + index</text>
+
+  <circle cx="720" cy="225" r="42" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="720" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">COMPLETE</text>
+  <text x="720" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">done=1, valid=1</text>
+
+  <line x1="218" y1="225" x2="393" y2="225" stroke="#444" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text x="305" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">start</text>
+  <text x="305" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#666">max_val ← logits[0], idx ← 0</text>
+
+  <line x1="502" y1="225" x2="673" y2="225" stroke="#444" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text x="585" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">current_idx == VOCAB_SIZE-1</text>
+
+  <path d="M 720 267 Q 720 320 530 320 Q 200 320 180 268" fill="none" stroke="#444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <text x="450" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">!start  →  return to IDLE</text>
+
+  <!-- Datapath -->
+  <text x="450" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">DATAPATH (COMPARE state, one cycle per element)</text>
+
+  <rect x="80" y="384" width="180" height="100" fill="#F4F6F7" stroke="#566573" rx="4"/>
+  <text x="170" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34495E">Internal registers</text>
+  <text x="170" y="423" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">max_value : INT16</text>
+  <text x="170" y="438" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">max_index : 5-bit</text>
+  <text x="170" y="453" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">current_idx : 5-bit</text>
+  <text x="170" y="471" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#7B7D7D">(reset to -32768 / 0 / 0)</text>
+
+  <line x1="260" y1="430" x2="295" y2="430" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="295" y="384" width="240" height="100" fill="#C0392B" rx="4"/>
+  <text x="415" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Comparator</text>
+  <text x="415" y="423" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">if (logits[current_idx] &gt; max_value) {</text>
+  <text x="415" y="438" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">  max_value ← logits[current_idx]</text>
+  <text x="415" y="453" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">  max_index ← current_idx</text>
+  <text x="415" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">}</text>
+
+  <line x1="535" y1="430" x2="570" y2="430" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="570" y="384" width="240" height="100" fill="#7D3C98" rx="4"/>
+  <text x="690" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Counter logic</text>
+  <text x="690" y="425" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">if (current_idx == VOCAB_SIZE-1) {</text>
+  <text x="690" y="440" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">  selected_token ← max_index</text>
+  <text x="690" y="454" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">  state ← COMPLETE</text>
+  <text x="690" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">} else current_idx ← current_idx + 1</text>
+
+  <rect x="80" y="504" width="740" height="50" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="450" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#566573">Notes</text>
+  <text x="450" y="540" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">No memory access · One element scanned per clock cycle · Latency = VOCAB_SIZE cycles · No pipelining needed</text>
+</svg>

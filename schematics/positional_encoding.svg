@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="660" viewBox="0 0 900 660">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#444"/>
+    </marker>
+  </defs>
+  <rect width="900" height="660" fill="white"/>
+  <rect x="5" y="5" width="890" height="650" fill="none" stroke="#DDD" stroke-width="1" rx="3"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#17202A">positional_encoding — Module Schematic</text>
+  <rect x="80" y="38" width="740" height="22" fill="#EBF5FB" rx="4" stroke="#AED6F1"/>
+  <text x="450" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#2C3E50">SEQ_LEN=8  ·  EMBED_DIM=64  ·  Adds learned positional encoding to each token's embedding vector</text>
+
+  <text x="80" y="84" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">INPUTS</text>
+  <text x="820" y="84" text-anchor="end" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">OUTPUTS</text>
+
+  <rect x="80" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">clk · rst · start</text>
+  <line x1="100" y1="118" x2="300" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="200" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">embedded_input</text>
+  <text x="200" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[SEQ_LEN][EMBED_DIM] · INT16</text>
+
+  <rect x="580" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="700" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">done · valid</text>
+  <line x1="600" y1="118" x2="800" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="700" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">position_encoded_output</text>
+  <text x="700" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[SEQ_LEN][EMBED_DIM] · INT16</text>
+
+  <!-- FSM -->
+  <text x="450" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">FINITE STATE MACHINE</text>
+
+  <circle cx="180" cy="225" r="38" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="180" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">IDLE</text>
+  <text x="180" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">wait</text>
+
+  <circle cx="450" cy="225" r="48" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="450" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">PROCESSING</text>
+  <text x="450" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">read · add · clamp</text>
+  <text x="450" y="246" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">3-cycle pipe</text>
+
+  <circle cx="720" cy="225" r="42" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="720" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="bold">COMPLETE</text>
+  <text x="720" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D6EAF8">done=1, valid=1</text>
+
+  <line x1="218" y1="225" x2="397" y2="225" stroke="#444" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text x="305" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">start</text>
+  <line x1="498" y1="225" x2="673" y2="225" stroke="#444" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text x="585" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">last (seq,dim) written</text>
+  <path d="M 720 267 Q 720 320 530 320 Q 200 320 180 268" fill="none" stroke="#444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <text x="450" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">!start  →  return to IDLE</text>
+
+  <!-- Datapath -->
+  <text x="450" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">DATAPATH</text>
+
+  <rect x="60" y="384" width="170" height="60" fill="#F4F6F7" stroke="#566573" rx="4"/>
+  <text x="145" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34495E">Counters</text>
+  <text x="145" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">seq_idx : 0..7</text>
+  <text x="145" y="433" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#5D6D7E">dim_idx : 0..EMBED_DIM-1</text>
+
+  <line x1="230" y1="414" x2="265" y2="414" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="265" y="384" width="170" height="60" fill="#C0392B" rx="4"/>
+  <text x="350" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Address</text>
+  <text x="350" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">pos_addr = seq_idx</text>
+  <text x="350" y="434" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FADBD8">× EMBED_DIM + dim_idx</text>
+
+  <line x1="435" y1="414" x2="470" y2="414" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="470" y="384" width="170" height="60" fill="#B7950B" rx="4"/>
+  <text x="555" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">memory_module</text>
+  <text x="555" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">positional_encoding.mem</text>
+  <text x="555" y="434" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">SEQ_LEN × EMBED_DIM = 512</text>
+
+  <line x1="640" y1="414" x2="675" y2="414" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="675" y="384" width="170" height="60" fill="#7D3C98" rx="4"/>
+  <text x="760" y="402" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Adder + clamp</text>
+  <text x="760" y="418" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">temp_sum = emb + pos_data</text>
+  <text x="760" y="432" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#E8DAEF">saturate to [-32768, 32767]</text>
+
+  <!-- Output write -->
+  <line x1="760" y1="444" x2="760" y2="475" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="670" y="475" width="180" height="36" fill="#0E6655" rx="4"/>
+  <text x="760" y="492" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="white">position_encoded_output</text>
+  <text x="760" y="505" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">[seq_idx][dim_idx]</text>
+
+  <!-- Pipeline note -->
+  <text x="450" y="538" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">PIPELINE TIMING (per element)</text>
+  <rect x="180" y="548" width="540" height="42" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="450" y="565" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">pipe_stage 0 : drive address  ·  pipe_stage 1 : BRAM read latency</text>
+  <text x="450" y="580" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">pipe_stage 2 : adder + clamp  →  write output; reset pipe_stage; advance counters</text>
+
+  <!-- Memory footer -->
+  <rect x="80" y="600" width="740" height="40" fill="#FEF9E7" rx="4" stroke="#F4D03F"/>
+  <text x="450" y="624" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7D6608">memory/positional_encoding.mem  ·  SEQ_LEN × EMBED_DIM = 8 × 64 = 512 INT16 entries  ·  one row per sequence position</text>
+</svg>

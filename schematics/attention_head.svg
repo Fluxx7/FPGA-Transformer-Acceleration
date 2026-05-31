@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#444"/>
+    </marker>
+  </defs>
+  <rect width="900" height="900" fill="white"/>
+  <rect x="5" y="5" width="890" height="890" fill="none" stroke="#DDD" stroke-width="1" rx="3"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#17202A">attention_head — Module Schematic</text>
+  <rect x="80" y="38" width="740" height="22" fill="#EBF5FB" rx="4" stroke="#AED6F1"/>
+  <text x="450" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#2C3E50">SEQ_LEN=8  ·  EMBED_DIM=64  ·  HEAD_DIM=8  ·  Scaled dot-product attention for one head with causal masking</text>
+
+  <text x="80" y="84" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">INPUTS</text>
+  <text x="820" y="84" text-anchor="end" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">OUTPUTS</text>
+
+  <rect x="80" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">clk · rst · start</text>
+  <line x1="100" y1="118" x2="300" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="200" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">input_data</text>
+  <text x="200" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[SEQ_LEN][EMBED_DIM] · INT16</text>
+
+  <rect x="580" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="700" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">done · valid</text>
+  <line x1="600" y1="118" x2="800" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="700" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">output_data</text>
+  <text x="700" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[SEQ_LEN][HEAD_DIM] · INT16</text>
+
+  <!-- FSM -->
+  <text x="450" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">FINITE STATE MACHINE</text>
+
+  <circle cx="80" cy="232" r="30" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="80" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">IDLE</text>
+  <text x="80" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">wait</text>
+
+  <circle cx="180" cy="232" r="34" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="180" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">COMPUTE_Q</text>
+  <text x="180" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">x·Wq → Q</text>
+
+  <circle cx="290" cy="232" r="34" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="290" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">COMPUTE_K</text>
+  <text x="290" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">x·Wk → K</text>
+
+  <circle cx="400" cy="232" r="34" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="400" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">COMPUTE_V</text>
+  <text x="400" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">x·Wv → V</text>
+
+  <circle cx="520" cy="232" r="40" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="520" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">ATTENTION</text>
+  <text x="520" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">_SCORES</text>
+  <text x="520" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">QKᵀ · scale · mask</text>
+
+  <circle cx="630" cy="232" r="32" fill="#6C3483" stroke="#4A235A" stroke-width="2"/>
+  <text x="630" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">SOFTMAX</text>
+  <text x="630" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#E8DAEF">submodule</text>
+
+  <circle cx="740" cy="232" r="36" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="740" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">APPLY_</text>
+  <text x="740" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">ATTENTION</text>
+  <text x="740" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">weights·V</text>
+
+  <circle cx="840" cy="232" r="30" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="840" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">DONE</text>
+  <text x="840" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">complete</text>
+
+  <line x1="110" y1="232" x2="146" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="214" y1="232" x2="256" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="324" y1="232" x2="366" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="434" y1="232" x2="480" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="560" y1="232" x2="598" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="662" y1="232" x2="704" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="776" y1="232" x2="810" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- QKV phase datapath -->
+  <text x="450" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">PHASE 1 — Q / K / V projections  (per-head, ¼-EMBED_DIM each)</text>
+
+  <rect x="60" y="306" width="240" height="80" fill="#C0392B" rx="4"/>
+  <text x="180" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Inner MAC loop</text>
+  <text x="180" y="342" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FADBD8">for s, h, e:  acc += x[s][e] · W[e][h]</text>
+  <text x="180" y="357" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">addr = embed_idx · HEAD_DIM + head_idx</text>
+  <text x="180" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">when e==EMBED_DIM-1:</text>
+  <text x="180" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">  Q/K/V[s][h] ← (acc &gt;&gt;&gt; 8)</text>
+
+  <line x1="300" y1="346" x2="325" y2="346" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="325" y="306" width="180" height="80" fill="#B7950B" rx="4"/>
+  <text x="415" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Weight memories</text>
+  <text x="415" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">wq_mem  ·  WQ_FILE</text>
+  <text x="415" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">wk_mem  ·  WK_FILE</text>
+  <text x="415" y="372" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#FCF3CF">wv_mem  ·  WV_FILE</text>
+
+  <line x1="505" y1="346" x2="530" y2="346" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="530" y="306" width="310" height="80" fill="#7D3C98" rx="4"/>
+  <text x="685" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Internal matrices  (each [SEQ_LEN][HEAD_DIM])</text>
+  <text x="685" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#E8DAEF">Q · K · V  ·  INT16 each  ·  written one element per pipeline tick</text>
+  <text x="685" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#D7BDE2">pipe_stage 0,1 wait for BRAM; pipe_stage 2 multiplies and accumulates</text>
+  <text x="685" y="374" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2">After Q complete → COMPUTE_K (same pattern, different memory).  Same for V.</text>
+
+  <!-- Attention scores phase -->
+  <text x="450" y="416" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">PHASE 2 — Attention scores  (S = Q · Kᵀ, scaled, causally masked)</text>
+
+  <rect x="60" y="428" width="220" height="100" fill="#C0392B" rx="4"/>
+  <text x="170" y="446" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Dot product Q · Kᵀ</text>
+  <text x="170" y="464" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FADBD8">for s, s2, h:</text>
+  <text x="170" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FADBD8">  acc += Q[s][h] · K[s2][h]</text>
+  <text x="170" y="495" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">INT32 accumulator</text>
+  <text x="170" y="510" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">(over h, then per (s, s2))</text>
+
+  <line x1="280" y1="478" x2="305" y2="478" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="305" y="428" width="220" height="100" fill="#7D3C98" rx="4"/>
+  <text x="415" y="446" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Score shift  (÷ √HEAD_DIM)</text>
+  <text x="415" y="464" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">scaled = (acc &gt;&gt;&gt; 2)</text>
+  <text x="415" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">         + (acc &gt;&gt;&gt; 4)</text>
+  <text x="415" y="494" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#E8DAEF">approximates ÷ √8 ≈ ÷ 2.83</text>
+  <text x="415" y="510" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2" font-style="italic">absorbed by softmax later</text>
+
+  <line x1="525" y1="478" x2="550" y2="478" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="550" y="428" width="290" height="100" fill="#566573" rx="4"/>
+  <text x="695" y="446" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Causal mask  +  saturate  →  attention_scores[s][s2]</text>
+  <text x="695" y="466" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#D5D8DC">if (s2 &lt;= s):  store saturated scaled score</text>
+  <text x="695" y="482" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#D5D8DC">else:           store -16384  (≈ -∞ in fixed-point)</text>
+  <text x="695" y="498" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#AEB6BF">prevents future tokens from being attended to</text>
+  <text x="695" y="514" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#AEB6BF">array: attention_scores [SEQ_LEN][SEQ_LEN]</text>
+
+  <!-- Softmax + apply phase -->
+  <text x="450" y="556" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">PHASE 3 — Softmax (submodule) → APPLY_ATTENTION</text>
+
+  <rect x="60" y="570" width="260" height="100" fill="#6C3483" rx="4"/>
+  <text x="190" y="588" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">enhanced_softmax  (instance)</text>
+  <text x="190" y="606" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">SOFTMAX state asserts softmax_start</text>
+  <text x="190" y="620" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">.input_scores  ← attention_scores</text>
+  <text x="190" y="634" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">.output_weights → attention_weights</text>
+  <text x="190" y="651" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2">waits for softmax_done before</text>
+  <text x="190" y="663" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2">advancing to APPLY_ATTENTION</text>
+
+  <line x1="320" y1="620" x2="345" y2="620" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="345" y="570" width="260" height="100" fill="#C0392B" rx="4"/>
+  <text x="475" y="588" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">APPLY_ATTENTION  (weighted V)</text>
+  <text x="475" y="606" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FADBD8">for s, h, s2:</text>
+  <text x="475" y="620" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FADBD8">  acc += attention_weights[s][s2]</text>
+  <text x="475" y="634" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FADBD8">       · V[s2][h]</text>
+  <text x="475" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">when s2==SEQ_LEN-1:</text>
+  <text x="475" y="662" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FADBD8">  output_data[s][h] ← (acc &gt;&gt;&gt; 12)</text>
+
+  <line x1="605" y1="620" x2="625" y2="620" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="625" y="570" width="220" height="100" fill="#0E6655" rx="4"/>
+  <text x="735" y="588" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">output_data</text>
+  <text x="735" y="608" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#A9DFBF">[SEQ_LEN][HEAD_DIM] · INT16</text>
+  <text x="735" y="622" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#A9DFBF">one row finalized per s</text>
+  <text x="735" y="644" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">When all (s,h) written →</text>
+  <text x="735" y="657" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">state = COMPLETE  (done,valid=1)</text>
+
+  <!-- Internal storage -->
+  <text x="450" y="700" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">INTERNAL STORAGE</text>
+  <rect x="80" y="710" width="740" height="86" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="450" y="728" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">Q, K, V : [SEQ_LEN][HEAD_DIM] · INT16 — written in COMPUTE_Q/K/V, read in ATTENTION_SCORES + APPLY_ATTENTION</text>
+  <text x="450" y="744" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">attention_scores : [SEQ_LEN][SEQ_LEN] · INT16 — pre-softmax scaled QKᵀ with causal mask applied</text>
+  <text x="450" y="760" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">attention_weights : [SEQ_LEN][SEQ_LEN] · Q0.15 — output of softmax submodule</text>
+  <text x="450" y="776" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">accumulator : INT32 — shared across phases, reset between every output element</text>
+  <text x="450" y="790" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#7B7D7D" font-style="italic">All matrices are initialized to 0 in an `initial` block to avoid X-propagation in simulation</text>
+
+  <!-- Memory footer -->
+  <rect x="80" y="810" width="740" height="74" fill="#FEF9E7" rx="4" stroke="#F4D03F"/>
+  <text x="450" y="828" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#7D6608">External memories (3, parameterized — different file per head instance)</text>
+  <text x="450" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7D6608">WQ_FILE  ·  attention_wq_head{N}.mem  ·  EMBED_DIM × HEAD_DIM = 64 × 8 = 512 INT16</text>
+  <text x="450" y="860" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7D6608">WK_FILE  ·  attention_wk_head{N}.mem  ·  EMBED_DIM × HEAD_DIM = 64 × 8 = 512 INT16</text>
+  <text x="450" y="874" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7D6608">WV_FILE  ·  attention_wv_head{N}.mem  ·  EMBED_DIM × HEAD_DIM = 64 × 8 = 512 INT16</text>
+</svg>

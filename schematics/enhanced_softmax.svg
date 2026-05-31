@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="780" viewBox="0 0 900 780">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#444"/>
+    </marker>
+  </defs>
+  <rect width="900" height="780" fill="white"/>
+  <rect x="5" y="5" width="890" height="770" fill="none" stroke="#DDD" stroke-width="1" rx="3"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#17202A">enhanced_softmax — Module Schematic</text>
+  <rect x="80" y="38" width="740" height="22" fill="#EBF5FB" rx="4" stroke="#AED6F1"/>
+  <text x="450" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#2C3E50">SEQ_LEN=8  ·  Row-wise softmax over an [8 × 8] attention score matrix using a 64-entry exp() lookup table</text>
+
+  <text x="80" y="84" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">INPUTS</text>
+  <text x="820" y="84" text-anchor="end" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#555">OUTPUTS</text>
+
+  <rect x="80" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">clk · rst · start</text>
+  <line x1="100" y1="118" x2="300" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="200" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">input_scores</text>
+  <text x="200" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[SEQ_LEN][SEQ_LEN] · INT16</text>
+
+  <rect x="580" y="92" width="240" height="68" fill="#1E8449" rx="5"/>
+  <text x="700" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">done</text>
+  <line x1="600" y1="118" x2="800" y2="118" stroke="#A9DFBF" stroke-width="0.5"/>
+  <text x="700" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="bold">output_weights</text>
+  <text x="700" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#D4EFDF">[SEQ_LEN][SEQ_LEN] · Q0.15 fixed-point</text>
+
+  <!-- FSM -->
+  <text x="450" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">FINITE STATE MACHINE</text>
+
+  <circle cx="80" cy="232" r="30" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="80" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">IDLE</text>
+  <text x="80" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">wait</text>
+
+  <circle cx="200" cy="232" r="36" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="200" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">FIND_MAX</text>
+  <text x="200" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">global max over</text>
+  <text x="200" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">all 64 scores</text>
+
+  <circle cx="330" cy="232" r="38" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="330" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">PREPARE_EXP</text>
+  <text x="330" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">lookup =</text>
+  <text x="330" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">score − max</text>
+
+  <circle cx="450" cy="232" r="32" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="450" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">LOAD_EXP</text>
+  <text x="450" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">BRAM read</text>
+
+  <circle cx="570" cy="232" r="38" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="570" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">COMPUTE_EXP</text>
+  <text x="570" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">temp_exp[col]</text>
+  <text x="570" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">exp_sum += val</text>
+
+  <circle cx="700" cy="232" r="36" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="700" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">NORMALIZE</text>
+  <text x="700" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">y = exp/Σ</text>
+  <text x="700" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">(per row)</text>
+
+  <circle cx="820" cy="232" r="32" fill="#2980B9" stroke="#1A5276" stroke-width="2"/>
+  <text x="820" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="bold">COMPLETE</text>
+  <text x="820" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#D6EAF8">done=1</text>
+
+  <!-- Transitions -->
+  <line x1="110" y1="232" x2="162" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="236" y1="232" x2="290" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="368" y1="232" x2="416" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="482" y1="232" x2="530" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="608" y1="232" x2="662" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="736" y1="232" x2="786" y2="232" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Per-column loop inside row -->
+  <path d="M 570 270 Q 570 305 450 305 Q 330 305 330 270" fill="none" stroke="#D35400" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+  <text x="450" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D35400" font-style="italic">advance col_idx → next score in row</text>
+
+  <!-- Next row -->
+  <path d="M 700 270 Q 700 350 460 350 Q 330 350 330 270" fill="none" stroke="#229954" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+  <text x="455" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#229954" font-style="italic">after NORMALIZE: if not last row → advance row_idx, reset exp_sum, back to PREPARE_EXP</text>
+
+  <!-- Datapath: LUT lookup + exp + divide -->
+  <text x="450" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">DATAPATH — exp() approximation via clamped index into 64-entry LUT</text>
+
+  <rect x="40" y="410" width="200" height="120" fill="#F4F6F7" stroke="#566573" rx="4"/>
+  <text x="140" y="428" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34495E">Index computation</text>
+  <text x="140" y="446" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#5D6D7E">exp_lookup = score − max</text>
+  <text x="140" y="461" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#5D6D7E">clamp to [-2016, 0]</text>
+  <text x="140" y="476" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#5D6D7E">neg_clamped = -clamped</text>
+  <text x="140" y="491" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#5D6D7E">index = neg_clamped[10:5]</text>
+  <text x="140" y="510" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#7B7D7D">(quantize by div-32, 6-bit)</text>
+  <text x="140" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#7B7D7D">positive-only LUT range</text>
+
+  <line x1="240" y1="470" x2="265" y2="470" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="265" y="410" width="170" height="120" fill="#B7950B" rx="4"/>
+  <text x="350" y="428" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">exp_lut.mem</text>
+  <text x="350" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FCF3CF">64 entries, INT16</text>
+  <text x="350" y="463" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FCF3CF">precomputed values</text>
+  <text x="350" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#FCF3CF">of exp(x) for x &lt;= 0</text>
+  <text x="350" y="498" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FCF3CF" font-style="italic">if (raw == 0) → 1</text>
+  <text x="350" y="510" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FCF3CF" font-style="italic">(min-floor to avoid</text>
+  <text x="350" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#FCF3CF" font-style="italic">divide-by-zero later)</text>
+
+  <line x1="435" y1="470" x2="460" y2="470" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="460" y="410" width="200" height="120" fill="#7D3C98" rx="4"/>
+  <text x="560" y="428" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">Per-row accumulate</text>
+  <text x="560" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">for col_idx ∈ 0..SEQ_LEN-1:</text>
+  <text x="560" y="463" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">  temp_exp[col] ← exp_val</text>
+  <text x="560" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#E8DAEF">  exp_sum += exp_val</text>
+  <text x="560" y="495" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2">exp_sum : INT32</text>
+  <text x="560" y="508" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2">temp_exp[0:7] : INT16 per col</text>
+  <text x="560" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#D7BDE2">(holds row's unnormalized exps)</text>
+
+  <line x1="660" y1="470" x2="685" y2="470" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="685" y="410" width="170" height="120" fill="#0E6655" rx="4"/>
+  <text x="770" y="428" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">NORMALIZE</text>
+  <text x="770" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#A9DFBF">if (exp_sum &gt; 0):</text>
+  <text x="770" y="463" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#A9DFBF">  y = (temp_exp[c] &lt;&lt; 12)</text>
+  <text x="770" y="476" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#A9DFBF">       / exp_sum[15:0]</text>
+  <text x="770" y="491" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">  clamp to INT16_MAX</text>
+  <text x="770" y="506" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">else: y = 0</text>
+  <text x="770" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#A9DFBF">→ output_weights[r][c]</text>
+
+  <!-- Internal storage -->
+  <text x="450" y="558" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">INTERNAL STATE</text>
+  <rect x="120" y="568" width="660" height="56" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="450" y="585" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">max_val : INT16 (single global max found in FIND_MAX)</text>
+  <text x="450" y="600" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">exp_sum : INT32 accumulator (one row at a time, reset between rows)</text>
+  <text x="450" y="615" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">temp_exp[0..SEQ_LEN-1] : INT16 array buffering one row's exponentials before division</text>
+
+  <!-- Caveats -->
+  <text x="450" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#444">DESIGN NOTES</text>
+  <rect x="80" y="660" width="740" height="100" fill="#FBFCFC" stroke="#85929E" rx="4"/>
+  <text x="450" y="678" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">Single global FIND_MAX across the full [SEQ_LEN][SEQ_LEN] matrix — the same max is then subtracted from every row.</text>
+  <text x="450" y="694" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">Index is 6-bit (LUT depth 64) — the discrete LUT introduces ~0.1% error vs. continuous exp(); linear interpolation was tried but deemed unnecessary.</text>
+  <text x="450" y="710" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">Lower clamp at -2016 = 63 × 32 (not -2048) so the last LUT index is 63, not 64 — fence-post fix.</text>
+  <text x="450" y="726" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">If raw LUT value reads 0, substitute 1 → prevents divide-by-zero in NORMALIZE for the smallest scores.</text>
+  <text x="450" y="742" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#566573">PREPARE_EXP and LOAD_EXP are deliberately one-cycle-each — wait for BRAM latency before sampling exp_val.</text>
+  <text x="450" y="756" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#7B7D7D" font-style="italic">Wraps `improved_sqrt`-style function regions with `lint_off BLKSEQ` to allow blocking assignments inside.</text>
+</svg>
