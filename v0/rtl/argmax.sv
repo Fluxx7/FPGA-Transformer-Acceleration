@@ -50,9 +50,13 @@ module argmax #(
                         max_value <= input_logits[current_idx];
                         max_index <= current_idx;
                     end
-                    
+
                     if (current_idx == IDX_BITS'(VOCAB_SIZE - 1)) begin
-                        selected_token <= max_index;
+                        // Sample the post-comparison winner; reading max_index
+                        // here would see the pre-NBA (stale) value and miss a
+                        // winner at the final index.
+                        selected_token <= (input_logits[current_idx] > max_value)
+                                          ? current_idx : max_index;
                         state <= COMPLETE;
                     end else begin
                         current_idx <= current_idx + 1;

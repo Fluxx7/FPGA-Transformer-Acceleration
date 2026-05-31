@@ -71,7 +71,7 @@ in the standalone test Makefile.
 
 | Module                       | Status | Notes                                    |
 |------------------------------|--------|------------------------------------------|
-| `argmax`                     | ✓ 20/20 | trivial |
+| `argmax`                     | ✓ post-fix | had NBA stale-sample bug: `selected_token <= max_index` in the final-iteration COMPARE cycle saw the pre-update max_index, so winners at index VOCAB_SIZE-1 silently lost to the runner-up. Fixed 2026-05-30 by sampling `(input_logits[i] > max_value) ? i : max_index` directly. Test suite missed it — winner at the last index was never exercised |
 | `positional_encoding`        | ✓ | after fixing pipeline timing (memory read off-by-one) |
 | `token_embedding`            | ✓ | no changes needed |
 | `output_projection`          | ✓ 1.0 corr | after train.py `.T` fix |
@@ -175,6 +175,14 @@ python gen_luts.py    # writes memory/rsqrt_lut.mem, memory/exp_lut.mem
 - `Vivado/project_setup.tcl` — sources the `stage_mem_files.tcl` hook on
   `synth_1` AND the OOC wrapper run, clears stale incremental-synth refs,
   suppresses benign `rst_ps7_0_50M` warnings. Run once per project clone.
+  **Re-source after any block-design output-product regeneration** — that
+  recreates the wrapper's OOC run as a new run object and wipes the
+  `STEPS.SYNTH_DESIGN.TCL.PRE` property. Symptom if you forget: the OOC
+  wrapper synth log lacks the `stage_mem_files.tcl: staged N .mem files`
+  line and instead shows `Net memory in module/entity memory_module... does
+  not have driver` warnings — `$readmemh` silently failed, the wrapper .dcp
+  ships with zero-content ROMs, and the bitstream's predicted_token will
+  be garbage even though Verilator sim still passes.
 - `Vivado/stage_mem_files.tcl` — pre-synth hook that copies `memory/*.mem`
   into the run's working dir so `$readmemh` resolves.
 - `Vivado/transformer_axi_wrapper.v` — AXI4-Lite wrapper. Recent changes:
