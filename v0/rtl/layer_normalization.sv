@@ -200,7 +200,7 @@ module layer_normalization #(
                     pipe_stage <= pipe_stage + 1;
 
                     case (pipe_stage)
-                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * rsqrt_signed) >>> (11 + k);
+                        0: normalized <= ((32'(sum_data[seq_idx][dim_idx]) - 32'(mean_val[seq_idx]))  * rsqrt_signed) >>> (11 + k[4:1]);
                         1: with_gamma <= (normalized * $signed(gamma_data)) >>> 8;
                         2: final_result <= with_gamma + 32'($signed(beta_data));
                         3: begin

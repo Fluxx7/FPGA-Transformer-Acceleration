@@ -7,7 +7,7 @@
 
 Nicholas Armstrong is a WPI graduate student completing his MQP (Major Qualifying Project — equivalent to a senior thesis). The project is a hardware accelerator for transformer inference on a PYNQ-Z1 FPGA board, implemented in SystemVerilog. This weekend, Andy (his father) is cloning the repo and working with Claude Code to scaffold and draft the written report.
 
-**The stakes:** WPI requires completing at least two of three project requirements to graduate. The MQP is one of them. First draft is due to the faculty advisor this weekend; final draft target is Tuesday.
+**The stakes:** WPI requires completing three project requirements to graduate. The MQP is one of them. First draft is due to the faculty advisor this weekend; final draft target is Tuesday.
 
 **Repo:** https://github.com/Fluxx7/FPGA-Transformer-Acceleration
 
@@ -189,13 +189,12 @@ Create one `.md` file per section in a `/report/` directory in the repo. Work on
 
 **`report/07_future_work.md`** — Future Work  
 Draw directly from `GAME_PLAN.md` in the repo — it's well-written and already structured into 5 steps. The report version should be prose not bullets, and should explain the *motivation* for each step, not just what it does. The five steps are:
-1. Sequentialize attention heads (biggest single resource win)
-2. Single-position processing with KV cache
+1. Decouple tokens completely from the board so vocabulary size is not a hardcoded parameter
+2. Sequentialize attention heads
 3. Generic parameterizable matmul unit
-4. Move intermediate storage to BRAM scratchpad
-5. AXI-Lite control interface for full PYNQ overlay
+4. Move intermediate storage to either a shared scratchpad either in BRAM or in registers
+5. BRAM weight flashing to change the model weights without resynthesis
 
-Also mention: decoupling token embedding and arg max from the hardware (vocabulary independence), BRAM weight flashing (runtime model update without resynthesis).
 
 **`report/08_conclusion.md`** — Conclusion  
 - What was achieved: working, validated transformer decoder hardware accelerator
