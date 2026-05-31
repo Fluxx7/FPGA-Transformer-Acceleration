@@ -105,10 +105,10 @@ def process_section(path, figures_dir, render_mermaid_blocks):
         print(f"  Rendering Mermaid diagram -> {png_path}")
         render_mermaid(src, png_path)
 
-        # Pandoc resolves image paths relative to the working directory
-        # (project root), so use a root-relative path.
-        rel_path = png_path.replace("\\", "/")
-        return f"![]({rel_path})"
+        # Use absolute path so pandoc can find the image regardless of
+        # where the temp markdown file is written.
+        abs_path = os.path.abspath(png_path).replace("\\", "/")
+        return f"![]({abs_path})"
 
     return MERMAID_BLOCK_RE.sub(replace_block, content)
 
