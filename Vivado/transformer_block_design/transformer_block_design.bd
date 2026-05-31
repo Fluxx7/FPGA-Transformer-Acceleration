@@ -446,7 +446,7 @@
         "has_run_ip_tcl": "true",
         "parameters": {
           "EMBED_DIM": {
-            "value": "16"
+            "value": "64"
           },
           "FFN_DIM": {
             "value": "128"

@@ -79,8 +79,8 @@ module layer_normalization #(
     reg [31:0] var_lookup;
 
     // For COMPUTE_VAR_RSQRT
-    wire [3:0] k = leading_bit(var_lookup)[4:1];
-    wire [4:0] n_even = {k, 1'b0};
+    wire [4:0] k = leading_bit(var_lookup);
+    wire [4:0] n_even = {k[4:1], 1'b0};
     /* verilator lint_off UNUSEDSIGNAL */
     wire [31:0] m_shift =   ((n_even >= 5'd4) 
                             ? (var_lookup >> (n_even - 6'd4))
